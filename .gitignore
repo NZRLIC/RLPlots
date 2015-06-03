@@ -1,0 +1,7 @@
+*.Rout
+.RData
+.Rhistory
+*.zip
+*.tar.gz
+*~
+.directory
