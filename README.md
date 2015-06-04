@@ -1,27 +1,46 @@
 RLPlots
 =======
 
-`RLPlots` is an R package for plotting the output of rock lobster stock
-assessment outputs and management proceedure evaluations (MPEs). RLPlots can be
-installed from R using
+`RLPlots` is an R package for plotting rock lobster (RL) stock assessment
+outputs and management proceedure evaluations (MPEs). Plotting functions are
+available for MPD fits, Markov chain Monte Carlo (MCMC) and some other plots.
+
+
+# Installation
+
+RLPlots can be installed from R using
 
     install.packages("devtools")
     require(devtools)
-    devtools::install_github("NZRLIC/lobster", subdir = "/lobview", ref = "master")
+    devtools::install_github("NZRLIC/RLPlots")
 
-For example, plotting of MPDs and MCMCs can be done using
+
+# Using RLPlots
+
+## MPDs
+
+Plotting of MPDs can be done using
 
     MPD.All(stock = "CRA1", source.dir = ".")
+
+
+## MCMCs
+
+Plotting of MCMCs can be done using
+
     MCMC.All(stock = "CRA1", source.dir = ".")
 
 Plotting multiple MCMC chais on a single plot can be done using    
 
-    Multichain.All(stock = "CRA1", source.dir = c("chain1/","chain2/"))
+    Multichain.All(stock = "CRA1", source.dir = c("chain1/", "chain2/"))
     
 The snail trail plot can be done using
 
     Snail(stock = "CRA1", source.dir = ".")
-    
+
+
+## MPEs
+
 To plot MPE rules and results you must first read in the data before plotting
 
     dat <- read.sims.sum(source.dir = ".")
