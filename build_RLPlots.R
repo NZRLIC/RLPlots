@@ -6,13 +6,13 @@ rm(list=ls())
 VERSION <- "1.01"
 DATE    <- Sys.Date()
 
-DESCRIPTION <- readLines("lobview/DESCRIPTION")
+DESCRIPTION <- readLines("DESCRIPTION")
 DESCRIPTION[3] <- paste("Version:", VERSION)
 DESCRIPTION[4] <- paste("Date:", DATE)
-writeLines(DESCRIPTION, "lobview/DESCRIPTION")
+writeLines(DESCRIPTION, "DESCRIPTION")
 
 # Write lobview.version()
-filename <- "lobview/R/lobview.version.R"
+filename <- "R/RLPlots.version.R"
 cat("#' Function to return version number\n", file = filename)
 cat("#'\n", file = filename, append = TRUE)
 cat("#' @export\n",file = filename, append = TRUE)
@@ -24,14 +24,14 @@ cat("}\n", file = filename, append = TRUE)
 
 # run roxygen
 library(roxygen2)
-roxygen2::roxygenize("lobview/")
+roxygen2::roxygenize()
 
 # build package
 library(devtools)
-build('lobview', binary=TRUE)
+devtools::build(binary=TRUE)
 
 # install package locally
-pkg_name <- paste("lobview_",VERSION,".zip",sep="")
+pkg_name <- paste("../RLPlots_",VERSION,".zip",sep="")
 install.packages(pkg_name, repos = NULL)
 
 # tidy up
