@@ -6,23 +6,24 @@ R CMD BATCH run-roxygen.R
 
 echo
 echo == Building source ==
-R CMD build lobview
+cd ..
+R CMD build RLPlots
 
 
 echo == Installing ==
-R CMD INSTALL lobview_*.tar.gz
+R CMD INSTALL RLPlots_*.tar.gz
 
 
 echo
 echo == Building for windows ==
 mkdir localRlib
-rm -r lobview.zip
+rm -r RLPlots.zip
 R CMD INSTALL -l localRlib lobview_*.tar.gz
 cd localRlib
-zip -r lobview lobview
-mv lobview.zip ..
+zip -r RLPlots RLPlots
+mv RLPlots.zip ..
 cd ..
 rm -r localRlib/
 
-cd lobview
+cd RLPlots
 chmod 777 DESCRIPTION
