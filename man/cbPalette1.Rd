@@ -4,7 +4,11 @@
 \name{cbPalette1}
 \alias{cbPalette1}
 \title{The palette with grey}
+<<<<<<< HEAD
 \format{\preformatted{ chr [1:8] "#999999" "#E69F00" "#56B4E9" "#009E73" "#F0E442" ...
+=======
+\format{\preformatted{ chr [1:8] "#999999" "#E69F00" "#56B4E9" "#009E73" "#F0E442" "#0072B2" "#D55E00" "#CC79A7"
+>>>>>>> 80774bd0b6d3423d40e5461db381d6b3cd8e0419
 }}
 \usage{
 cbPalette1
