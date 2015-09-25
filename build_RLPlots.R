@@ -1,40 +1,40 @@
 
 # vanilla session
-rm(list=ls())
+rm(list = ls())
 
-# update description file
-VERSION <- "1.01"
+# Get Version and date
+VERSION <- scan('DESCRIPTION',what = character(),skip = 2,nlines = 1)[2]
 DATE    <- Sys.Date()
+TIME    <- Sys.time()
 
-DESCRIPTION <- readLines("DESCRIPTION")
-DESCRIPTION[3] <- paste("Version:", VERSION)
-DESCRIPTION[4] <- paste("Date:", DATE)
-writeLines(DESCRIPTION, "DESCRIPTION")
+# increment development version
+VERSION <- paste(substr(VERSION, start = 1, stop = 6), as.numeric(substr(VERSION, start = 7, stop = 10)) + 1, sep = '')
 
-filename <- "R/RLPlots.version.R"
-cat("#' Function to return version number\n", file = filename)
-cat("#'\n", file = filename, append = TRUE)
-cat("#' @export\n",file = filename, append = TRUE)
-cat("#'\n", file = filename, append = TRUE)
-cat("lobview.version <- function()\n", file = filename, append = TRUE)
+# update DESCRIPTION
+DESCRIPTION    <- readLines('DESCRIPTION')
+DESCRIPTION[3] <- paste('Version:', VERSION)
+DESCRIPTION[4] <- paste('Date:', DATE)
+writeLines(DESCRIPTION, 'DESCRIPTION')
+rm(DESCRIPTION)
+
+# Write .onAttach
+filename <- "R/zzz.R"
+cat(".onAttach <- function(libname, pkgname)\n", file = filename)
 cat("{\n", file = filename, append = TRUE)
-cat(paste("    return(\"Version: ", VERSION, "\\n", "Compile date: ", DATE, "\\n\")\n", sep = ""), file = filename, append = TRUE)
+cat(paste("    packageStartupMessage(\"RLPlots version ", VERSION, " (", TIME, ")\")\n", sep = ""), file = filename, append = TRUE)
 cat("}\n", file = filename, append = TRUE)
+rm(filename)
 
 # run roxygen
-library(roxygen2)
 roxygen2::roxygenize()
 
 # build package
-library(devtools)
-build(binary=TRUE)
+devtools::build(binary = TRUE)
 
 # install package locally
-pkg_name <- paste("RLPlots_",VERSION,".zip",sep="")
-
-# install package locally
-pkg_name <- paste("../RLPlots_",VERSION,".zip",sep="")
+pkg_name <- paste("../RLPlots_",VERSION,".zip",sep = "")
 install.packages(pkg_name, repos = NULL)
 
 # tidy up
+file.copy(pkg_name, "C:/PROJECTS/CRA201201B - lobster/lobster")
 file.remove(pkg_name)
