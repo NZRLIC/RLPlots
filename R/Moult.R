@@ -6,7 +6,9 @@
 #' 
 Moult <- function(stock, source.dir, target.dir = source.dir, PlotOptions = .PlotOptions)
 {
-    nFiles <- scan(paste(source.dir,"/",stock,"Moult.out",sep=""), nlines = 1, quiet = TRUE)
+    nFiles <- 1 #scan(paste(source.dir,"/",stock,"Moult.out",sep=""), nlines = 1, quiet = TRUE)
+    # currently the ADMB model will only output nFiles in the first line if there is >1 growth epoch
+    # VH is going to fix this 25-09-2015
     moult <- list()
     if ( nFiles == 1 )
     {
