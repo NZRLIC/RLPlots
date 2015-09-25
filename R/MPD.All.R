@@ -4,42 +4,47 @@
 #'
 #' @export
 #' 
-MPD.All <- function(stock, source.dir, target.dir = source.dir, PlotOptions = .PlotOptions,
+MPD.All <- function(stock, source.dir = ".", target.dir = paste('../', stock, 'plots', sep = ''), PlotOptions = .PlotOptions,
                     CPUEOptions = .CPUEOptions, CROptions = .CROptions,
                     LFOptions = .LFOptions, TagOptions = .TagOptions,
                     BioOptions = .BioOptions, SEXROptions = .SEXROptions)
 {
-    cat("Plotting catches\n")
+    if (!dir.exists(target.dir)) {
+        dir.create(target.dir)
+		message('created target.dir ', target.dir)
+    }
+	
+    message("Plotting catches")
     Catches(stock, source.dir, target.dir, PlotOptions)
-    cat("Plotting CPUE\n")
+    message("Plotting CPUE")
     CPUE(stock, source.dir, target.dir, CPUEOptions, PlotOptions)
-    cat("Plotting catch rates\n")
+    message("Plotting catch rates")
     CR(stock, source.dir, target.dir, CROptions, PlotOptions)
     # vh: comment out PRI plots cause crashes when no PRI output files
     # POO(stock,source.dir,target.dir, CROptions, PlotOptions)
-    cat("Plotting length-frequencies\n")
+    message("Plotting length-frequencies")
     LF(stock, source.dir, target.dir, LFOptions, PlotOptions)
-    cat("Plotting tag-recaptures\n")
+    message("Plotting tag-recaptures")
     Tag(stock, source.dir, target.dir, TagOptions, PlotOptions)
-    cat("Plotting Erate\n")
+    message("Plotting Erate")
     Erate(stock, source.dir, target.dir, PlotOptions)
-    cat("Plotting recruitment\n")
+    message("Plotting recruitment")
     Rect(stock, source.dir, target.dir, PlotOptions)
-    cat("Plotting LFzero\n")
+    message("Plotting LFzero")
     LFzero(stock, source.dir, target.dir, PlotOptions)
-    cat("Plotting Maturity\n")
+    message("Plotting Maturity")
     Mature(stock, source.dir, target.dir, PlotOptions)
-    cat("Plotting Selectivity\n")
+    message("Plotting Selectivity")
     Select(stock, source.dir, target.dir, PlotOptions)
-    cat("Plotting Moult\n")
+    message("Plotting Moult")
     Moult(stock, source.dir, target.dir, PlotOptions)
-    cat("Plotting mean size\n")
+    message("Plotting mean size")
     MeanSize(stock, source.dir, target.dir, LFOptions, PlotOptions)
-    cat("Plotting biomass\n")
+    message("Plotting biomass")
     Bio(stock, source.dir, target.dir, BioOptions, PlotOptions)
-    cat("Plotting SPBrect\n")
+    message("Plotting SPBrect")
     SPBrect(stock, source.dir, target.dir, PlotOptions)
     #DDgrowth(stock,source.dir,target.dir, PlotOptions)
-    cat("Plotting sex ratio\n")
+    message("Plotting sex ratio")
     sexRatio(stock, source.dir, target.dir, SEXROptions, PlotOptions)
 }
