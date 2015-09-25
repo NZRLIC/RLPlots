@@ -11,17 +11,19 @@ available for MPD fits, Markov chain Monte Carlo (MCMC) and some other plots.
 RLPlots can be installed from R using
 
     install.packages("devtools")
-    require(devtools)
     devtools::install_github("NZRLIC/RLPlots")
 
+To install the devtools package requires Rtools, which is available from
 
+	https://cran.r-project.org/bin/windows/Rtools/
+	
 # Using RLPlots
 
 ## MPDs
 
-Plotting of MPDs can be done using
+Plotting of MPDs can be done using, for example
 
-    MPD.All(stock = "CRA1", source.dir = ".")
+    MPD.All(stock = "CRA1")
 
 
 ## MCMCs
