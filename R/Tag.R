@@ -27,8 +27,8 @@ Tag <- function(stock, source.dir, target.dir = source.dir,
     nmoult[tag$sex==2 & (tag$perrel+1) %% 2==(tag$perrec+1)%%2] <- (tag$perrec[tag$sex==2 & (tag$perrel+1)%%2==(tag$perrec+1)%%2]-tag$perrel[tag$sex==2 & (tag$perrel+1)%%2==(tag$perrec+1)%%2])/2
     #write.table(cbind(tag,nmoult),"moulttest.csv",sep=",",row.names=F)
 
-    tag$sex[tag$sex == 1] <- "Male"
-    tag$sex[tag$sex == 2] <- "Female"
+    #tag$sex[tag$sex == 1] <- "Male"
+    #tag$sex[tag$sex == 2] <- "Female"
     
   # ==============================================================================
   # StdResid vs Pred
@@ -51,7 +51,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir,
           } else {
               xlim <- TagOptions$xlim.female
           }
-          plot(StdRes ~ size2Pred, data = tag[tag$sex==sex & tag$file==1,],
+          plot(StdRes ~ size2Pred, data = tag[tag$sex==sex & tag$file==ff,],
                pch = 1, ylab = "", xlab = "", xaxt = "s", cex = 0.7, xlim = xlim, las = 1)
           abline(h = 0, lty = 2)
           mtext(c("Male","Female")[sex], side = 3, line = 0.1, las = 1, adj = 0)
@@ -80,7 +80,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir,
         } else {
             xlim <- TagOptions$xlim.female
         }
-        plot(size2Pred~size2Obs,data=tag[tag$sex==sex & tag$file==1,],
+        plot(size2Pred~size2Obs,data=tag[tag$sex==sex & tag$file==ff,],
              pch = 1, ylab = "", xlab = "", xaxt = "s", xlim = xlim, cex = 0.7, las = 1)
         abline(a=0,b=1)
         mtext(c("Male","Female")[sex], side = 3, line = 0.1, las = 1, adj = 0)
@@ -103,7 +103,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir,
   {
       for ( sex in 1:2 )
       {
-          qqnorm(tag$StdRes[tag$sex==sex & tag$file==1],xlab="",ylab="",main="",las=1)
+          qqnorm(tag$StdRes[tag$sex==sex & tag$file==ff],xlab="",ylab="",main="",las=1)
           abline(a = 0, b = 1)
           abline(h=quantile(tag$StdRes,p=c(5,10,25,50,75,90,95)/100),lty=2)#Plot quntiles of the stdevs
           mtext(c("Male","Female")[sex],side=3,line=0.1,las=1,adj=0)
@@ -130,7 +130,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir,
           for ( sex in 1:2 )
           {
               nn <- nrow(tag[tag$sex == sex & tag$file == ff,])
-              boxplot(StdRes ~ sc, data = tag[tag$sex==sex & tag$file==1,],
+              boxplot(StdRes ~ sc, data = tag[tag$sex==sex & tag$file==ff,],
                       ylab = "", xlab = "", line = 2, medlwd = 1, las = 1,
                       varwidth = TRUE)
               abline(h = 0, lty = 2)
@@ -160,7 +160,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir,
           for(sex in 1:2)
           {
                     nn <- nrow(tag[tag$sex == sex & tag$file == ff,])
-                    boxplot(StdRes~release,data=tag[tag$sex==sex & tag$file==1,],
+                    boxplot(StdRes~release,data=tag[tag$sex==sex & tag$file==ff,],
                             ylab="",xlab="",line=2, medlwd = 1, varwidth = TRUE, las = 1)
                     abline(h=0,lty=2)
                     legend("top", legend = paste("N: ", nn, sep = ""), bty = "n")
@@ -252,7 +252,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir,
       {
           for( sex in 1:2 )
           {
-              sub<-tag[tag$sex==sex & tag$file==1,]
+              sub<-tag[tag$sex==sex & tag$file==ff,]
               brmin<-floor(min(sub$StdRes))
               brmax<-ceiling(max(sub$StdRes))
               by<-0.1
