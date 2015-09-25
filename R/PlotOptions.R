@@ -1,5 +1,8 @@
 #' PlotOptions
 #'
+#' A list containing options for plotting
+#' 
+#' 
 #' @export
 #' 
 .PlotOptions <- list(UsePeriod = FALSE, ModelEndPeriod = 120,

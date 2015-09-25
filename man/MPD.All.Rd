@@ -4,8 +4,8 @@
 \alias{MPD.All}
 \title{MPD All}
 \usage{
-MPD.All(stock, source.dir, target.dir = source.dir,
-  PlotOptions = .PlotOptions, CPUEOptions = .CPUEOptions,
+MPD.All(stock, source.dir = ".", target.dir = paste("../", stock, "plots",
+  sep = ""), PlotOptions = .PlotOptions, CPUEOptions = .CPUEOptions,
   CROptions = .CROptions, LFOptions = .LFOptions,
   TagOptions = .TagOptions, BioOptions = .BioOptions,
   SEXROptions = .SEXROptions)
