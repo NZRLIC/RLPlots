@@ -9,9 +9,14 @@
 sexRatio <- function(stock, source.dir, target.dir = source.dir,
                      SEXROptions = .SEXROptions, PlotOptions = .PlotOptions)
 {
-    require(ggplot2)
-    sexr <- read.table(paste(source.dir, "/", stock, "SexRatio.out", sep = ""), header = TRUE, as.is = TRUE)
-    sexr$Sex <- factor(c("Male", "Immature female", "Mature female")[sexr$sex])
+    filename <- paste(source.dir, "/", stock, "SexRatio.out", sep = "")
+    
+    if (file.exists(filename)) {
+        sexr <- read.table(filename, header = TRUE, as.is = TRUE)
+        sexr$Sex <- factor(c("Male", "Immature female", "Mature female")[sexr$sex])
+    } else {
+        stop(paste("can't find:", filename, "\n"))
+    }
 
   if ( PlotOptions$UsePeriod )
   {
@@ -22,11 +27,9 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir,
     xlab <- "Fishing year"
   }
 
-
-  attach(sexr)
-  SD <- sqrt(Pred*(1-Pred)/effN)
-  sexr$LB <- Obs - 1.96*SD
-  sexr$UB <- Obs + 1.96*SD
+  SD <- sqrt(sexr$Pred*(1-sexr$Pred)/sexr$effN)
+  sexr$LB <- sexr$Obs - 1.96*SD
+  sexr$UB <- sexr$Obs + 1.96*SD
   
   sex.lab  <- c('Male','Imm. Female','Mat. Female')
   type.lab <- c('LB','CS')
@@ -42,10 +45,10 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir,
     for(sex in 1:3)
       for(type in 1:2) {
         plot(Obs~Year,data=sexr[sexr$Season==1 & sexr$sex==sex & sexr$type==type,],pch=1,ylab="Proportion",
-          xlim=range(Year),ylim=c(0,max(sexr$UB)),xlab=xlab)
+          xlim=range(Year),ylim=c(min(sexr$LB),max(sexr$UB)),xlab=xlab)
         lines(Pred~Year,data=sexr[sexr$Season==1 & sexr$sex==sex & sexr$type==type,],lwd=PlotOptions$thin)
-        prange<-unique(sexr$Year[sexr$Season==1 & sexr$sex==sex & sexr$type==type])
-        for(p in prange) lines(c(LB,UB)~c(p,p),data=sexr[sexr$Year==p & sexr$Season==1 & sexr$sex==sex & sexr$type==type,],pch="-",type="o",lwd=PlotOptions$thin)
+        #prange<-unique(sexr$Year[sexr$Season==1 & sexr$sex==sex & sexr$type==type])
+        #for(p in prange) lines(c(sexr$LB,sexr$UB)~c(p,p),data=sexr[sexr$Year==p & sexr$Season==1 & sexr$sex==sex & sexr$type==type,],pch="-",type="o",lwd=PlotOptions$thin)
         legend('top',legend=paste(sex.lab[sex],";",type.lab[type]),lty=0,bty="n")
       }
     if(PlotOptions$Captions) 
@@ -61,10 +64,10 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir,
     for(sex in 1:3)
       for(type in 1:2) {
         plot(Obs~Year,data=sexr[sexr$Season==2 & sexr$sex==sex & sexr$type==type,],pch=1,ylab="Proportion",
-             xlim=range(Year),ylim=c(0,max(sexr$UB)),xlab=xlab)
+             xlim=range(Year),ylim=c(min(sexr$LB),max(sexr$UB)),xlab=xlab)
         lines(Pred~Year,data=sexr[sexr$Season==2 & sexr$sex==sex & sexr$type==type,],lwd=PlotOptions$thin)
-        prange<-unique(sexr$Year[sexr$Season==2 & sexr$sex==sex & sexr$type==type])
-        for(p in prange) lines(c(LB,UB)~c(p,p),data=sexr[sexr$Year==p & sexr$Season==2 & sexr$sex==sex & sexr$type==type,],pch="-",type="o",lwd=PlotOptions$thin)
+        #prange<-unique(sexr$Year[sexr$Season==2 & sexr$sex==sex & sexr$type==type])
+        #for(p in prange) lines(c(sexr$LB,sexr$UB)~c(p,p),data=sexr[sexr$Year==p & sexr$Season==2 & sexr$sex==sex & sexr$type==type,],pch="-",type="o",lwd=PlotOptions$thin)
         legend('top',legend=paste(sex.lab[sex],";",type.lab[type]),lty=0,bty="n")
       }
     if(PlotOptions$Captions) 
@@ -137,7 +140,5 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir,
     }
     dev.off()
   }
-  
-  detach(sexr)
   
 }

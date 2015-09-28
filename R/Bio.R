@@ -10,7 +10,15 @@
 Bio <- function(stock, source.dir, target.dir = source.dir,
                 BioOption = .BioOptions, PlotOptions = .PlotOptions)
 {
-  biom <- read.table(paste(source.dir, "/", stock, "Biomass.out", sep = ""), header = TRUE, as.is = TRUE)
+  
+    filename <- paste(source.dir, "/", stock, "Biomass.out", sep = "")
+    
+    if (file.exists(filename)) {
+        biom <- read.table(filename, header = TRUE, as.is = TRUE)
+    } else {
+        stop(paste("can't find:", filename, "\n"))
+    }
+    
   bm <- biom[biom$Period <= PlotOptions$ModelEndPeriod,]
   
   if( PlotOptions$UsePeriod == TRUE )
