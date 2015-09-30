@@ -1,0 +1,8 @@
+build_lobview.bat
+build_RLPlots.R
+Makefile
+README.md
+LICENSE
+.gitignore
+^tests$
+^.git
