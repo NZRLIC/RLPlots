@@ -6,4 +6,3 @@ R --vanilla < run-roxygen.R
 rem compile and install package
 Rcmd build --force lobview
 Rcmd INSTALL --build lobview
-

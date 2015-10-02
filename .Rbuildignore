@@ -4,5 +4,6 @@ Makefile
 README.md
 LICENSE
 .gitignore
+^examples
 ^tests$
 ^.git
