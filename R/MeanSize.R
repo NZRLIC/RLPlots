@@ -20,6 +20,8 @@ MeanSize <- function(stock, source.dir, target.dir = source.dir,
     dat$Sex[dat$Sex==3] <- "Mature females"
     dat$Season[dat$Season==1] <- "AW"
     dat$Season[dat$Season==2] <- "SS"
+    dat$Type[dat$Type==1] <- "CS"
+    dat$Type[dat$Type==2] <- "LB"
     
     # re-order factors
     dat$Sex <- factor(dat$Sex, levels = c("Males","Immature females","Mature females"))
@@ -39,9 +41,9 @@ MeanSize <- function(stock, source.dir, target.dir = source.dir,
             facet_grid(Season ~ Sex) + 
             labs(y = "Mean width (mm)\n", x = "\nYear", color = "") +
             theme_lobview(PlotOptions) +
-            scale_colour_manual(values = c("Pred." = "black", "One s.d." = "black")) +
-            scale_size_manual(values = c("Pred." = 1.5, "One s.d." = 0.5), guide = FALSE) +
-            guides(color = guide_legend(override.aes = list(size = c(1.5,0.5)), reverse = TRUE))
+            scale_colour_manual(values = c("Pred." = "black", "One s.d." = "black", "CS" = cbPalette1[1], "LB" = cbPalette1[2])) +
+            #scale_size_manual(values = c("Pred." = 1.5, "One s.d." = 0.5), guide = FALSE) +
+            guides(color = guide_legend(override.aes = list(size = c(1.5,0.5,3,3), shape = c(NA,NA,16,16), linetype = c(1,1,0,0)), reverse = TRUE))
         if ( PlotOptions$Captions )
         {
             p <- p + ggtitle(paste(source.dir, " ", stock, ": size")) +
