@@ -4,7 +4,7 @@
 \name{cbPalette2}
 \alias{cbPalette2}
 \title{The palette with black}
-\format{\preformatted{ chr [1:8] "#000000" "#E69F00" "#56B4E9" "#009E73" "#F0E442" "#0072B2" "#D55E00" "#CC79A7"
+\format{\preformatted{ chr [1:8] "#000000" "#E69F00" "#56B4E9" "#009E73" "#F0E442" ...
 }}
 \usage{
 cbPalette2

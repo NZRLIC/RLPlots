@@ -62,7 +62,6 @@ SR_posterior <- function(stock, source.dir, target.dir = source.dir,
     dat$Season[dat$Season == 2] <- "SS"
     dat$sex <- factor(dat$sex, levels = c('Male','Imm. Female','Mat. Female'))
     
-
     #===============================================================================
     # Plot obs v pred
     #===============================================================================
@@ -78,7 +77,7 @@ SR_posterior <- function(stock, source.dir, target.dir = source.dir,
         p <- p + ggtitle(paste(source.dir, " ", stock, ": Selectivity curve by Epoch by sex with 0.05 and 0.95 percentiles")) +
             theme(plot.title = element_text(size = 9, vjust = 2.7))
     }
-    PlotType(paste(target.dir, "/", stock, "SR_posterior", sep = ""), PlotOptions, width = 170, height = 200)
+    PlotType(paste(target.dir, "/", stock, "SR_posterior", sep = ""), PlotOptions, width = 250, height = 200)
     par(las = 1, oma = c(1,1,0,1), mar = c(5,4,1,1), mfrow = c(3,2)) 
     print(p)
     dev.off()
