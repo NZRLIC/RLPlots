@@ -32,7 +32,7 @@ Trace_posterior <- function(stock, source.dir, target.dir = source.dir[1],
         loc.del <- c(loc.del,datacol)
       }
     }
-    data <- data[,-loc.del]
+    if (!is.null(loc.del)) data <- data[,-loc.del]
     nam <- names(data)
     Nsim <- nrow(data)
   
