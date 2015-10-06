@@ -4,7 +4,7 @@
 \alias{CDF_posterior}
 \title{Cumulative density function plots of the posteriors of parameters}
 \usage{
-CDF_posterior(stock, source.dir, target.dir = source.dir[1],
+CDF_posterior(stock, source.dir, target.dir = source.dir,
   MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
 }
 \arguments{
