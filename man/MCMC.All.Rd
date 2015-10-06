@@ -5,13 +5,13 @@
 \title{MCMC All}
 \usage{
 MCMC.All(stock, source.dir, target.dir = source.dir,
-  BioOptions = .BioOptions, PlotOptions = .PlotOptions,
-  MCMCOptions = .MCMCOptions)
+  BioOptions = .BioOptions, CROptions = .CROptions,
+  PlotOptions = .PlotOptions, MCMCOptions = .MCMCOptions)
 }
 \description{
 Function which does everything, includes all the individual functions
 }
 \author{
-Darcy Webber, Charles Edwards
+D'Arcy Webber, Charles Edwards
 }
 

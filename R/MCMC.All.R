@@ -2,32 +2,64 @@
 #' 
 #' Function which does everything, includes all the individual functions
 #'
-#' @author Darcy Webber, Charles Edwards
+#' @author D'Arcy Webber, Charles Edwards
 #' @export
 #' 
-MCMC.All <- function(stock, source.dir, target.dir = source.dir, BioOptions = .BioOptions,
+MCMC.All <- function(stock, source.dir, target.dir = source.dir,
+                     BioOptions = .BioOptions, CROptions = .CROptions,
                      PlotOptions = .PlotOptions, MCMCOptions = .MCMCOptions)
 {
-    cat("Plotting traces\n")
-    cat("Plotting histograms\n")
-    cat("Plotting cross correlations\n")
-    TraceHisto(stock, source.dir, target.dir, MCMCOptions, PlotOptions)
-    cat("Plotting running mean and cumulative quantiles\n")
-    RunningAvgShort(stock, source.dir, target.dir, MCMCOptions, PlotOptions)
-    cat("Plotting CPUE posterior and fit\n")
-    CPUE_posterior(stock, source.dir, target.dir, CPUEOptions, MCMCOptions, PlotOptions)
-    cat("Plotting catch rate posterior and fit\n")
-    CR_posterior(stock, source.dir, target.dir, MCMCOptions, PlotOptions)
-    cat("Plotting biomass posteriors\n")
-    Bio_posterior(stock, source.dir, target.dir, MCMCOptions, BioOptions, PlotOptions)
-    cat("Plotting recruitment posteriors\n")
-    Rec_posterior(stock, source.dir, target.dir, MCMCOptions, PlotOptions)
-    cat("Plotting surplus production posteriors\n")
-    SP_posterior(stock, source.dir, target.dir, MCMCOptions, PlotOptions)
-    cat("Plotting maturity posteriors\n")
-    Mature_posterior(stock, source.dir, target.dir, PlotOptions)
-    cat("Plotting selectivity posteriors\n")
-    Select_posterior(stock, source.dir, target.dir, PlotOptions)
-    cat("Plotting cumulative density functions\n")
-    CDF_posterior(stock, source.dir, target.dir, MCMCOptions, PlotOptions)
+    emsg <- "OOPS - EITHER YOU FUCKED UP OR THE CODE DID, the original error message is:"
+    efun <- function(e) { message(emsg); message(e) }
+
+    message("Plotting traces")
+    message("Plotting histograms")
+    message("Plotting cross correlations")
+    tryCatch(
+        TraceHisto(stock, source.dir, target.dir, MCMCOptions, PlotOptions),
+        error = efun, finally = NULL)
+    message("Plotting running mean and cumulative quantiles")
+    tryCatch(
+        RunningAvgShort(stock, source.dir, target.dir, MCMCOptions, PlotOptions),
+        error = efun, finally = NULL)
+    message("Plotting CPUE posterior and fit")
+    tryCatch(
+        CPUE_posterior(stock, source.dir, target.dir, CPUEOptions, MCMCOptions, PlotOptions),
+        error = efun, finally = NULL)
+    message("Plotting catch rate posterior and fit")
+    tryCatch(
+        CR_posterior(stock, source.dir, target.dir, MCMCOptions, PlotOptions),
+        error = efun, finally = NULL)
+    message("Plotting biomass posteriors")
+    tryCatch(
+        Bio_posterior(stock, source.dir, target.dir, MCMCOptions, BioOptions, PlotOptions),
+        error = efun, finally = NULL)
+    message("Plotting recruitment posteriors")
+    tryCatch(
+        Rec_posterior(stock, source.dir, target.dir, MCMCOptions, PlotOptions),
+        error = efun, finally = NULL)
+    message("Plotting surplus production posteriors")
+    tryCatch(
+        SP_posterior(stock, source.dir, target.dir, MCMCOptions, PlotOptions),
+        error = efun, finally = NULL)
+    message("Plotting sex-ratio posteriors")
+    tryCatch(
+        SR_posterior(stock, source.dir, target.dir, PlotOptions),
+        error = efun, finally = NULL)
+    message("Plotting maturity posteriors")
+    tryCatch(
+        Mature_posterior(stock, source.dir, target.dir, PlotOptions),
+        error = efun, finally = NULL)
+    message("Plotting selectivity posteriors")
+    tryCatch(
+        Select_posterior(stock, source.dir, target.dir, PlotOptions),
+        error = efun, finally = NULL)
+    message("Plotting cumulative density functions")
+    tryCatch(
+        CDF_posterior(stock, source.dir, target.dir, MCMCOptions, PlotOptions),
+        error = efun, finally = NULL)
+    message("Plotting poo index")
+    tryCatch(
+        POO_posterior(stock, source.dir, target.dir, CROptions, PlotOptions),
+        error = efun, finally = NULL)
 }

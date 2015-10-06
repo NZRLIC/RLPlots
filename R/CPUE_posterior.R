@@ -31,11 +31,11 @@ CPUE_posterior <- function(stock, source.dir, target.dir,
         cpue <- read.table(paste(source.dir, "/", stock, "CPUEResids.out", sep = ""), header = TRUE, as.is = TRUE)
         if ( PlotOptions$UsePeriod )
         {
-            cpue$x<-cpue$Period
-            xlab<-"Period"     
+            cpue$x <- cpue$Period
+            xlab <- "Period"     
         } else {
-            cpue$x<-PeriodToFishingYear(cpue$Period)
-            xlab<-"Fishing year"
+            cpue$x <- PeriodToFishingYear(cpue$Period)
+            xlab <- "Fishing year"
         }
         cpue$logObs <- log(cpue$Obs)
         cpue$LB <- exp(cpue$logObs - cpue$Sigma)
@@ -44,9 +44,19 @@ CPUE_posterior <- function(stock, source.dir, target.dir,
         cpue$season[cpue$season == 1] <- "AW"
         cpue$season[cpue$season == 2] <- "SS"
     } else {
-        cat("Warning: no CPUEResids.out file in the source directory, observations will not be plotted.\n")
+        message("Warning: no CPUEResids.out file in the source directory, observations will not be plotted.")
     }
 
+    # Posterior predictive distribution
+    #pdat <- dat
+    #for (i in 1:nrow(dat))
+    #{
+    #    j <- which(cpue$Year == pdat$year[i] & cpue$season == pdat$season[i])
+    #    pdat$value[i] <- rlnorm(1, log(pdat$value[i]), cpue$Sigma[j])
+    #}
+    #dat <- pdat
+
+    # The plot
     p <- ggplot(data = dat, aes(x = year, y = value)) + 
           stat_summary(fun.ymin = function(x) quantile(x, 0.05), fun.ymax = function(x) quantile(x, 0.95), geom = "ribbon", alpha = 0.25) +
           stat_summary(fun.ymin = function(x) quantile(x, 0.25), fun.ymax = function(x) quantile(x, 0.75), geom = "ribbon", alpha = 0.5) +
@@ -66,7 +76,7 @@ CPUE_posterior <- function(stock, source.dir, target.dir,
             theme(plot.title = element_text(size = 9, vjust = 2.7))
     }
     
-    if(missing(target.dir))
+    if ( missing(target.dir) )
     {
         print(p)
     } else {
@@ -76,4 +86,3 @@ CPUE_posterior <- function(stock, source.dir, target.dir,
         dev.off()
     }
 }
-  

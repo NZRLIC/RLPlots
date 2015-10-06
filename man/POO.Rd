@@ -4,7 +4,8 @@
 \alias{POO}
 \title{POO plots}
 \usage{
-POO(stock, source.dir, target.dir = source.dir, CROptions, PlotOptions)
+POO(stock, source.dir, target.dir = source.dir, CROptions = .CROptions,
+  PlotOptions = .PlotOptions)
 }
 \arguments{
 \item{stock}{the name of the stock (e.g. CRA1)}

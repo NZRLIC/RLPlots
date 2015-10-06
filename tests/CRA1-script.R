@@ -1,13 +1,17 @@
 #=================================================================================
 
 rm(list=ls())
-require(lobview)
+require(RLPlots)
 
-stock <- "CRA1"
-source.dir <- c("CRA1/base2/")
+#stock <- "CRA5"
+#source.dir <- paste0(stock,"/base2/")
+
+stock <- "CRA5"
+source.dir <- stock
+
 MPD.All(stock, source.dir)
 MCMC.All(stock, source.dir)
-CDF_posterior(stock, source.dir)
+
 
 
 stock <- "CRA1"

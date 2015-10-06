@@ -17,6 +17,7 @@ Rec_posterior <- function(stock, source.dir, target.dir = source.dir, MCMCOption
     sigmaR <- dat$sigmaR
     dat <- as.matrix(read.table(paste(source.dir, "/", stock, "Rdev.out", sep = ""), header = TRUE, as.is = TRUE))
     colnames(dat) <- as.character(scan(paste(source.dir, "/", stock, "Rdev.out", sep = ""), nlines = 1, quiet = TRUE))
+    dat <- dat[,-ncol(dat)]
     names(dimnames(dat)) <- c("iter", "year")
     dat <- melt(dat, value.name = "Rdev")
     dat <- data.frame(dat, lnR0 = lnR0, sigmaR = sigmaR)

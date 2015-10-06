@@ -6,67 +6,62 @@
 #' @param PlotOptions
 #' @export
 #' 
-POO<-function(stock,source.dir,target.dir = source.dir,CROptions,PlotOptions){
-  #Read file
-  po<-read.table(paste(source.dir,"/",stock,"PooResids.out",sep=""),header=T,as.is=T)
-  if(CROptions$IsAnnual)
-  {
-    po$x<-po$Year
-    xlab<-"Fishing year"
-  } else
-  {
-    po$x<-po$Period
-    xlab<-"Period"
-  } 
-  prange1<-unique(po$x)
-
-  attach(po)
-  logObs<-log(Obs)
-  logPred<-log(Pred)
-  po$LB<-exp(logObs-Sigma)
-  po$UB<-exp(logPred+Sigma)
-
-  #Plot obs v pred
-  if(CROptions$ObsPred)
-  { 
-    #Set graphics parameters
-    PlotType(paste(target.dir, "/", stock, "PooObsPred", sep = ""), PlotOptions, width = 270, height = 200)
-    par(las=1,oma=c(1,1,1,1),mar=c(5,4,1,1))
-#    plot(Obs~x,data=po,pch=16,ylab="Puerulus Index",xlim=range(po$x),ylim=c(0,max(po$UB)),xlab=xlab)
-    plot(Obs~x,data=po,pch=16,ylab="Puerulus Index",xlim=range(po$x),ylim=c(0,6),xlab=xlab)
-    lines(Pred~x,data=po,lwd=PlotOptions$thin)
-       if(Captions) 
+POO <- function(stock, source.dir, target.dir = source.dir,
+                CROptions = .CROptions, PlotOptions = .PlotOptions)
+{
+    po <- read.table(paste(source.dir,"/",stock,"PooResids.out",sep=""),header=T,as.is=T)
+    if ( CROptions$IsAnnual )
     {
-      mtext(paste(source.dir," ",stock,": Observed and predicted for POO fits."),side=1,line=-0.7,outer=TRUE,cex=0.7)
-      mtext(paste("Points: Observed; Lines: Predicted"),side=1,line=0,outer=TRUE,cex=0.7)
-    }
-    dev.off()
-  }
+        po$x <- po$Year
+        xlab <- "Fishing year"
+    } else {
+        po$x <- po$Period
+        xlab <- "Period"
+    } 
+    po$LB <- exp(log(po$Obs) - po$Sigma)
+    po$UB <- exp(log(po$Obs) + po$Sigma)
 
-  #Residuals
-  if(CROptions$Resid)
-  {
-    #Set graphics parameters
-    PlotType(paste(target.dir, "/", stock, "POResid", sep = ""), PlotOptions, width = 270, height = 200)
-    par(las=1,oma=c(1,1,1,1),mar=c(4,3.5,1,1),mgp=c(2.5,1,0))
-    #Resids v period
-    plot(StdRes~x,data=po,pch=16,lwd=PlotOptions$thin,ylab="Standardised residual",xlab=xlab)
-    abline(h=0,lty=2)
-    if(Captions) 
+    # Plot obs v pred
+    if ( CROptions$ObsPred )
     {
-      mtext(paste(source.dir," ",stock,": Standardised residuals for POO fits"),side=1,line=-0.7,outer=TRUE,cex=0.7)
+        p <- ggplot(data = po) +
+            geom_pointrange(aes(x = Year, y = Obs, ymin = LB, ymax = UB)) +
+            geom_line(aes(x = Year, y = Pred)) +
+            theme_lobview(PlotOptions) +
+            labs(x = "\nFishing year", y = "Puerulus index\n")
+        if ( PlotOptions$Captions )
+        {
+            p <- p + ggtitle(paste(source.dir, " ", stock, ": Observed and predicted for POO fits. Points: Observed; Lines: Predicted")) +
+                theme(plot.title = element_text(size = 9, vjust = 2.7))
+        }
+        PlotType(paste(target.dir, "/", stock, "PooObsPred", sep = ""), PlotOptions, width = 270, height = 200)
+        print(p)
+        dev.off()
     }
-    dev.off()
-    
-    #Resids v predicted
-    PlotType(paste(target.dir, "/", stock, "POOResidPred", sep = ""), PlotOptions, width = 270, height = 200)
-    plot(StdRes~Pred,data=po,pch=16,lwd=PlotOptions$thin,ylab="Standardised residual",xlab="Predicted")
-    abline(h=0,lty=2)
-    if(Captions) 
+
+    # Residuals
+    if ( CROptions$Resid )
     {
-      mtext(paste(source.dir," ",stock,": Standardised residual for POO fits"),side=1,line=-0.7,outer=TRUE,cex=0.7)
+        #Set graphics parameters
+        PlotType(paste(target.dir, "/", stock, "POResid", sep = ""), PlotOptions, width = 270, height = 200)
+        par(las=1,oma=c(1,1,1,1),mar=c(4,3.5,1,1),mgp=c(2.5,1,0))
+        #Resids v period
+        plot(StdRes~x,data=po,pch=16,lwd=PlotOptions$thin,ylab="Standardised residual",xlab=xlab)
+        abline(h = 0, lty = 2)
+        if ( PlotOptions$Captions ) 
+        {
+            mtext(paste(source.dir," ",stock,": Standardised residuals for POO fits"),side=1,line=-0.7,outer=TRUE,cex=0.7)
+        }
+        dev.off()
+        
+        #Resids v predicted
+        PlotType(paste(target.dir, "/", stock, "POOResidPred", sep = ""), PlotOptions, width = 270, height = 200)
+        plot(StdRes~Pred,data=po,pch=16,lwd=PlotOptions$thin,ylab="Standardised residual",xlab="Predicted")
+        abline(h=0,lty=2)
+        if ( PlotOptions$Captions )
+        {
+            mtext(paste(source.dir," ",stock,": Standardised residual for POO fits"),side=1,line=-0.7,outer=TRUE,cex=0.7)
+        }
+        dev.off()
     }
-    dev.off()
-  }
-  detach(po)
 }
