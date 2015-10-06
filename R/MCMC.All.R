@@ -54,6 +54,10 @@ MCMC.All <- function(stock, source.dir = ".", target.dir = paste('../', stock, '
         tryCatch(
             SR_posterior(stock[i], source.dir, target.dir, PlotOptions),
             error = efun, finally = NULL)
+        message("Plotting poo index")
+        tryCatch(
+            POO_posterior(stock, source.dir, target.dir, CROptions, PlotOptions),
+            error = efun, finally = NULL)
     }
     
     message("Plotting maturity posteriors")
@@ -67,9 +71,5 @@ MCMC.All <- function(stock, source.dir = ".", target.dir = paste('../', stock, '
     message("Plotting cumulative density functions")
     tryCatch(
         CDF_posterior(stock, source.dir, target.dir, MCMCOptions, PlotOptions),
-        error = efun, finally = NULL)
-    message("Plotting poo index")
-    tryCatch(
-        POO_posterior(stock, source.dir, target.dir, CROptions, PlotOptions),
         error = efun, finally = NULL)
 }

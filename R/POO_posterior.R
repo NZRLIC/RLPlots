@@ -9,6 +9,9 @@ POO_posterior <- function(stock, source.dir, target.dir = source.dir,
                           CROptions = .CROptions, PlotOptions = .PlotOptions)
 {
     po <- read.table(paste(source.dir,"/",stock,"PooResids.out", sep = ""), header = TRUE, as.is = TRUE)
+    
+    if (nrow(po) == 0) stop(paste(source.dir,"/",stock,"PooResids.out is empty\n", sep = ""))
+    
     if ( CROptions$IsAnnual )
     {
         po$x <- po$Year
