@@ -13,6 +13,11 @@ RunningAvgShort <- function(stock, source.dir, target.dir = source.dir,
   colnames(indicators) <- nam
   data <- cbind(parameter, indicators)
     
+  # create appropriate stock label
+  if (length(stock) == 1) stock.label <- stock
+  if (length(stock) == 2) stock.label <- paste(stock[1],substr(stock[2],4,4), sep = "")
+  if (length(stock) == 3) stock.label <- paste(stock[1],substr(stock[2],4,4),substr(stock[3],4,4), sep = "")
+  
   # delete constant columns
   loc.del <- c()
   for ( datacol in 1:ncol(data) )
@@ -49,7 +54,7 @@ RunningAvgShort <- function(stock, source.dir, target.dir = source.dir,
   {
       for ( pp in 1:Nplots )
       {
-          PlotType(paste(target.dir, "/", stock, "RunningAvg", pp, sep = ""), PlotOptions,
+          PlotType(paste(target.dir, "/", stock.label, "RunningAvg", pp, sep = ""), PlotOptions,
                    width = 1.5*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
           dat <- na.omit(droplevels(dfm[((Nsim * MCMCOptions$n.post * (pp - 1)) + 1):(Nsim * MCMCOptions$n.post * pp),]))
           p <- ggplot(data = dat) +
