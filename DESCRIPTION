@@ -1,7 +1,7 @@
 Package: RLPlots
 Title: Graphical outputs for New Zealand rock lobster stock assessment
-Version: 1.0.0.9004
-Date: 2015-09-30
+Version: 1.0.0.9005
+Date: 2015-10-07
 Author: Darcy Webber, Charles Edwards, Vivian Haist, Paul Breen, Paul Starr
 Description: Software for plotting graphics using New Zealand rock lobster
     stock assessment output files.
