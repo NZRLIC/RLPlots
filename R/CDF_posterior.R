@@ -12,7 +12,7 @@
 #' @param PlotOptions list: plot options
 #' @export
 #' 
-CDF_posterior <- function(stock, source.dir, target.dir = source.dir[1],
+CDF_posterior <- function(stock, source.dir, target.dir = source.dir,
                           MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
 {
     # How many chains are we plotting?
@@ -20,15 +20,22 @@ CDF_posterior <- function(stock, source.dir, target.dir = source.dir[1],
     data <- NULL
     for (Chain in 1:Nchain)
     {
-        parameter <- read.table(paste(source.dir[Chain], "/parampost.out", sep = ""), header = TRUE, as.is = TRUE)
+        parameter <- read.table(paste(source.dir[Chain], "/parampost.out", sep = ""), header = TRUE, as.is = TRUE, row.names = NULL)
         nam1 <- as.character(scan(paste(source.dir[Chain], "/parampost.out", sep = ""), nlines = 1, what = "character", quiet = TRUE))
-        indicators <- read.table(paste(source.dir[Chain], "/indicpost.out", sep = ""), header = TRUE, as.is = TRUE)
+        colnames(parameter) <- nam1
+        indicators <- read.table(paste(source.dir[Chain], "/indicpost.out", sep = ""), header = TRUE, as.is = TRUE, row.names = NULL)
         nam2 <- as.character(scan(paste(source.dir[Chain], "/indicpost.out", sep = ""), nlines = 1, what = "character", quiet = TRUE))
+        colnames(indicators) <- nam2
         Nsim <- nrow(parameter)
-        d1 <- data.frame(parameter, indicators, as.factor(Chain), 1:Nsim)
+        d1 <- data.frame(parameter, indicators, Chain = as.factor(Chain), sample = 1:Nsim)
         names(d1) <- c(nam1, nam2, "Chain", "sample")
         data <- rbind(data, d1)
     }
+    
+    # create appropriate stock label
+    if (length(stock) == 1) stock.label <- stock
+    if (length(stock) == 2) stock.label <- paste(stock[1],substr(stock[2],4,4), sep = "")
+    if (length(stock) == 3) stock.label <- paste(stock[1],substr(stock[2],4,4),substr(stock[3],4,4), sep = "")
 
     # If only one chain then split this chain into 3 and plot cdfs of these three
     if (Nchain == 1)
@@ -52,7 +59,7 @@ CDF_posterior <- function(stock, source.dir, target.dir = source.dir[1],
         loc.del <- c(loc.del,datacol)
       }
     }
-    data <- data[,-loc.del]
+    if (!is.null(loc.del)) data <- data[,-loc.del]
     nam <- names(data)
     dfm <- melt(data, id.vars = c("Chain","sample"))
     
@@ -60,7 +67,7 @@ CDF_posterior <- function(stock, source.dir, target.dir = source.dir[1],
     Nplots <- ceiling(ncol(data) / MCMCOptions$n.post)
     for ( pp in 1:Nplots )
     {
-        PlotType(paste(target.dir, "/", stock, "CDF_posterior", pp, sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", stock.label, "CDF_posterior", pp, sep = ""), PlotOptions,
                  width = 1.6*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
         cvars <- nam[((MCMCOptions$n.post * (pp - 1)) + 1):(MCMCOptions$n.post * pp)]
         dat <- subset(dfm, subset = variable %in% cvars)
