@@ -29,8 +29,8 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir,
     }
 
     SD <- sqrt(sexr$Pred*(1-sexr$Pred)/sexr$effN)
-    sexr$LB <- sexr$Obs - 1.96*SD
-    sexr$UB <- sexr$Obs + 1.96*SD
+    sexr$LB <- sexr$Obs - SD
+    sexr$UB <- sexr$Obs + SD
     
     sex.lab  <- c('Male','Imm. Female','Mat. Female')
     type.lab <- c('LB','CS')
@@ -63,7 +63,7 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir,
         #}
         # AW
         PlotType(paste(target.dir, "/", stock, "SEXRObsPredAW", sep = ""), PlotOptions, width = 170, height = 200)
-        par(las = 1, oma = c(1,1,0,1), mar = c(5,4,1,1), mfrow = c(3,2)) 
+        par(las = 1, oma = c(1,1,0,1), mar = c(5,4,1,1), mfrow = c(3,2))
         for ( sex in 1:3 )
         {
             for ( type in 1:2 )
