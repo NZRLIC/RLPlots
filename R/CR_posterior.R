@@ -60,7 +60,7 @@ CR_posterior <- function(stock, source.dir, target.dir = source.dir,
           labs(x = "\nFishing year", y = "CR index\n")
     if ( file.exists(paste(source.dir, "/", stock, "CRResids.out", sep = "")) )
     {
-        p <- p + geom_pointrange(data = cpue, aes(x = x, y = Obs, ymax = UB, ymin = LB))
+        p <- p + geom_pointrange(data = cpue, aes(x = Year, y = Obs, ymax = UB, ymin = LB))
     }
     if ( PlotOptions$Captions )
     {
