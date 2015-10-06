@@ -29,6 +29,7 @@ rm(filename)
 roxygen2::roxygenize()
 
 # build package
+system("Rcmd.exe INSTALL --no-multiarch --with-keep.source ../RLPlots")
 devtools::build(binary = TRUE)
 
 # install package locally
