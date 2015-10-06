@@ -30,8 +30,6 @@ MPD.All <- function(stock, source.dir = ".", target.dir = source.dir, PlotOption
     tryCatch(
         CR(stock, source.dir, target.dir, CROptions, PlotOptions),
         error = efun, finally = NULL)
-    # vh: comment out PRI plots cause crashes when no PRI output files
-    # POO(stock,source.dir,target.dir, CROptions, PlotOptions)
     message("Plotting length-frequencies")
     tryCatch(
         LF(stock, source.dir, target.dir, LFOptions, PlotOptions),
