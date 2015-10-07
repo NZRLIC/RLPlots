@@ -13,7 +13,7 @@ Rec_posterior <- function(stock, source.dir, target.dir = source.dir, MCMCOption
 {
     # Data
     dat <- read.table(paste(source.dir, "/parampost.out", sep = ""), header = TRUE, as.is = TRUE, row.names = NULL)
-    lnR0 <- dat[,regexpr("lnR0", colnames(dat)) > 0]
+    lnR0 <- dat[,regexpr("lnR0", colnames(dat)) > 0, drop = FALSE]
     sigmaR <- dat$sigmaR
     
     for (i in 1:length(stock)) {

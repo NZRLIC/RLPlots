@@ -5,22 +5,21 @@
 #' @author D'Arcy Webber, Charles Edwards
 #' @export
 #' 
-MCMC.All <- function(stock, source.dir = ".", target.dir = paste('../', stock, 'plots', sep = ''),
+MCMC.All <- function(stock, source.dir = ".", target.dir = source.dir,
                      BioOptions = .BioOptions, CROptions = .CROptions,
                      PlotOptions = .PlotOptions, MCMCOptions = .MCMCOptions)
 {
     emsg <- "OOPS - EITHER YOU FUCKED UP OR THE CODE DID, the original error message is:"
     efun <- function(e) { message(emsg); message(e) }
-    
-    if (!dir.exists(target.dir))
-    {
-        dir.create(target.dir)
-        message('created target.dir ', target.dir)
-    }
 
-    message("Plotting traces")
-    message("Plotting histograms")
-    message("Plotting cross correlations")
+    #target.dir = paste('../', stock, 'plots', sep = '')
+    #if (!dir.exists(target.dir))
+    #{
+    #    dir.create(target.dir)
+    #    message('created target.dir ', target.dir)
+    #}
+
+    message("Plotting traces, histograms and cross correlations")
     tryCatch(
         TraceHisto(stock, source.dir, target.dir, MCMCOptions, PlotOptions),
         error = efun, finally = NULL)

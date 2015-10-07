@@ -9,15 +9,15 @@ MPD.All <- function(stock, source.dir = ".", target.dir = source.dir, PlotOption
                     LFOptions = .LFOptions, TagOptions = .TagOptions,
                     BioOptions = .BioOptions, SEXROptions = .SEXROptions)
 {
+    emsg <- "OOPS - EITHER YOU FUCKED UP OR THE CODE DID, the original error message is:"
+    efun <- function(e) { message(emsg); message(e) }
+    
     #if (!dir.exists(target.dir))
     #{
     #    dir.create(target.dir)
     #    message('created target.dir ', target.dir)
     #}
     
-    emsg <- "OOPS - EITHER YOU FUCKED UP OR THE CODE DID, the original error message is:"
-    efun <- function(e) { message(emsg); message(e) }
-
     message("Plotting catches")
     tryCatch(
         Catches(stock, source.dir, target.dir, PlotOptions),

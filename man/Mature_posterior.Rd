@@ -2,15 +2,15 @@
 % Please edit documentation in R/Mature_posterior.R
 \name{Mature_posterior}
 \alias{Mature_posterior}
-\title{Maturity posterior}
+\title{Proportion maturing posterior}
 \usage{
 Mature_posterior(stock, source.dir, target.dir = source.dir,
   PlotOptions = .PlotOptions)
 }
 \description{
-Maturity posterior
+Proportion maturing posterior
 }
 \author{
-Darcy Webber
+D'Arcy Webber, Charles Edwards
 }
 
