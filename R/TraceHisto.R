@@ -8,14 +8,19 @@
 TraceHisto <- function(stock, source.dir, target.dir = source.dir,
                        MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
 {
-    parameter <- read.table(paste(source.dir, "/parampost.out", sep = ""), header = TRUE, as.is = TRUE)
+    parameter <- read.table(paste(source.dir, "/parampost.out", sep = ""), header = TRUE, as.is = TRUE, row.names = NULL)
     nam <- as.character(scan(paste(source.dir, "/parampost.out", sep = ""), nlines = 1, what = 'character', quiet = TRUE))
     colnames(parameter) <- nam
-    indicators <- read.table(paste(source.dir, "/indicpost.out", sep = ""), header = TRUE, as.is = TRUE)
+    indicators <- read.table(paste(source.dir, "/indicpost.out", sep = ""), header = TRUE, as.is = TRUE, row.names = NULL)
     nam <- as.character(scan(paste(source.dir, "/indicpost.out", sep = ""), nlines = 1, what = 'character', quiet = TRUE))
     colnames(indicators) <- nam
     data <- cbind(parameter, indicators)
-
+    
+    # create appropriate stock label
+    if (length(stock) == 1) stock.label <- stock
+    if (length(stock) == 2) stock.label <- paste(stock[1],substr(stock[2],4,4), sep = "")
+    if (length(stock) == 3) stock.label <- paste(stock[1],substr(stock[2],4,4),substr(stock[3],4,4), sep = "")
+    
     i <- grep("1B[0-9]", names(data))
     n <- names(data[,i])
     ii <- which.min(as.numeric(gsub("1B", "", n)))
@@ -53,9 +58,10 @@ TraceHisto <- function(stock, source.dir, target.dir = source.dir,
     #===============================================================================
     for ( pp in 1:Nplots )
     {
-        PlotType(paste(target.dir, "/", stock, "Trace", pp, sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", stock.label, "Trace", pp, sep = ""), PlotOptions,
                  width = 1.5*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
         dat <- droplevels(dfm[((Nsim * MCMCOptions$n.post * (pp - 1)) + 1):(Nsim * MCMCOptions$n.post * pp),])
+        if (any(is.na(dat$variable))) dat <- dat[!is.na(dat$variable),]
         p <- ggplot(data = dat) +
             geom_line(aes(x = sample, y = value)) + 
             geom_line(aes(x = sample, y = ma), colour = PlotOptions$colourPalette[2]) +
@@ -74,6 +80,7 @@ TraceHisto <- function(stock, source.dir, target.dir = source.dir,
         PlotType(paste(target.dir, "/", stock, "Histo", pp, sep = ""), PlotOptions,
                  width = 1.5*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
         dat <- droplevels(dfm[((Nsim * MCMCOptions$n.post * (pp - 1)) + 1):(Nsim * MCMCOptions$n.post * pp),])
+        if (any(is.na(dat$variable))) dat <- dat[!is.na(dat$variable),]
         p <- ggplot(data = dat, aes(x = value)) +
             geom_histogram(aes(y = ..density..), colour = "black", fill = "white") +
             scale_colour_grey() +
