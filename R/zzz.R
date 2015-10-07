@@ -1,4 +1,4 @@
 .onAttach <- function(libname, pkgname)
 {
-    packageStartupMessage("RLPlots version 1.0.0.9006 (2015-10-07 12:31:19)")
+    packageStartupMessage("RLPlots version 1.0.0.9007 (2015-10-07 13:11:13)")
 }

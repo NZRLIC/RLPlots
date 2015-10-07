@@ -34,7 +34,7 @@ devtools::build(binary = TRUE)
 
 # install package locally
 pkg_name <- paste("../RLPlots_",VERSION,".zip",sep = "")
-install.packages(pkg_name, repos = NULL)
+#install.packages(pkg_name, repos = NULL)
 
 # tidy up
 file.copy(pkg_name, "C:/PROJECTS/CRA201201B - lobster/lobster")
