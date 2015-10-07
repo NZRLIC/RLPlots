@@ -48,8 +48,6 @@ CR_posterior <- function(stock, source.dir, target.dir = source.dir,
     }
 
     # Do the plot
-    PlotType(paste(target.dir, "/", stock, "CR_posterior", sep = ""), PlotOptions,
-             width = PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
     p <- ggplot(data = dat, aes(x = year, y = value)) +
           scale_x_continuous(breaks = unique(dat$year)) +
           stat_summary(fun.ymin = function(x) quantile(x, 0.05), fun.ymax = function(x) quantile(x, 0.95), geom = "ribbon", alpha = 0.25) +
@@ -67,7 +65,9 @@ CR_posterior <- function(stock, source.dir, target.dir = source.dir,
         p <- p + ggtitle(paste(source.dir, " ", stock, ": Posterior CPUE fit")) +
             theme(plot.title = element_text(size = 9, vjust = 2.7))
     }
+    
+    PlotType(paste(target.dir, "/", stock, "CR_posterior", sep = ""), PlotOptions,
+             width = 2*PlotOptions$plotsize[1], height = PlotOptions$plotsize[2])
     print(p)
     dev.off()
 }
-  

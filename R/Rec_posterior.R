@@ -41,7 +41,7 @@ Rec_posterior <- function(stock, source.dir, target.dir = source.dir, MCMCOption
       
         # plot
         PlotType(paste(target.dir, "/", stock[i], "Rec_posterior", sep = ""), PlotOptions,
-                 width = PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
+                 width = 2*PlotOptions$plotsize[1], height = PlotOptions$plotsize[2])
         print(p)
         dev.off()
     }

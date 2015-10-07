@@ -22,9 +22,11 @@ Bio_posterior(stock, source.dir, target.dir = source.dir,
 \item{BioOption}{list: biomass plot options}
 }
 \description{
-Plots the vulnerable biomass (for Autumn Winter and Spring Summer) and the total biomass over time. Median and the 90% credibility intervals are shown. For the total biomass, 50% intervals are also given.
+Plots the vulnerable biomass (for Autumn Winter and Spring Summer) and the
+total biomass over time. Median and the 90% credibility intervals are
+shown. For the total biomass, 50% intervals are also given.
 }
 \author{
-Charles Edwards
+Charles Edwards, D'Arcy Webber
 }
 

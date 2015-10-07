@@ -42,7 +42,9 @@ POO_posterior <- function(stock, source.dir, target.dir = source.dir,
         p <- p + ggtitle(paste(source.dir, " ", stock, ": Observed and predicted for POO fits. Points: Observed; Lines: Predicted")) +
             theme(plot.title = element_text(size = 9, vjust = 2.7))
     }
-    PlotType(paste(target.dir, "/", stock, "Poo_posterior", sep = ""), PlotOptions, width = 270, height = 200)
+    
+    PlotType(paste(target.dir, "/", stock, "Poo_posterior", sep = ""), PlotOptions,
+                 width = 2*PlotOptions$plotsize[1], height = PlotOptions$plotsize[2])
     print(p)
     dev.off()
 }

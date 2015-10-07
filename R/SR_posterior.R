@@ -78,7 +78,8 @@ SR_posterior <- function(stock, source.dir, target.dir = source.dir,
             theme(plot.title = element_text(size = 9, vjust = 2.7))
     }
     
-    PlotType(paste(target.dir, "/", stock, "SR_posterior", sep = ""), PlotOptions, width = 350, height = 250)
+    #PlotType(paste(target.dir, "/", stock, "SR_posterior", sep = ""), PlotOptions, width = 350, height = 250)
+    PlotType(paste(target.dir, "/", stock, "SR_posterior", sep = ""), PlotOptions, width = 2*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
     print(p)
     dev.off()
 }

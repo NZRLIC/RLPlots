@@ -19,9 +19,6 @@ SP_posterior <- function(stock, source.dir, target.dir = source.dir, MCMCOptions
     dat <- subset(dat,year<=PeriodToFishingYear(PlotOptions$ModelEndPeriod))
     
     # plot
-    PlotType(paste(target.dir, "/", stock, "SP_posterior", sep = ""), PlotOptions,
-             width = PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
-    
     p <- ggplot(dat,aes(x=year,y=SP)) + 
         stat_summary(fun.ymin=function(x) quantile(x,0.05),fun.ymax=function(x) quantile(x,0.95),geom='ribbon',alpha=0.25) +
         stat_summary(fun.ymin=function(x) quantile(x,0.25),fun.ymax=function(x) quantile(x,0.75),geom='ribbon',alpha=0.5) +
@@ -36,6 +33,8 @@ SP_posterior <- function(stock, source.dir, target.dir = source.dir, MCMCOptions
             theme(plot.title = element_text(size = 9, vjust = 2.7))
     }
     
+    PlotType(paste(target.dir, "/", stock, "SP_posterior", sep = ""), PlotOptions,
+             width = 2*PlotOptions$plotsize[1], height = PlotOptions$plotsize[2])
     print(p)
     dev.off()
 }

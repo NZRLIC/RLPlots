@@ -39,8 +39,6 @@ Mature_posterior <- function(stock, source.dir, target.dir = source.dir,
     MatMPD <- o.logistic(Length, as.numeric(dataMPD[1]), as.numeric(dataMPD[2]))
     MatMPD <- data.frame(Length = Length, value = MatMPD)
     
-    PlotType(paste(target.dir, "/", stock.label, "Maturity_posterior", sep = ""), PlotOptions,
-             width = PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
     p <- ggplot(data = Mat, aes(x = Var2, y = value)) +
         stat_summary(fun.ymin = function(x) quantile(x, 0.05), fun.ymax = function(x) quantile(x, 0.95), geom = "ribbon", alpha = 0.25) +
         stat_summary(fun.ymin = function(x) quantile(x, 0.25), fun.ymax = function(x) quantile(x, 0.75), geom = "ribbon", alpha = 0.5) +
@@ -48,6 +46,9 @@ Mature_posterior <- function(stock, source.dir, target.dir = source.dir,
         scale_x_continuous(breaks = seq(30, 90, 10)) +
         xlab("\nSize (mm TW)") + ylab("Proportion maturing\n") + theme_lobview(PlotOptions) +
         geom_line(dat = MatMPD, aes(x = Length, y = value), linetype = "longdash", size = 1.5, colour = PlotOptions$colourPalette[2])
+    
+    PlotType(paste(target.dir, "/", stock.label, "Maturity_posterior", sep = ""), PlotOptions,
+             width = PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
     print(p)
     dev.off()
 }
