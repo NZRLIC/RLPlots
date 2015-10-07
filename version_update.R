@@ -1,7 +1,4 @@
 
-# vanilla session
-rm(list = ls())
-
 # Get Version and date
 VERSION <- scan('DESCRIPTION',what = character(),skip = 2,nlines = 1)[2]
 DATE    <- Sys.Date()
@@ -24,18 +21,3 @@ cat("{\n", file = filename, append = TRUE)
 cat(paste("    packageStartupMessage(\"RLPlots version ", VERSION, " (", TIME, ")\")\n", sep = ""), file = filename, append = TRUE)
 cat("}\n", file = filename, append = TRUE)
 rm(filename)
-
-# run roxygen
-roxygen2::roxygenize()
-
-# build package
-system("Rcmd.exe INSTALL --no-multiarch --with-keep.source ../RLPlots")
-#devtools::build(binary = TRUE)
-#
-## install package locally
-#pkg_name <- paste("../RLPlots_",VERSION,".zip",sep = "")
-##install.packages(pkg_name, repos = NULL)
-#
-## tidy up
-#file.copy(pkg_name, "C:/PROJECTS/CRA201201B - lobster/lobster")
-#file.remove(pkg_name)

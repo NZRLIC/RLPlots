@@ -22,7 +22,7 @@ linux: $(R_FILES)
 	R CMD INSTALL --build ../RLPlots/
 
 windows: $(R_FILES)
-	R --vanilla -e 'require(roxygen2);roxygen2::roxygenize("../RLPlots/")'
+	R --vanilla -e 'source(\"version_update.R\"); roxygen2::roxygenize(\"../RLPlots/\")'
 	Rcmd INSTALL --build ../RLPlots/
 
 clean:
