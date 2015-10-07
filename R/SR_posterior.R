@@ -62,23 +62,23 @@ SR_posterior <- function(stock, source.dir, target.dir = source.dir,
     dat$Season[dat$Season == 2] <- "SS"
     dat$sex <- factor(dat$sex, levels = c('Male','Imm. Female','Mat. Female'))
     
-    #===============================================================================
     # Plot obs v pred
-    #===============================================================================
     p <- ggplot(data = dat, aes(x = year, y = value)) +
         stat_summary(data = dat, fun.ymin = function(x) quantile(x, 0.05), fun.ymax = function(x) quantile(x, 0.95), geom = "ribbon", alpha = 0.25) +
         stat_summary(data = dat, fun.y = function(x) quantile(x, 0.5), geom = "line", lwd = 1) +
         geom_pointrange(data = subset(d, d$variable == 'Obs'), aes(x = Year, y = value, ymin = LB, ymax = UB)) +
         scale_colour_manual(values = PlotOptions$colourPalette) +
-        facet_grid(Season + type  ~ sex) + xlab(xlab) + ylab("Proportion\n") + expand_limits(y = c(0,1)) +
+        facet_grid(Season + type  ~ sex, scales = "fixed") +
+        xlab(xlab) + ylab("Proportion\n") + #expand_limits(y = c(0,1)) +
         theme_lobview(PlotOptions)
+    
     if ( PlotOptions$Captions )
     {
         p <- p + ggtitle(paste(source.dir, " ", stock, ": Selectivity curve by Epoch by sex with 0.05 and 0.95 percentiles")) +
             theme(plot.title = element_text(size = 9, vjust = 2.7))
     }
-    PlotType(paste(target.dir, "/", stock, "SR_posterior", sep = ""), PlotOptions, width = 250, height = 200)
-    par(las = 1, oma = c(1,1,0,1), mar = c(5,4,1,1), mfrow = c(3,2)) 
+    
+    PlotType(paste(target.dir, "/", stock, "SR_posterior", sep = ""), PlotOptions, width = 350, height = 250)
     print(p)
     dev.off()
 }
