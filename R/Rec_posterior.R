@@ -11,14 +11,16 @@
 Rec_posterior <- function(stock, source.dir, target.dir = source.dir, MCMCOptions = .MCMCOptions, 
                           PlotOptions = .PlotOptions)
 {
-    # Data
     dat <- read.table(paste(source.dir, "/parampost.out", sep = ""), header = TRUE, as.is = TRUE, row.names = NULL)
+    dat <- dat[,-ncol(dat)] # This removes the final year as the model spits out something weird
     lnR0 <- dat[,regexpr("lnR0", colnames(dat)) > 0, drop = FALSE]
     sigmaR <- dat$sigmaR
     
-    for (i in 1:length(stock)) {
+    for (i in 1:length(stock))
+    {
         dat <- as.matrix(read.table(paste(source.dir, "/", stock[i], "Rdev.out", sep = ""), header = TRUE, as.is = TRUE))
         colnames(dat) <- as.character(scan(paste(source.dir, "/", stock[i], "Rdev.out", sep = ""), nlines = 1, quiet = TRUE))
+        dat <- dat[,-ncol(dat)]
         names(dimnames(dat)) <- c("iter", "year")
         dat <- melt(dat, value.name = "Rdev")
         dat <- data.frame(dat, lnR0 = lnR0[,i], sigmaR = sigmaR)
@@ -32,14 +34,15 @@ Rec_posterior <- function(stock, source.dir, target.dir = source.dir, MCMCOption
             geom_vline(xintercept = max(dat$year)-3.5, size = 0.1, linetype = "longdash") +
             theme_lobview(PlotOptions) + scale_y_continuous(limits = range(0, quantile(dat$R, 0.99))) +
             labs(x = "\nYear", y = "Numbers recruited (millions)\n")
-      
+
+        # Add caption
         if ( PlotOptions$Captions )
         {
             p <- p + ggtitle(paste(source.dir, " ", stock[i], ": Posterior recruitment trajectory")) +
                 theme(plot.title = element_text(size = 9, vjust = 2.7))
         }
-      
-        # plot
+
+        # Do the plot
         PlotType(paste(target.dir, "/", stock[i], "Rec_posterior", sep = ""), PlotOptions,
                  width = 2*PlotOptions$plotsize[1], height = PlotOptions$plotsize[2])
         print(p)
