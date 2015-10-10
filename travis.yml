@@ -1,0 +1,16 @@
+language: r
+
+# Don't be too strict when checking our package
+warnings_are_errors: false
+
+# System dependencies
+r_packages:
+ - ggplot2
+ - reshape2
+ - plyr
+ - coda
+r_binary_packages:
+ - testthat
+
+# additional arguments to pass to R CMD check
+r_check_args:
