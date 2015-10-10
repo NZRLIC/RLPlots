@@ -1,6 +1,8 @@
 RLPlots
 =======
 
+[![Build Status](https://travis-ci.org/NZRLIC/RLPlots)](https://travis-ci.org/NZRLIC/RLPlots)
+
 `RLPlots` is an R package for plotting rock lobster (RL) stock assessment
 outputs and management proceedure evaluations (MPEs). Plotting functions are
 available for MPD fits, Markov chain Monte Carlo (MCMC) and some other plots.
