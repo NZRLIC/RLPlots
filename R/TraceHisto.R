@@ -28,8 +28,22 @@ TraceHisto <- function(stock, source.dir, target.dir = source.dir,
     data$Bcurr_Bref <- data[,j] / data[,"1Bref"]
     data$Bcurr_Bmsy <- data[,j] / data[,"1Bmsy"]
 
-    dataMPD <- data[1,]
-  
+    # Get the MPD value
+    #dataMPD <- data[1,] # This is what we had before (first row as MPD)
+    map <- read.table(paste(source.dir, "/mpd.out", sep = ""), header = FALSE, as.is = TRUE, row.names = NULL)
+    nam <- map[,1]
+    map <- data.frame(t(map[,2]))
+    names(map) <- nam
+    map2 <- data[1,]
+    map2[1,] <- NA
+    map <- dplyr::left_join(map, map2)
+    loc <- names(map) %in% names(data)
+    map <- map[,loc]
+    map <- map[,names(data)]
+    #loc <- (names(map2) %in% names(map))
+    #map2 <- map2[loc]
+    dataMPD <- map
+    
     # delete constant columns
     loc.del <- c()
     for ( datacol in 1:ncol(data) )
