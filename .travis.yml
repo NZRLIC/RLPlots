@@ -1,5 +1,7 @@
 language: r
 
+sudo: required
+
 # Don't be too strict when checking our package
 warnings_are_errors: false
 
