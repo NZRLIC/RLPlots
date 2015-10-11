@@ -10,6 +10,7 @@ Depends:
     ggplot2,
     reshape2,
     plyr,
+    dplyr,
     coda
 License: MIT
 Suggests:
