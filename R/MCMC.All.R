@@ -13,11 +13,11 @@ MCMC.All <- function(stock, source.dir = ".", target.dir = source.dir,
     efun <- function(e) { message(emsg); message(e) }
 
     #target.dir = paste('../', stock, 'plots', sep = '')
-    #if (!dir.exists(target.dir))
-    #{
-    #    dir.create(target.dir)
-    #    message('created target.dir ', target.dir)
-    #}
+    if (!dir.exists(target.dir))
+    {
+        dir.create(target.dir)
+        message('created target.dir ', target.dir)
+    }
 
     message("Plotting traces, histograms and cross correlations")
     tryCatch(

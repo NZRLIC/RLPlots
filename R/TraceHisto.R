@@ -21,12 +21,36 @@ TraceHisto <- function(stock, source.dir, target.dir = source.dir,
     if (length(stock) == 2) stock.label <- paste(stock[1],substr(stock[2],4,4), sep = "")
     if (length(stock) == 3) stock.label <- paste(stock[1],substr(stock[2],4,4),substr(stock[3],4,4), sep = "")
     
-    i <- grep("1B[0-9]", names(data))
-    n <- names(data[,i])
-    ii <- which.min(as.numeric(gsub("1B", "", n)))
-    j <- i[ii]
-    data$Bcurr_Bref <- data[,j] / data[,"1Bref"]
-    data$Bcurr_Bmsy <- data[,j] / data[,"1Bmsy"]
+    # redefine some variables
+    if (length(stock) == 1) {
+    
+        i <- min(grep("1B[0-9]", names(data)))
+        j <- grep("1Bref", names(data))
+        k <- grep("1Bmsy", names(data))
+        
+        data[, paste(names(data)[i], '_1Bref', sep ='')] <- data[, i] / data[, j]
+        data[, paste(names(data)[i], '_1Bmsy', sep ='')] <- data[, i] / data[, k]
+    }
+    if (length(stock) == 2) {
+        
+        i <- min(grep("2B[0-9]", names(data)))
+        j <- grep("2Bref", names(data))
+        k <- grep("2Bmsy", names(data))
+        
+        data[, paste(names(data)[i], '_2Bref', sep ='')] <- data[, i] / data[, j]
+        data[, paste(names(data)[i], '_2Bmsy', sep ='')] <- data[, i] / data[, k]
+        
+    }
+    if (length(stock) == 3) {
+        
+        i <- min(grep("3B[0-9]", names(data)))
+        j <- grep("3Bref", names(data))
+        k <- grep("3Bmsy", names(data))
+        
+        data[, paste(names(data)[i], '_3Bref', sep ='')] <- data[, i] / data[, j]
+        data[, paste(names(data)[i], '_3Bmsy', sep ='')] <- data[, i] / data[, k]
+        
+    }
 
     # Get the MPD value
     #dataMPD <- data[1,] # This is what we had before (first row as MPD)
@@ -36,7 +60,7 @@ TraceHisto <- function(stock, source.dir, target.dir = source.dir,
     names(map) <- nam
     map2 <- data[1,]
     map2[1,] <- NA
-    map <- dplyr::left_join(map, map2)
+    map <- suppressMessages(dplyr::left_join(map, map2))
     loc <- names(map) %in% names(data)
     map <- map[,loc]
     map <- map[,names(data)]
