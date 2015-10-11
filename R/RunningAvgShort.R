@@ -34,7 +34,7 @@ RunningAvgShort <- function(stock, source.dir, target.dir = source.dir,
   Nplots <- ceiling(ncol(data) / MCMCOptions$n.post)
 
   # Calculate the moving average
-  ma <- apply(data, 2, moving.average, n = MCMCOptions$running.mean)
+  ma <- apply(data, 2, moving_average, n = MCMCOptions$running.mean)
   
   # Calculate the cumulative quantiles
   q5 <- data.frame(apply(data, 2, cumulative.quantile, probs = 0.05), sample = 1:Nsim)

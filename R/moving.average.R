@@ -1,9 +1,9 @@
 #' Moving average
 #'
-#' @author Darcy Webber
+#' @author D'Arcy Webber
 #' @export
 #' 
-moving.average <- function(x, n = 11)
+moving_average <- function(x, n = 11)
 {
-    filter(x, rep(1/n, n), sides = 1)
+    stats::filter(x, rep(1/n, n), sides = 1)
 }

@@ -61,8 +61,8 @@ TraceHisto <- function(stock, source.dir, target.dir = source.dir,
     Nplots <- ceiling(ncol(data) / MCMCOptions$n.post)
     dfm <- data.frame(melt(data, id.vars = NULL), sample = 1:Nsim, chain = 1)
     dfm$mpd <- rep(as.numeric(dataMPD), each = Nsim)
-    
-    ma <- apply(data, 2, moving.average, n = MCMCOptions$running.mean)
+
+    ma <- apply(data, 2, moving_average, n = MCMCOptions$running.mean)
     ma <- melt(ma)
     dfm$ma <- ma$value
     dfm$variable <- factor(rep(nam, each = Nsim))
@@ -72,8 +72,6 @@ TraceHisto <- function(stock, source.dir, target.dir = source.dir,
     #===============================================================================
     for ( pp in 1:Nplots )
     {
-        PlotType(paste(target.dir, "/", stock.label, "Trace", pp, sep = ""), PlotOptions,
-                 width = 1.5*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
         dat <- droplevels(dfm[((Nsim * MCMCOptions$n.post * (pp - 1)) + 1):(Nsim * MCMCOptions$n.post * pp),])
         if (any(is.na(dat$variable))) dat <- dat[!is.na(dat$variable),]
         p <- ggplot(data = dat) +
@@ -82,6 +80,9 @@ TraceHisto <- function(stock, source.dir, target.dir = source.dir,
             scale_colour_grey() +
             facet_wrap( ~ variable, nrow = 6, ncol = 2, scales = "free_y", drop = TRUE) +
             xlab("Sample") + ylab(NULL) + theme_lobview(PlotOptions)
+        
+        PlotType(paste(target.dir, "/", stock.label, "Trace", pp, sep = ""), PlotOptions,
+                 width = 1.5*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
         print(p)
         dev.off()
     }

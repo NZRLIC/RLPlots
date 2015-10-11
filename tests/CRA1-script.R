@@ -18,6 +18,9 @@ CPUE_posterior(stock, source.dir, target.dir, CPUEOptions, MCMCOptions, PlotOpti
 Rec_posterior(stock, source.dir, target.dir)
 TraceHisto(stock, source.dir, target.dir)
 
+system(paste0("rm ", source.dir, "/*.png"))
+
+
 stock <- "CRA1"
 source.dir <- c("/home/darcy/Documents/CRA/2014/model/CRA1/mcmc/base2",
                 "/home/darcy/Documents/CRA/2014/model/CRA1/mcmc/recce")
