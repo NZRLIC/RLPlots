@@ -13,6 +13,6 @@ Plot MPE diagnostic output against a
 single control rule parameter
 }
 \author{
-Charles Edwards, Darcy Webber
+Charles Edwards, D'Arcy Webber
 }
 

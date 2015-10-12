@@ -29,6 +29,6 @@ a plot
 Plot control rules
 }
 \author{
-Darcy N. Webber, Charles Edwards
+D'Arcy N. Webber, Charles Edwards
 }
 

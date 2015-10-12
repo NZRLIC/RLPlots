@@ -1,7 +1,7 @@
 #' Plot MPE diagnostic output against a 
 #' single control rule parameter
 #'
-#' @author Charles Edwards, Darcy Webber
+#' @author Charles Edwards, D'Arcy Webber
 #' @export
 #' 
 mpeview.bypar <- function(dat, pars, stock, axis.labels, file.suffix = "plot1", target.dir = ".",
