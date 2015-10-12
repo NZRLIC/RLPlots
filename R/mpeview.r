@@ -18,12 +18,13 @@
 #' @param PlotOptions plot options
 #' @export
 #' 
-mpeview <- function(dat, pars, stock, axis.labels, point.col = c("rules"),
+mpeview <- function(dat, pars, stock, axis.labels, point.col = "rule",
                     file.suffix = "plot1", target.dir,
                     PlotOptions = .PlotOptions)
 {
     npar <- length(pars)
     nmdl <- nlevels(dat$model)
+    nstk <- nlevels(dat$stock)
 
     if (npar == 1) stop("Only one diagnostic parameter\n")
 
@@ -59,7 +60,7 @@ mpeview <- function(dat, pars, stock, axis.labels, point.col = c("rules"),
         p <- p + geom_point(aes(x, y, col = model), alpha = 0.7, size = 2.5) +
             labs(col = "Model") +
             scale_colour_manual(values = PlotOptions$colourPalette)
-    } else if (point.col == "rules") {
+    } else if (point.col == "rule") {
         p <- p + geom_point(aes(x, y, group = rule, col = rule), alpha = 0.7, size = 2.5) +
             labs(col = "Rule") +
             scale_colour_gradient(low = PlotOptions$colourPalette[1], high = PlotOptions$colourPalette[2])
@@ -68,9 +69,13 @@ mpeview <- function(dat, pars, stock, axis.labels, point.col = c("rules"),
             labs(col = point.col) +
             scale_colour_gradient(low = PlotOptions$colourPalette[1], high = PlotOptions$colourPalette[2])
     }
-
-    p <- p + facet_wrap(~ par.y, scales = "free_y") + 
-        labs(x = axis.labels[['x']], y = "") + 
+    
+    if (nstk > 1) {
+        p <- p + facet_grid(stock ~ par.y, scales = "free_y")
+    } else {
+        p <- p + facet_wrap(~ par.y, scales = "free_y")
+    }
+    p <- labs(x = axis.labels[['x']], y = "") + 
         theme_lobview(PlotOptions)
 
     #if (PlotOptions$Captions)

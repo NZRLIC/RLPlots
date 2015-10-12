@@ -6,15 +6,21 @@
 #' @param PlotOptions plot options
 #' @export
 #' 
-Snail <- function(stock, source.dir, target.dir = source.dir, PlotOptions = .PlotOptions)
+Snail <- function(stock, source.dir = ".", target.dir = source.dir, PlotOptions = .PlotOptions)
 {
-  qsnail <- read.table(paste(source.dir, "/snail.out", sep = ""), header = TRUE, as.is = TRUE)
+  
+    qsnail.all <- read.table(paste(source.dir, "/snail.out", sep = ""), header = TRUE, as.is = TRUE)
+  
+  for (ss in 1:length(stock)) {
+      
+      qsnail <- subset(qsnail.all, region == ss)
+      
   qminyr <- min(qsnail$year)
   qmaxyr <- max(qsnail$year)
   qyrs <- qmaxyr-qminyr+1
   qouts <- matrix(0, nrow = qyrs, ncol = 2)
-  ireg=1
-  qsnail <- qsnail[qsnail$region==ireg,]
+  #ireg=1
+  #qsnail <- qsnail[qsnail$region==ireg,]
   for (ii in 1:qyrs)
   {
      qy<-qminyr+ii-1
@@ -33,13 +39,16 @@ Snail <- function(stock, source.dir, target.dir = source.dir, PlotOptions = .Plo
   qtmp<-qsnail[qsnail$year==qmaxyr,]
   qx<-quantile(qtmp$SSB.y..SSB0,c(0.05,0.95))
   qy<-quantile(qtmp$Fmult.Fmsy,c(0.05,0.95))
+  
+  if (qx[1] == qx[2]) warning(paste(stock[ss], ": Upper and lower bounds for final year SSB/SSB0 are identical\n"))
+  if (qy[1] == qy[2]) warning(paste(stock[ss], ": Upper and lower bounds for final year F/Fmsy are identical\n"))
 
     dat <- data.frame(qouts)
     names(dat) <- c("x","y")
     dat2 <- data.frame(qx1, qy1)
   
     # Do the plot
-    PlotType(paste(target.dir, "/", stock, "Snail", sep = ""), PlotOptions,
+    PlotType(paste(target.dir, "/", stock[ss], "Snail", sep = ""), PlotOptions,
              width = PlotOptions$plotsize[1], height = PlotOptions$plotsize[2])
 
     #ggplot() +
@@ -62,7 +71,7 @@ Snail <- function(stock, source.dir, target.dir = source.dir, PlotOptions = .Plo
   points(qouts[,1],qouts[,2],type='l',pch=16, col="blue",lwd=1.3)
   points(qouts[,1],qouts[,2],type='p',pch=16, cex=1.0)
   # insert year labels
-  text(qouts['1945',1],qouts['1945',2],'1945',cex=0.8,pos=4)
+  text(qouts[as.character(qminyr),1],qouts[as.character(qminyr),2],qminyr,cex=0.8,pos=4)
   text(qouts['1975',1],qouts['1975',2],'1975',cex=0.8,pos=1)
   text(qouts['1980',1],qouts['1980',2],'1980',cex=0.8,pos=4)
   text(qouts['1990',1],qouts['1990',2],'1990',cex=0.8,pos=2)
@@ -78,4 +87,5 @@ Snail <- function(stock, source.dir, target.dir = source.dir, PlotOptions = .Plo
     
     #print(p)
     dev.off()
+  }
 } 
