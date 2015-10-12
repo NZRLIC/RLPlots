@@ -7,10 +7,10 @@
 #' @return a plot device
 #' @export
 #' 
-PlotType <- function(filename, PlotOptions, width, height, res = 400)
+PlotType <- function(filename, PlotOptions, width, height)
 {
     if ( PlotOptions$plottype %in% c("png","PNG",".png",".PNG","Png",".Png") )
     {
-        png(paste(filename, ".png", sep = ""), width = width, height = height, unit = "mm", res = res)
+        png(paste(filename, ".png", sep = ""), width = width, height = height, unit = "mm", res = PlotOptions$resolution)
     }
 }
