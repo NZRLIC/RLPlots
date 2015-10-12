@@ -1,6 +1,6 @@
 #' Plot control rules
 #'
-#' @author Darcy N. Webber, Charles Edwards
+#' @author D'Arcy N. Webber, Charles Edwards
 #' @param control.pars a matrix of control parameters with columns as parameters
 #' and rows as different rules
 #' @param obs.cpue the current CPUE
