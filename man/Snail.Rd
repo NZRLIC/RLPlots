@@ -4,7 +4,7 @@
 \alias{Snail}
 \title{Snail trail plots}
 \usage{
-Snail(stock, source.dir, target.dir = source.dir,
+Snail(stock, source.dir = ".", target.dir = source.dir,
   PlotOptions = .PlotOptions)
 }
 \arguments{

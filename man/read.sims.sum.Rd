@@ -4,7 +4,7 @@
 \alias{read.sims.sum}
 \title{read MPE sims.sum output}
 \usage{
-read.sims.sum(source.dir = ".", model.name = "base")
+read.sims.sum(stock, source.dir = "./", model.name = "base")
 }
 \description{
 read MPE sims.sum output
