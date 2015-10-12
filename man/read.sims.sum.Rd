@@ -2,11 +2,19 @@
 % Please edit documentation in R/read.sims.sum.R
 \name{read.sims.sum}
 \alias{read.sims.sum}
-\title{read MPE sims.sum output}
+\title{Read Sims.sum output}
 \usage{
-read.sims.sum(stock, source.dir = "./", model.name = "base")
+read.sims.sum(stock, source.dir = ".", model.name = "")
+}
+\arguments{
+\item{stock}{character vector of stock names}
+
+\item{source.dir}{directory containing the \code{Sims.sum} file}
+
+\item{model.name}{optional model name}
 }
 \description{
-read MPE sims.sum output
+A \code{Sims.sum} file will be produced by an MP simulation evaluation. This function will read the
+file.
 }
 

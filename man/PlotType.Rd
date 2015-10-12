@@ -4,7 +4,7 @@
 \alias{PlotType}
 \title{Specify the type of plot you would like to create}
 \usage{
-PlotType(filename, PlotOptions, width, height, res = 400)
+PlotType(filename, PlotOptions, width, height)
 }
 \arguments{
 \item{filename}{the directory and name of the file to save}

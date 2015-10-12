@@ -18,6 +18,6 @@ filename <- "R/zzz.R"
 cat(".onAttach <- function(libname, pkgname)\n", file = filename)
 cat("{\n", file = filename, append = TRUE)
 cat(paste("    packageStartupMessage(\"RLPlots version ", VERSION, " (", TIME, ")\")\n", sep = ""), file = filename, append = TRUE)
-cat(paste("    packageStartupMessage(\"To change the default plot options (e.g. plot resolution) then update the .PlotOptions list.\n", sep = ""), file = filename, append = TRUE)
+cat(paste("    packageStartupMessage(\"To change the default plot options (e.g. plot resolution) then update the .PlotOptions list.\")\n", sep = ""), file = filename, append = TRUE)
 cat("}\n", file = filename, append = TRUE)
 rm(filename)
