@@ -4,8 +4,7 @@
 #' @author Charles Edwards, D'Arcy Webber
 #' @export
 #' 
-mpeview.bypar <- function(dat, pars, stock, axis.labels, file.suffix = "plot1", target.dir = ".",
-                    PlotOptions = .PlotOptions)
+mpeview.bypar <- function(dat, pars, stock, axis.labels, file.suffix = "plot1", target.dir = ".")
 {
 	
     # first argument in pars vector should
@@ -60,7 +59,7 @@ mpeview.bypar <- function(dat, pars, stock, axis.labels, file.suffix = "plot1", 
             theme(plot.title = element_text(size = 9, vjust = 2.7))
     }
 	
-    PlotType(paste(target.dir, "/", stock, "mpe_", file.suffix, sep = ""), PlotOptions,
+    PlotType(paste(target.dir, "/", stock, "mpe_", file.suffix, sep = ""),
              width = 2*PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
     print(p)
     dev.off()

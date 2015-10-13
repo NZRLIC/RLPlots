@@ -3,10 +3,9 @@
 #' @param stock a label for the stock (e.g. CRA1)
 #' @param source.dir the directory containing the ADMB output files
 #' @param target.dir the directory to save the plots to
-#' @param PlotOptions plot options
 #' @export
 #' 
-Snail <- function(stock, source.dir = ".", target.dir = source.dir, PlotOptions = .PlotOptions)
+Snail <- function(stock, source.dir = ".", target.dir = source.dir)
 {
   
     qsnail.all <- read.table(paste(source.dir, "/snail.out", sep = ""), header = TRUE, as.is = TRUE)
@@ -48,7 +47,7 @@ Snail <- function(stock, source.dir = ".", target.dir = source.dir, PlotOptions 
     dat2 <- data.frame(qx1, qy1)
   
     # Do the plot
-    PlotType(paste(target.dir, "/", stock[ss], "Snail", sep = ""), PlotOptions,
+    PlotType(paste(target.dir, "/", stock[ss], "Snail", sep = ""),
              width = PlotOptions$plotsize[1], height = PlotOptions$plotsize[2])
 
     #ggplot() +

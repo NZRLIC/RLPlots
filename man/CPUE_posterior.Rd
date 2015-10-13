@@ -4,8 +4,7 @@
 \alias{CPUE_posterior}
 \title{CPUE posterior plots}
 \usage{
-CPUE_posterior(stock, source.dir, target.dir, CPUEOptions = .CPUEOptions,
-  MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+CPUE_posterior(stock, source.dir, target.dir)
 }
 \arguments{
 \item{stock}{character string: label for the stock (e.g. CRA1)}
@@ -13,12 +12,6 @@ CPUE_posterior(stock, source.dir, target.dir, CPUEOptions = .CPUEOptions,
 \item{source.dir}{character string: the directory containing the ADMB output files}
 
 \item{target.dir}{character string: optional directory to save the plots to}
-
-\item{CPUEOptions}{list: CPUE options}
-
-\item{MCMCOptions}{list: MCMC options}
-
-\item{PlotOptions}{list: plot options}
 }
 \description{
 Plots the posterior fit to CPUE data and residual diagnostics

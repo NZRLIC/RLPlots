@@ -4,8 +4,7 @@
 \alias{CPUE}
 \title{CPUE fit plots}
 \usage{
-CPUE(stock, source.dir, target.dir = source.dir, CPUEOptions = .CPUEOptions,
-  PlotOptions = .PlotOptions)
+CPUE(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{character string: label for the stock (e.g. CRA1)}
@@ -13,10 +12,6 @@ CPUE(stock, source.dir, target.dir = source.dir, CPUEOptions = .CPUEOptions,
 \item{source.dir}{character string: the directory containing the ADMB output files}
 
 \item{target.dir}{character string: the directory to save the plots to}
-
-\item{CPUEOptions}{list: CPUE options}
-
-\item{PlotOptions}{list: plot options}
 }
 \description{
 Plots the MPD fit to CPUE data and residual diagnostics

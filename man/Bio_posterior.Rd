@@ -4,9 +4,7 @@
 \alias{Bio_posterior}
 \title{Posterior biomass plots}
 \usage{
-Bio_posterior(stock, source.dir, target.dir = source.dir,
-  MCMCOptions = .MCMCOptions, BioOptions = .BioOptions,
-  PlotOptions = .PlotOptions)
+Bio_posterior(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{character string: label for the stock (e.g. CRA1)}
@@ -14,12 +12,6 @@ Bio_posterior(stock, source.dir, target.dir = source.dir,
 \item{source.dir}{character string: the directory containing the ADMB output files}
 
 \item{target.dir}{character string: the directory to save the plots to}
-
-\item{MCMCOptions}{list: mcmc plot options}
-
-\item{PlotOptions}{list: plot options}
-
-\item{BioOption}{list: biomass plot options}
 }
 \description{
 Plots the vulnerable biomass (for Autumn Winter and Spring Summer) and the

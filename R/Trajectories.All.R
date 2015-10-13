@@ -4,12 +4,12 @@
 #' 
 Trajectories.All<-function(run, stock)
 {
-  BvulnArni(run,stock)
-  ErateArni(run,stock)
-  RdevArni(run,stock)
-  SPArni(run,stock)
-  CPUEArni(run,stock)
-  CPUEresArni(run,stock)
+    BvulnArni(run,stock)
+    ErateArni(run,stock)
+    RdevArni(run,stock)
+    SPArni(run,stock)
+    CPUEArni(run,stock)
+    CPUEresArni(run,stock)
 #  need to edit the headers in CPUEpost.out before doing CRArni
 #       CRArni(run,stock)  
 #  need to edit the headers in  CPUErepost.out before doing CRresArni

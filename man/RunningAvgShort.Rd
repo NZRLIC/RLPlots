@@ -4,8 +4,7 @@
 \alias{RunningAvgShort}
 \title{Running average function}
 \usage{
-RunningAvgShort(stock, source.dir, target.dir = source.dir,
-  MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+RunningAvgShort(stock, source.dir, target.dir = source.dir)
 }
 \description{
 Running average function

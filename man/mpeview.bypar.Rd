@@ -6,7 +6,7 @@
 single control rule parameter}
 \usage{
 mpeview.bypar(dat, pars, stock, axis.labels, file.suffix = "plot1",
-  target.dir = ".", PlotOptions = .PlotOptions)
+  target.dir = ".")
 }
 \description{
 Plot MPE diagnostic output against a

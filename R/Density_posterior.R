@@ -3,11 +3,10 @@
 #' Use reader.exe to view .psv file and create a more complete parampost.out
 #' file (THK) Traces
 #'
-#' @author Darcy Webber
+#' @author D'Arcy Webber
 #' @export
 #' 
-Density_posterior <- function(stock, source.dir, target.dir = source.dir[1],
-                              MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+Density_posterior <- function(stock, source.dir, target.dir = source.dir[1])
 {
     # How many chains are we plotting?
     Nchain <- length(source.dir)
@@ -42,7 +41,7 @@ Density_posterior <- function(stock, source.dir, target.dir = source.dir[1],
     Nplots <- ceiling(ncol(data) / MCMCOptions$n.post)
     for ( pp in 1:Nplots )
     {
-        PlotType(paste(target.dir, "/", stock, "Density_posterior", pp, sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", stock, "Density_posterior", pp, sep = ""),
                  width = 1.6*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
         cvars <- nam[((MCMCOptions$n.post * (pp - 1)) + 1):(MCMCOptions$n.post * pp)]
         dat <- subset(dfm, subset = variable %in% cvars)
@@ -55,7 +54,7 @@ Density_posterior <- function(stock, source.dir, target.dir = source.dir[1],
         print(p)
         dev.off()
         
-        PlotType(paste(target.dir, "/", stock, "Histogram_posterior", pp, sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", stock, "Histogram_posterior", pp, sep = ""),
                  width = 1.6*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
         cvars <- nam[((MCMCOptions$n.post * (pp - 1)) + 1):(MCMCOptions$n.post * pp)]
         dat <- subset(dfm, subset = variable %in% cvars)

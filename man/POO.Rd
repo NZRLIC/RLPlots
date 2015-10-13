@@ -4,15 +4,10 @@
 \alias{POO}
 \title{POO plots}
 \usage{
-POO(stock, source.dir, target.dir = source.dir, CROptions = .CROptions,
-  PlotOptions = .PlotOptions)
+POO(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{the name of the stock (e.g. CRA1)}
-
-\item{CROptions}{}
-
-\item{PlotOptions}{}
 
 \item{run}{the directory where the outputs for a run are sitting}
 }

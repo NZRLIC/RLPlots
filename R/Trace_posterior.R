@@ -5,8 +5,7 @@
 #'
 #' @export
 #' 
-Trace_posterior <- function(stock, source.dir, target.dir = source.dir[1],
-                            MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+Trace_posterior <- function(stock, source.dir, target.dir = source.dir[1])
 {
     # How many chains are we plotting?
     Nchain <- length(source.dir)
@@ -52,7 +51,7 @@ Trace_posterior <- function(stock, source.dir, target.dir = source.dir[1],
     Nplots <- ceiling(ncol(data) / MCMCOptions$n.post)
     for ( pp in 1:Nplots )
     {
-        PlotType(paste(target.dir, "/", stock, "Trace_posterior", pp, sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", stock, "Trace_posterior", pp, sep = ""),
                  width = 1.6*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
         cvars <- nam[((MCMCOptions$n.post * (pp - 1)) + 1):(MCMCOptions$n.post * pp)]
         dat <- subset(dfm, subset = variable %in% cvars)

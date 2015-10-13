@@ -8,13 +8,9 @@
 #' @param stock character string: label for the stock (e.g. CRA1)
 #' @param source.dir character string: the directory containing the ADMB output files
 #' @param target.dir character string: the directory to save the plots to
-#' @param BioOption list: biomass plot options
-#' @param MCMCOptions list: mcmc plot options
-#' @param PlotOptions list: plot options
 #' @export
 #' 
-Bio_posterior <- function(stock, source.dir, target.dir = source.dir, MCMCOptions = .MCMCOptions, 
-                          BioOptions = .BioOptions, PlotOptions = .PlotOptions)
+Bio_posterior <- function(stock, source.dir, target.dir = source.dir)
 {
     # ==============================================================================
     # Plot VulnB by season
@@ -49,7 +45,7 @@ Bio_posterior <- function(stock, source.dir, target.dir = source.dir, MCMCOption
                 theme(plot.title = element_text(size = 9, vjust = 2.7))
         }
         
-        PlotType(paste(target.dir, "/", stock, "bvulnref_posterior", sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", stock, "bvulnref_posterior", sep = ""),
                  width = 2*PlotOptions$plotsize[1], height = PlotOptions$plotsize[2])
         print(p)
         dev.off()
@@ -88,7 +84,7 @@ Bio_posterior <- function(stock, source.dir, target.dir = source.dir, MCMCOption
                 theme(plot.title = element_text(size = 9, vjust = 2.7))
         }
         
-        PlotType(paste(target.dir, "/", stock, "Ball_posterior", sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", stock, "Ball_posterior", sep = ""),
                  width = 2*PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
         print(p)
         dev.off()

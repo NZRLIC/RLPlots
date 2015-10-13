@@ -4,8 +4,7 @@
 \alias{Mature}
 \title{Maturity}
 \usage{
-Mature(stock, source.dir, target.dir = source.dir,
-  PlotOptions = .PlotOptions)
+Mature(stock, source.dir, target.dir = source.dir)
 }
 \description{
 Maturity

@@ -3,8 +3,7 @@
 #' @author Darcy Webber
 #' @export
 #' 
-Select_posterior <- function(stock, source.dir, target.dir = source.dir,
-                             PlotOptions = .PlotOptions)
+Select_posterior <- function(stock, source.dir, target.dir = source.dir)
 {
     parameter <- read.table(paste(source.dir, "/parampost.out", sep = ""), header = TRUE, as.is = TRUE)
     nam <- as.character(scan(paste(source.dir, "/parampost.out", sep = ""), nlines = 1, what = 'character', quiet = TRUE))
@@ -54,7 +53,7 @@ Select_posterior <- function(stock, source.dir, target.dir = source.dir,
                 theme(plot.title = element_text(size = 9, vjust = 2.7))
         }
         
-        PlotType(paste(target.dir, "/", stock, "Selectivity_posterior", sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", stock, "Selectivity_posterior", sep = ""),
                  width = 2*PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
         print(p)
         dev.off()
@@ -91,7 +90,7 @@ Select_posterior <- function(stock, source.dir, target.dir = source.dir,
                     theme(plot.title = element_text(size = 9, vjust = 2.7))
             }
             
-            PlotType(paste(target.dir, "/", stock[stk], "Selectivity_posterior", sep = ""), PlotOptions,
+            PlotType(paste(target.dir, "/", stock[stk], "Selectivity_posterior", sep = ""),
                      width = 2*PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
             print(p)
             dev.off()

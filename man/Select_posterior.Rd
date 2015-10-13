@@ -4,8 +4,7 @@
 \alias{Select_posterior}
 \title{Selectivity posterior}
 \usage{
-Select_posterior(stock, source.dir, target.dir = source.dir,
-  PlotOptions = .PlotOptions)
+Select_posterior(stock, source.dir, target.dir = source.dir)
 }
 \description{
 Selectivity posterior

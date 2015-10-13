@@ -4,8 +4,7 @@
 \alias{CDF_posterior}
 \title{Cumulative density function plots of the posteriors of parameters}
 \usage{
-CDF_posterior(stock, source.dir, target.dir = source.dir,
-  MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+CDF_posterior(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{character string: a label for the stock (e.g. CRA1)}
@@ -14,10 +13,6 @@ CDF_posterior(stock, source.dir, target.dir = source.dir,
 of directories to plot multiple chains.}
 
 \item{target.dir}{character string: the directory to save the plots to}
-
-\item{MCMCOptions}{list: mcmc plot options}
-
-\item{PlotOptions}{list: plot options}
 }
 \description{
 Use reader.exe to view .psv file and create a more complete parampost.out

@@ -4,8 +4,7 @@
 \alias{Catches}
 \title{Catch plots}
 \usage{
-Catches(stock, source.dir, target.dir = source.dir,
-  PlotOptions = .PlotOptions)
+Catches(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{character string: label for the stock (e.g. CRA1)}
@@ -13,8 +12,6 @@ Catches(stock, source.dir, target.dir = source.dir,
 \item{source.dir}{character string: the directory containing the ADMB output files}
 
 \item{target.dir}{character string: the directory to save the plots to}
-
-\item{PlotOptions}{list: plot options}
 }
 \description{
 Plots the fit of estimated and observed catches for size-limited (legal) and non-size-limited (illegal) catches

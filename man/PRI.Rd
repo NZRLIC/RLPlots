@@ -4,7 +4,7 @@
 \alias{PRI}
 \title{PRIResids.out}
 \usage{
-PRI(stock, source.dir, target.dir = source.dir, PlotOption = .PlotOptions)
+PRI(stock, source.dir, target.dir = source.dir)
 }
 \description{
 PRIResids.out

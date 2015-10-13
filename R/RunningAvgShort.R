@@ -2,8 +2,7 @@
 #'
 #' @export
 #' 
-RunningAvgShort <- function(stock, source.dir, target.dir = source.dir,
-                            MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+RunningAvgShort <- function(stock, source.dir, target.dir = source.dir)
 {
   parameter <- read.table(paste(source.dir, "/parampost.out", sep = ""), header = TRUE, as.is = TRUE)
   nam <- as.character(scan(paste(source.dir, "/parampost.out", sep = ""), nlines = 1, what = 'character', quiet = TRUE))
@@ -54,8 +53,6 @@ RunningAvgShort <- function(stock, source.dir, target.dir = source.dir,
   {
       for ( pp in 1:Nplots )
       {
-          PlotType(paste(target.dir, "/", stock.label, "RunningAvg", pp, sep = ""), PlotOptions,
-                   width = 1.5*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
           dat <- na.omit(droplevels(dfm[((Nsim * MCMCOptions$n.post * (pp - 1)) + 1):(Nsim * MCMCOptions$n.post * pp),]))
           p <- ggplot(data = dat) +
                    geom_line(aes(x = sample, y = ma), colour = PlotOptions$colourPalette[2]) +
@@ -65,6 +62,8 @@ RunningAvgShort <- function(stock, source.dir, target.dir = source.dir,
                    scale_colour_grey() +
                    facet_wrap( ~ variable, nrow = 6, ncol = 2, scales = "free_y", drop = TRUE) +
                    xlab("Sample") + ylab(NULL) + theme_lobview(PlotOptions)
+          PlotType(paste(target.dir, "/", stock.label, "RunningAvg", pp, sep = ""),
+                   width = 1.5*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
           print(p)
           dev.off()
       }

@@ -4,8 +4,7 @@
 \alias{MeanSize}
 \title{Mean size (tail width, mm) over time}
 \usage{
-MeanSize(stock, source.dir, target.dir = source.dir, LFOptions = .LFOptions,
-  PlotOptions = .PlotOptions)
+MeanSize(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{the name of the stock (e.g. CRA1)}

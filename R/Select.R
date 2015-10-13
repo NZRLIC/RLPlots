@@ -2,10 +2,9 @@
 #'
 #' @param run the directory where the outputs for a run are sitting
 #' @param stock the name of the stock (e.g. CRA1)
-#' @param PlotOptions
 #' @export
 #' 
-Select <- function(stock, source.dir, target.dir = source.dir, PlotOptions = .PlotOptions)
+Select <- function(stock, source.dir, target.dir = source.dir)
 {
     select <- read.table(paste(source.dir, "/", stock, "Select.out", sep = ""), header = TRUE, as.is = TRUE)
     select$sex[select$sex == 1] <- "Male"
@@ -13,8 +12,6 @@ Select <- function(stock, source.dir, target.dir = source.dir, PlotOptions = .Pl
     select$sex <- factor(select$sex, levels = c("Male","Female"))
 
     # Do the plot
-    PlotType(paste(target.dir, "/", stock, "Select" , sep = ""), PlotOptions,
-             width = 2*PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
     p <- ggplot() +
              geom_line(data = select, aes(x = size, y = Selectivity, group = Epoch, color = factor(Epoch)), size = 1.5) + 
              scale_colour_manual(values = PlotOptions$colourPalette) +
@@ -27,6 +24,8 @@ Select <- function(stock, source.dir, target.dir = source.dir, PlotOptions = .Pl
         p <- p + ggtitle(paste(source.dir, " ", stock, ": Selectivity curve by Epoch by sex")) +
                      theme(plot.title = element_text(size = 9, vjust = 2.7))
     }
+    PlotType(paste(target.dir, "/", stock, "Select" , sep = ""),
+             width = 2*PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
     print(p)
     dev.off()
     

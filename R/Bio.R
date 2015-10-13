@@ -3,12 +3,9 @@
 #' @param stock a label for the stock (e.g. CRA1)
 #' @param source.dir the directory containing the ADMB output files
 #' @param target.dir the directory to save the plots to
-#' @param BioOption biomass plot options
-#' @param PlotOptions plot options
 #' @export
 #' 
-Bio <- function(stock, source.dir, target.dir = source.dir,
-                BioOption = .BioOptions, PlotOptions = .PlotOptions)
+Bio <- function(stock, source.dir, target.dir = source.dir)
 {
   
     filename <- paste(source.dir, "/", stock, "Biomass.out", sep = "")
@@ -34,9 +31,9 @@ Bio <- function(stock, source.dir, target.dir = source.dir,
   # ==============================================================================
   # Plot Blegal 
   # ==============================================================================
-  if( BioOption$VulnB )
+  if( BioOptions$VulnB )
   {
-    PlotType(paste(target.dir, "/", stock, "Bvulnref", sep = ""), PlotOptions,
+    PlotType(paste(target.dir, "/", stock, "Bvulnref", sep = ""),
              width = PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
     par(las = 1, oma = c(1,0,0,0), mar = c(5,4,1,1))
     plot(Bvulnref/1000 ~ Year, data = bm[bm$Season==1,], type = "l", lwd = PlotOptions$thin,
@@ -51,9 +48,9 @@ Bio <- function(stock, source.dir, target.dir = source.dir,
   # ==============================================================================
   # Plot Brect
   # ==============================================================================
-  if ( BioOption$RecB )
+  if ( BioOptions$RecB )
   {
-    PlotType(paste(target.dir, "/", stock, "Brect", sep = ""), PlotOptions,
+    PlotType(paste(target.dir, "/", stock, "Brect", sep = ""),
              width = 2*PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
     par(mfrow = c(1,2), oma = c(2,1,1,1), mar = c(4,3,1,1), mgp = c(4,1,0))
     #Plot Brect1, Brect2, Brect3, Brectd
@@ -84,9 +81,9 @@ Bio <- function(stock, source.dir, target.dir = source.dir,
   # ==============================================================================
   # Plot Btotal
   # ==============================================================================  
-  if ( BioOption$TotalRecB )
+  if ( BioOptions$TotalRecB )
   {
-    PlotType(paste(target.dir, "/", stock, "Btotal", sep = ""), PlotOptions,
+    PlotType(paste(target.dir, "/", stock, "Btotal", sep = ""),
              width = 2*PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
     par(mfrow = c(1,2), oma = c(2,1,1,1), mar = c(4,3,1,1), mgp = c(4,1,0))
     for ( Season in 1:2 )

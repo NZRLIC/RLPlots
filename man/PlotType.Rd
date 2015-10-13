@@ -4,12 +4,10 @@
 \alias{PlotType}
 \title{Specify the type of plot you would like to create}
 \usage{
-PlotType(filename, PlotOptions, width, height)
+PlotType(filename, width, height)
 }
 \arguments{
 \item{filename}{the directory and name of the file to save}
-
-\item{PlotOptions}{a list of options for plotting}
 
 \item{width}{the width of the plot in mm}
 

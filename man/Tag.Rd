@@ -4,8 +4,7 @@
 \alias{Tag}
 \title{Plot tag fits}
 \usage{
-Tag(stock, source.dir, target.dir = source.dir, TagOptions = .TagOptions,
-  PlotOptions = .PlotOptions)
+Tag(stock, source.dir, target.dir = source.dir)
 }
 \description{
 Tag plots when there are 2 tag files

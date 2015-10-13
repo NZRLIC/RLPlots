@@ -6,12 +6,9 @@
 #' @param stock character string: label for the stock (e.g. CRA1)
 #' @param source.dir character string: the directory containing the ADMB output files
 #' @param target.dir character string: the directory to save the plots to
-#' @param CPUEOptions list: CPUE options
-#' @param PlotOptions list: plot options
 #' @export
 #' 
-CPUE <- function(stock, source.dir, target.dir = source.dir, CPUEOptions = .CPUEOptions,
-                 PlotOptions = .PlotOptions)
+CPUE <- function(stock, source.dir, target.dir = source.dir)
 {
     
   #Read file
@@ -39,7 +36,7 @@ CPUE <- function(stock, source.dir, target.dir = source.dir, CPUEOptions = .CPUE
   # ==============================================================================
   if ( CPUEOptions$ObsPred )
   { 
-    PlotType(paste(target.dir, "/", stock, "CPUEObsPred", sep = ""), PlotOptions, width = 300, height = 10+150)
+    PlotType(paste(target.dir, "/", stock, "CPUEObsPred", sep = ""), width = 300, height = 10+150)
     par(las=1,oma = c(4,1,1,1), mar = c(3,4,1,1),mfrow=c(1,2)) 
     #AW
     plot(Obs~Year,data=cpue[cpue$Season==1,],pch=1,ylab="CPUE (kg/potlift)",
@@ -69,7 +66,7 @@ CPUE <- function(stock, source.dir, target.dir = source.dir, CPUEOptions = .CPUE
   # ==============================================================================
   if ( CPUEOptions$Resid )
   {
-    PlotType(paste(target.dir, "/", stock, "CPUEResid", sep = ""), PlotOptions, width = 150, height = 10+150)
+    PlotType(paste(target.dir, "/", stock, "CPUEResid", sep = ""), width = 150, height = 10+150)
     par(las=1,oma=c(2,1,1,1),mar=c(5,4,1,1),mgp=c(3,1,0)) 
     #Resids v period
     plot(StdRes~Year,data=cpue,pch=c(1,16)[Season],lwd=PlotOptions$thin,ylab="Standardised residual",
@@ -83,7 +80,7 @@ CPUE <- function(stock, source.dir, target.dir = source.dir, CPUEOptions = .CPUE
     dev.off()
     
     #Resids v predicted
-    PlotType(paste(target.dir, "/", stock, "CPUEResidPred", sep = ""), PlotOptions, width = 150, height = 10+150)
+    PlotType(paste(target.dir, "/", stock, "CPUEResidPred", sep = ""), width = 150, height = 10+150)
     par(las=1,oma=c(2,1,1,1),mar=c(5,4,1,1),mgp=c(3,1,0)) 
     plot(StdRes~Pred,data=cpue,pch=c(1,16)[Season],lwd=PlotOptions$thin,ylab="Standardised residual",xlab="Predicted")
     abline(h=0,lty=2)
@@ -95,7 +92,7 @@ CPUE <- function(stock, source.dir, target.dir = source.dir, CPUEOptions = .CPUE
     dev.off()
     
     #qq plot
-    PlotType(paste(target.dir, "/", stock, "CPUEQQ", sep = ""), PlotOptions, width = 150, height = 10+150)
+    PlotType(paste(target.dir, "/", stock, "CPUEQQ", sep = ""), width = 150, height = 10+150)
     par(las=1,oma=c(2,1,1,1),mar=c(5,4,1,1),mgp=c(3,1,0)) 
     qqnorm(cpue$StdRes,pch=c(1,16)[Season],xlab="Theoretical quantiles",ylab="Standardised residual",main="",las=1)
     abline(a=0,b=1)

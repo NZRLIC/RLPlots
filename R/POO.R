@@ -2,12 +2,9 @@
 #'
 #' @param run the directory where the outputs for a run are sitting
 #' @param stock the name of the stock (e.g. CRA1)
-#' @param CROptions
-#' @param PlotOptions
 #' @export
 #' 
-POO <- function(stock, source.dir, target.dir = source.dir,
-                CROptions = .CROptions, PlotOptions = .PlotOptions)
+POO <- function(stock, source.dir, target.dir = source.dir)
 {
     po <- read.table(paste(source.dir,"/",stock,"PooResids.out",sep=""),header=T,as.is=T)
     if ( CROptions$IsAnnual )
@@ -34,7 +31,7 @@ POO <- function(stock, source.dir, target.dir = source.dir,
             p <- p + ggtitle(paste(source.dir, " ", stock, ": Observed and predicted for POO fits. Points: Observed; Lines: Predicted")) +
                 theme(plot.title = element_text(size = 9, vjust = 2.7))
         }
-        PlotType(paste(target.dir, "/", stock, "PooObsPred", sep = ""), PlotOptions, width = 270, height = 200)
+        PlotType(paste(target.dir, "/", stock, "PooObsPred", sep = ""), width = 270, height = 200)
         print(p)
         dev.off()
     }
@@ -43,7 +40,7 @@ POO <- function(stock, source.dir, target.dir = source.dir,
     if ( CROptions$Resid )
     {
         #Set graphics parameters
-        PlotType(paste(target.dir, "/", stock, "POResid", sep = ""), PlotOptions, width = 270, height = 200)
+        PlotType(paste(target.dir, "/", stock, "POResid", sep = ""), width = 270, height = 200)
         par(las=1,oma=c(1,1,1,1),mar=c(4,3.5,1,1),mgp=c(2.5,1,0))
         #Resids v period
         plot(StdRes~x,data=po,pch=16,lwd=PlotOptions$thin,ylab="Standardised residual",xlab=xlab)
@@ -55,7 +52,7 @@ POO <- function(stock, source.dir, target.dir = source.dir,
         dev.off()
         
         #Resids v predicted
-        PlotType(paste(target.dir, "/", stock, "POOResidPred", sep = ""), PlotOptions, width = 270, height = 200)
+        PlotType(paste(target.dir, "/", stock, "POOResidPred", sep = ""), width = 270, height = 200)
         plot(StdRes~Pred,data=po,pch=16,lwd=PlotOptions$thin,ylab="Standardised residual",xlab="Predicted")
         abline(h=0,lty=2)
         if ( PlotOptions$Captions )

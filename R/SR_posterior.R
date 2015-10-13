@@ -2,11 +2,9 @@
 #'
 #' @param run the directory where the outputs for a run are sitting
 #' @param stock the name of the stock (e.g. CRA1)
-#' @param PlotOptions
 #' @export
 #' 
-SR_posterior <- function(stock, source.dir, target.dir = source.dir,
-                         PlotOptions = .PlotOptions)
+SR_posterior <- function(stock, source.dir, target.dir = source.dir)
 {
     # Load observations if the file exists in the source directory    
     filename <- paste(source.dir, "/", stock, "SexRatio.out", sep = "")
@@ -79,7 +77,7 @@ SR_posterior <- function(stock, source.dir, target.dir = source.dir,
     }
     
     #PlotType(paste(target.dir, "/", stock, "SR_posterior", sep = ""), PlotOptions, width = 350, height = 250)
-    PlotType(paste(target.dir, "/", stock, "SR_posterior", sep = ""), PlotOptions, width = 2*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
+    PlotType(paste(target.dir, "/", stock, "SR_posterior", sep = ""), width = 2*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
     print(p)
     dev.off()
 }

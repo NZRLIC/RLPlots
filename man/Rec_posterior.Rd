@@ -4,8 +4,7 @@
 \alias{Rec_posterior}
 \title{Posterior recruitment plots}
 \usage{
-Rec_posterior(stock, source.dir, target.dir = source.dir,
-  MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+Rec_posterior(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{a label for the stock (e.g. CRA1)}
@@ -13,10 +12,6 @@ Rec_posterior(stock, source.dir, target.dir = source.dir,
 \item{source.dir}{the directory containing the ADMB output files}
 
 \item{target.dir}{the directory to save the plots to}
-
-\item{MCMCOptions}{mcmc plot options}
-
-\item{PlotOptions}{plot options}
 }
 \value{
 a plot

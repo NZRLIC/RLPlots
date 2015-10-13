@@ -4,8 +4,7 @@
 \alias{CR_posterior}
 \title{Catch rate (CR) posterior plots}
 \usage{
-CR_posterior(stock, source.dir, target.dir = source.dir,
-  MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+CR_posterior(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{character string: label for the stock (e.g. CRA1)}
@@ -13,10 +12,6 @@ CR_posterior(stock, source.dir, target.dir = source.dir,
 \item{source.dir}{character string: the directory containing the ADMB output files}
 
 \item{target.dir}{character string: the directory to save the plots to}
-
-\item{MCMCOptions}{list: MCMC options}
-
-\item{PlotOptions}{list: plot options}
 }
 \description{
 Plots the posterior fit to historic catch rate data and residual diagnostics

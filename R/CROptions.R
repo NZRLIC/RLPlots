@@ -7,4 +7,4 @@
 #' @param IsAnnual not sure
 #' @export
 #' 
-.CROptions <- list(ObsPred = TRUE, Resid = TRUE, IsAnnual = TRUE)
+CROptions <- list(ObsPred = TRUE, Resid = TRUE, IsAnnual = TRUE)

@@ -5,13 +5,9 @@
 #' @param stock character string: label for the stock (e.g. CRA1)
 #' @param source.dir character string: the directory containing the ADMB output files
 #' @param target.dir character string: optional directory to save the plots to
-#' @param CPUEOptions list: CPUE options
-#' @param MCMCOptions list: MCMC options
-#' @param PlotOptions list: plot options
 #' @export
 #' 
-CPUE_posterior <- function(stock, source.dir, target.dir,
-                           CPUEOptions = .CPUEOptions, MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+CPUE_posterior <- function(stock, source.dir, target.dir)
 {
     # Load posterior
     dat <- as.matrix(read.table(paste(source.dir, "/", stock, "CPUEpost.out", sep = ""), header = TRUE, as.is = TRUE))
@@ -80,7 +76,7 @@ CPUE_posterior <- function(stock, source.dir, target.dir,
     {
         print(p)
     } else {
-        PlotType(paste(target.dir, "/", stock, "CPUE_posterior", sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", stock, "CPUE_posterior", sep = ""),
                  width = 2*PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
         print(p)
         dev.off()

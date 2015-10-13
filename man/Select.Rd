@@ -4,13 +4,10 @@
 \alias{Select}
 \title{Selectivity}
 \usage{
-Select(stock, source.dir, target.dir = source.dir,
-  PlotOptions = .PlotOptions)
+Select(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{the name of the stock (e.g. CRA1)}
-
-\item{PlotOptions}{}
 
 \item{run}{the directory where the outputs for a run are sitting}
 }

@@ -5,8 +5,7 @@
 #'
 #' @export
 #' 
-TraceHisto <- function(stock, source.dir, target.dir = source.dir,
-                       MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+TraceHisto <- function(stock, source.dir, target.dir = source.dir)
 {
     parameter <- read.table(paste(source.dir, "/parampost.out", sep = ""), header = TRUE, as.is = TRUE, row.names = NULL)
     nam <- as.character(scan(paste(source.dir, "/parampost.out", sep = ""), nlines = 1, what = 'character', quiet = TRUE))
@@ -105,7 +104,7 @@ TraceHisto <- function(stock, source.dir, target.dir = source.dir,
             facet_wrap( ~ variable, nrow = 6, ncol = 2, scales = "free_y", drop = TRUE) +
             xlab("Sample") + ylab(NULL) + theme_lobview(PlotOptions)
         
-        PlotType(paste(target.dir, "/", stock.label, "Trace", pp, sep = ""), PlotOptions,
+        PlotType(paste0(target.dir, "/", stock.label, "Trace", pp),
                  width = 1.5*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
         print(p)
         dev.off()
@@ -116,8 +115,6 @@ TraceHisto <- function(stock, source.dir, target.dir = source.dir,
     #===============================================================================
     for ( pp in 1:Nplots )
     {
-        PlotType(paste(target.dir, "/", stock, "Histo", pp, sep = ""), PlotOptions,
-                 width = 1.5*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
         dat <- droplevels(dfm[((Nsim * MCMCOptions$n.post * (pp - 1)) + 1):(Nsim * MCMCOptions$n.post * pp),])
         if (any(is.na(dat$variable))) dat <- dat[!is.na(dat$variable),]
         p <- ggplot(data = dat, aes(x = value)) +
@@ -125,9 +122,10 @@ TraceHisto <- function(stock, source.dir, target.dir = source.dir,
             scale_colour_grey() +
             facet_wrap( ~ variable, nrow = 6, ncol = 2, scales = "free", drop = TRUE) +
             xlab(NULL) + ylab(NULL) + theme_lobview(PlotOptions)
-          {
-              p <- p + geom_vline(data = dat, aes(xintercept = mpd), color = 2, size = 1)
-          }
+        p <- p + geom_vline(data = dat, aes(xintercept = mpd), color = 2, size = 1)
+        
+        PlotType(paste(target.dir, "/", stock, "Histo", pp, sep = ""),
+                 width = 1.5*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
         suppressMessages(suppressWarnings(print(p)))
         dev.off()
     }
@@ -135,7 +133,7 @@ TraceHisto <- function(stock, source.dir, target.dir = source.dir,
     #===============================================================================
     # Correlation plots
     #===============================================================================
-    PlotType(paste(target.dir, "/", stock, "CrossCorr", sep = ""), PlotOptions,
+    PlotType(paste(target.dir, "/", stock, "CrossCorr", sep = ""),
              width = 2*PlotOptions$plotsize[1], height = 2*PlotOptions$plotsize[2])
     xx <- mcmc.list(as.mcmc(data))
     crosscorrelation.plot(xx)
@@ -147,7 +145,7 @@ TraceHisto <- function(stock, source.dir, target.dir = source.dir,
     xx[[3]] <- data[,16:27]
     for ( pp in 1:length(xx) )
     {
-        PlotType(paste(target.dir, "/", stock, "Corr", pp, sep = ""), PlotOptions,
+        PlotType(paste0(target.dir, "/", stock, "Corr", pp),
                  width = 1.5*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
         #p <- ggpairs(data[,2:7])
         #        print(p)
