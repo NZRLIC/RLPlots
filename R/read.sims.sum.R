@@ -10,7 +10,7 @@
 #'
 #' @export
 #' 
-read.sims.sum <- function(stock, source.dir = ".", model.name = "")
+read.sims.sum <- function(stock, source.dir = ".", model.name = "NA")
 {
     tryCatch(
         dat <- read.table(paste(source.dir, "/Sims.sum", sep = "")), 
