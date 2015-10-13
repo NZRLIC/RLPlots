@@ -4,7 +4,7 @@
 \alias{mpeview}
 \title{MPE output viewer}
 \usage{
-mpeview(dat, pars, stock, axis.labels, point.col = c("rules"),
+mpeview(dat, pars, stock, axis.labels, point.col = "rule",
   file.suffix = "plot1", target.dir, PlotOptions = .PlotOptions)
 }
 \arguments{
