@@ -11,6 +11,6 @@ PlotType <- function(filename, PlotOptions, width, height)
 {
     if ( PlotOptions$plottype %in% c("png","PNG",".png",".PNG","Png",".Png") )
     {
-        png(paste(filename, ".png", sep = ""), width = width, height = height, unit = "mm", res = PlotOptions$resolution)
+        png(paste(filename, ".png", sep = ""), width = width, height = height, unit = "mm", res = PlotOptions$resolution, pointsize = PlotOptions$pointsize)
     }
 }
