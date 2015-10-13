@@ -6,7 +6,7 @@
 #' 
 .PlotOptions <- list(UsePeriod = FALSE, ModelEndPeriod = 120,
                      Captions = TRUE,
-                     plottype = "png", plotsize = c(150,150), resolution = 250,
+                     plottype = "png", plotsize = c(130,130), resolution = 100, pointsize = 5,
                      theme = "presentation",
                      colourPalette = cbPalette2,
                      thick = 2, thin = 1,
