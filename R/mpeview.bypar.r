@@ -13,8 +13,14 @@ mpeview.bypar <- function(dat, pars, stock, axis.labels, file.suffix = "plot1", 
   
     npar <- length(pars)
     nmdl <- nlevels(dat$model)
+    nstk <- nlevels(dat$stock)
     
     if (npar == 1) stop("Only one diagnostic parameter\n")
+    
+    if (nstk > 1 & length(stock) == 1) {
+        dat  <- dat[dat$stock == stock,]
+        nstk <- 1
+    }
   
     if (missing(axis.labels))
     {
@@ -25,7 +31,7 @@ mpeview.bypar <- function(dat, pars, stock, axis.labels, file.suffix = "plot1", 
     
     dat[,pars[1]] <- as.factor(dat[,pars[1]])
   
-    dfr <- data.frame(model = dat$model, par.y = pars[2], x = dat[,pars[1]], y = dat[,pars[2]])
+    dfr <- data.frame(stock = dat$stock, model = dat$model, par.y = pars[2], x = dat[,pars[1]], y = dat[,pars[2]])
     
     ggplot(dfr) + geom_boxplot(aes(x,y))
     
@@ -33,7 +39,7 @@ mpeview.bypar <- function(dat, pars, stock, axis.labels, file.suffix = "plot1", 
     {
         for(i in 3:npar)
         {
-          dfr <- rbind(dfr, data.frame(model = dat$model, par.y = pars[i], x = dat[,pars[1]], y = dat[,pars[i]]))
+          dfr <- rbind(dfr, data.frame(stock = dat$stock, model = dat$model, par.y = pars[i], x = dat[,pars[1]], y = dat[,pars[i]]))
         }
     }
     dfr$par.y <- factor(dfr$par.y, labels = axis.labels[['y']])
@@ -47,8 +53,12 @@ mpeview.bypar <- function(dat, pars, stock, axis.labels, file.suffix = "plot1", 
         p <- p + geom_boxplot(aes(x, y), alpha = 0.7)
     }
     
-    p <- p + facet_wrap(~ par.y, scales = "free_y") + 
-        labs(x = axis.labels[['x']], y = "") + 
+    if (nstk > 1) {
+        p <- p + facet_grid(stock ~ par.y, scales = "free")
+    } else {
+        p <- p + facet_wrap(~ par.y, scales = "free_y")
+    }
+    p <- p + labs(x = axis.labels[['x']], y = "") + 
         theme_lobview(PlotOptions) +
         scale_colour_manual(values = PlotOptions$colourPalette) + 
         scale_fill_manual(values = PlotOptions$colourPalette)

@@ -34,7 +34,7 @@ MPE_rules <- function(control.pars, current.cpue = NA, cpue = seq(0, 2, 0.01), t
     #if ( par[1] == 4 ) cat("Slope rule\n")
 
     outs <- apply(control.pars, 1, FUN = TACC, cpue = cpue)
-    rules <- melt(outs)
+    rules <- melt(outs, varnames = c("cpue", "rule"), value.name = "TACC")
     rules$cpue <- rep(cpue, nrow(control.pars))
     current.tacc <- as.numeric(apply(control.pars, 1, FUN = TACC, cpue = current.cpue))
 
@@ -42,12 +42,12 @@ MPE_rules <- function(control.pars, current.cpue = NA, cpue = seq(0, 2, 0.01), t
     if (nrow(control.pars) == 1)
     {
         d <- data.frame(cpue = current.cpue, tacc = current.tacc)
-        p <- ggplot(rules, aes(x = cpue, y = value)) +
+        p <- ggplot(rules, aes(x = cpue, y = TACC)) +
             geom_line() +
             geom_point(data = d, aes(x = cpue, y = tacc), size = 5, col = PlotOptions$colourPalette[2]) +
             theme_lobview(PlotOptions) + labs(x = "\nCPUE", y = "TACC (tonnes)\n", col = "Rule")
     } else {
-        p <- ggplot(rules, aes(x = cpue, y = value, group = Var2, col = Var2)) +
+        p <- ggplot(rules, aes(x = cpue, y = TACC, group = rule, col = rule)) +
             geom_line() +
             #guides(colour = guide_legend(reverse = FALSE), size = 2) +
             scale_colour_gradient(low = PlotOptions$colourPalette[1], high = PlotOptions$colourPalette[2]) +
