@@ -5,8 +5,7 @@
 #' @param stock the name of the stock (e.g. CRA1)
 #' @export
 #' 
-MeanSize <- function(stock, source.dir, target.dir = source.dir,
-                     LFOptions = .LFOptions, PlotOptions = .PlotOptions)
+MeanSize <- function(stock, source.dir, target.dir = source.dir)
 {
     # Read file
     dat <- read.table(paste(source.dir, "/", stock, "FrancisLFs.out", sep = ""), header = TRUE, as.is = TRUE) 
@@ -31,7 +30,7 @@ MeanSize <- function(stock, source.dir, target.dir = source.dir,
     # ==============================================================================
     if ( LFOptions$ObsPred )
     {
-        PlotType(paste(target.dir, "/", stock, "MeanSize" , sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", stock, "MeanSize" , sep = ""),
                  width = 2*PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
         p <- ggplot(dat) + 
             geom_point(aes(x = Year, y = Obs, color = Type), size = 3) + 

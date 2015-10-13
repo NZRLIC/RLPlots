@@ -1,5 +1,4 @@
-ggMCMC <- function(source.dir, target.dir = source.dir,
-                    MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+ggMCMC <- function(source.dir, target.dir = source.dir)
 {
     require(reshape)
     require(ggmcmc)

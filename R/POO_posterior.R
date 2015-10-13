@@ -2,11 +2,9 @@
 #'
 #' @param run the directory where the outputs for a run are sitting
 #' @param stock the name of the stock (e.g. CRA1)
-#' @param PlotOptions
 #' @export
 #' 
-POO_posterior <- function(stock, source.dir, target.dir = source.dir,
-                          CROptions = .CROptions, PlotOptions = .PlotOptions)
+POO_posterior <- function(stock, source.dir, target.dir = source.dir)
 {
     po <- read.table(paste(source.dir,"/",stock,"PooResids.out", sep = ""), header = TRUE, as.is = TRUE)
     
@@ -43,7 +41,7 @@ POO_posterior <- function(stock, source.dir, target.dir = source.dir,
             theme(plot.title = element_text(size = 9, vjust = 2.7))
     }
     
-    PlotType(paste(target.dir, "/", stock, "Poo_posterior", sep = ""), PlotOptions,
+    PlotType(paste(target.dir, "/", stock, "Poo_posterior", sep = ""),
                  width = 2*PlotOptions$plotsize[1], height = PlotOptions$plotsize[2])
     print(p)
     dev.off()

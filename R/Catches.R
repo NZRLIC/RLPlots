@@ -6,10 +6,9 @@
 #' @param stock character string: label for the stock (e.g. CRA1)
 #' @param source.dir character string: the directory containing the ADMB output files
 #' @param target.dir character string: the directory to save the plots to
-#' @param PlotOptions list: plot options
 #' @export
 #' 
-Catches <- function(stock,source.dir,target.dir = source.dir, PlotOptions = .PlotOptions)
+Catches <- function(stock,source.dir,target.dir = source.dir)
 {
     #Read file
     catches <- read.table(paste(source.dir,"/",stock,"Catches.out",sep = ""), header = TRUE, as.is = TRUE)
@@ -26,7 +25,7 @@ Catches <- function(stock,source.dir,target.dir = source.dir, PlotOptions = .Plo
     # ==============================================================================
     # Plot SLC and NSLC
     # ==============================================================================
-    PlotType(paste(target.dir, "/", stock, "Catch", sep = ""), PlotOptions, width = 300, height = 10+150)
+    PlotType(paste(target.dir, "/", stock, "Catch", sep = ""), width = 300, height = 10+150)
     par(las=1,oma = c(4,1,1,1), mar = c(3,4,1,1),mfrow=c(1,2))
     plot(P_SLC~x,data=catches[catches$Season==2,],type="l",
          lwd = PlotOptions$thick,ylim=c(0,max(catches$SLC)),ylab="SL Catch (t)", xlab = "")

@@ -5,7 +5,7 @@
 #' (acRec_med), the AAV_med, the median of the average catch per unit effort
 #' (avI_AW_med). 
 #'
-#' @author Charles Edwards, Darcy Webber
+#' @author Charles Edwards, D'Arcy Webber
 #' @param dat a data.frame read in using read.sims.sum
 #' @param pars the parameters that can be plotted. The first par becomes the x
 #' axis, the remaining pars different panels (choose up to 4 pars)
@@ -15,7 +15,6 @@
 #' "rules" or any of the pars (e.g. "par1", "par2", ..., "par10")
 #' @param file.suffix a suffix to append to the end of the saved plot name
 #' @param target.dir the directory to save the plot to
-#' @param PlotOptions plot options
 #' 
 #' @examples
 #' \dontrun{
@@ -32,8 +31,7 @@
 #' @export
 #' 
 mpeview <- function(dat, pars, stock, axis.labels, point.col = "rule", label.rules = ifelse(point.col == "", TRUE, FALSE), 
-                    file.suffix = "plot1", target.dir,
-                    PlotOptions = .PlotOptions)
+                    file.suffix = "plot1", target.dir)
 {
     npar <- length(pars)
     nmdl <- nlevels(dat$model)
@@ -105,7 +103,7 @@ mpeview <- function(dat, pars, stock, axis.labels, point.col = "rule", label.rul
     {
         print(p)
     } else {
-        PlotType(paste(target.dir, "/", stock, "mpe_", file.suffix, sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", stock, "mpe_", file.suffix, sep = ""),
                  width = 2*PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
       print(p)
       dev.off()

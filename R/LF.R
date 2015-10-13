@@ -4,12 +4,9 @@
 #'
 #' @param run the directory where the outputs for a run are sitting
 #' @param stock the name of the stock (e.g. CRA1)
-#' @param LFOptions
-#' @param PlotOptions
 #' @export
 #' 
-LF <- function(stock,source.dir,target.dir = source.dir, LFOptions = .LFOptions,
-               PlotOptions = .PlotOptions)
+LF <- function(stock, source.dir, target.dir = source.dir)
 {
     
     # Read file
@@ -34,7 +31,7 @@ LF <- function(stock,source.dir,target.dir = source.dir, LFOptions = .LFOptions,
       n.LF <- LFOptions$SamplesPerPage
       if ( is.na(match(sample, 0:8*n.LF+1)) != TRUE )
       {
-        PlotType(paste(target.dir, "/", stock, "LFfit", i, sep = ""), PlotOptions, width = 170, height = 200)
+        PlotType(paste(target.dir, "/", stock, "LFfit", i, sep = ""), width = 170, height = 200)
         par(mfrow = c(n.LF, length(sexcode)), oma = c(2,3,1,4), mar = c(1,3,0.5,2), lab = c(5,4,5))
         i <- i + 1
       } 
@@ -89,7 +86,7 @@ LF <- function(stock,source.dir,target.dir = source.dir, LFOptions = .LFOptions,
       n.LF <- LFOptions$SamplesPerPage
       if ( is.na(match(sample, 0:8*n.LF+1)) != TRUE )
       {
-        PlotType(paste(target.dir, "/", stock, "LFcum" , i, sep = ""), PlotOptions, width = 170, height = 200)
+        PlotType(paste(target.dir, "/", stock, "LFcum" , i, sep = ""), width = 170, height = 200)
         par(mfrow = c(n.LF,length(sexcode)), oma = c(1,1,1,1), mar = c(1,1,1,1), lab = c(5,4,7))
         i <- i + 1
       }
@@ -139,7 +136,7 @@ LF <- function(stock,source.dir,target.dir = source.dir, LFOptions = .LFOptions,
       n.LF <- LFOptions$SamplesPerPage
       if ( is.na(match(sample, c(0:8)*n.LF+1)) != TRUE )
       {
-        PlotType(paste(target.dir, "/", stock, "LFresid" , i, sep = ""), PlotOptions, width = 170, height = 200)
+        PlotType(paste(target.dir, "/", stock, "LFresid" , i, sep = ""), width = 170, height = 200)
         par(mfrow=c(n.LF,length(sexcode)),oma=c(1,5,1,5),mar=c(1,1,1,1))
         i<-i+1
       }
@@ -173,7 +170,7 @@ LF <- function(stock,source.dir,target.dir = source.dir, LFOptions = .LFOptions,
   # ==============================================================================
   if( LFOptions$ResPred )
   {
-    PlotType(paste(target.dir, "/", stock, "LFresSex", sep = ""), PlotOptions, width = 170, height = 200)
+    PlotType(paste(target.dir, "/", stock, "LFresSex", sep = ""), width = 170, height = 200)
     par(mfrow=c(3,1),oma=c(4,1,1,1),mar=c(5,5,1,5))
       for( sex in 1:3 )
       {
@@ -194,7 +191,7 @@ LF <- function(stock,source.dir,target.dir = source.dir, LFOptions = .LFOptions,
   # ==============================================================================
   if ( LFOptions$BoxSize )
   {
-    PlotType(paste(target.dir, "/", stock, "LFresboxSex", sep = ""), PlotOptions, width = 170, height = 200)
+    PlotType(paste(target.dir, "/", stock, "LFresboxSex", sep = ""), width = 170, height = 200)
     par(mfrow=c(3,1),oma=c(4,1,1,1),mar=c(5,5,1,5))
     for( sex in 1:3 )
     {
@@ -208,7 +205,7 @@ LF <- function(stock,source.dir,target.dir = source.dir, LFOptions = .LFOptions,
   # ==============================================================================
   # Plot Arniplots by sex by season
   # ==============================================================================
-    PlotType(paste(target.dir, "/", stock, "LFresboxSexSea", sep = ""), PlotOptions, width = 170, height = 200)
+    PlotType(paste(target.dir, "/", stock, "LFresboxSexSea", sep = ""), width = 170, height = 200)
     par(mfrow=c(3,2),oma=c(4,1,1,4),mar=c(4,4,2,1))
       for(sex in 1:3)
       {
@@ -238,7 +235,7 @@ LF <- function(stock,source.dir,target.dir = source.dir, LFOptions = .LFOptions,
   if ( LFOptions$ResQQ ) subsub <- data[abs(data$StdRes)>0.05,] else subsub <- data
   if ( LFOptions$QQ )
   {
-    PlotType(paste(target.dir, "/", stock, "LFQQsex", sep = ""), PlotOptions, width = 170, height = 200)
+    PlotType(paste(target.dir, "/", stock, "LFQQsex", sep = ""), width = 170, height = 200)
     par(mfrow=c(3,1),oma=c(4,1,1,1),mar=c(5,5,1,5))
       for(sex in 1:3)
       {
@@ -260,7 +257,7 @@ LF <- function(stock,source.dir,target.dir = source.dir, LFOptions = .LFOptions,
   # ==============================================================================
   if ( LFOptions$Bubble )
   {
-    PlotType(paste(target.dir, "/", stock, "LFBubbleSex", sep = ""), PlotOptions, width = 170, height = 200)
+    PlotType(paste(target.dir, "/", stock, "LFBubbleSex", sep = ""), width = 170, height = 200)
     par(mfrow=c(3,1),oma=c(4,1,1,1),mar=c(5,5,1,5))
       for(sex in 1:3)
       {
@@ -286,7 +283,7 @@ LF <- function(stock,source.dir,target.dir = source.dir, LFOptions = .LFOptions,
   # ==============================================================================
   if ( LFOptions$Reshist )
   {
-    PlotType(paste(target.dir, "/", stock, "LFHistSex", sep = ""), PlotOptions, width = 170, height = 200)
+    PlotType(paste(target.dir, "/", stock, "LFHistSex", sep = ""), width = 170, height = 200)
     par(mfrow = c(3,1), oma = c(4,1,1,1), mar = c(5,5,1,5))
       for ( sex in 1:3 )
       {

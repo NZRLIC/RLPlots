@@ -2,7 +2,8 @@
 #' 
 #' @export
 #' 
-PRI<-function(stock,source.dir,target.dir = source.dir, PlotOption = .PlotOptions){
+PRI <- function(stock, source.dir, target.dir = source.dir)
+{
   #Read file
   pri<-read.table(paste(source.dir,"/",stock,"PRIesids.out",sep=""),header=T,as.is=T)
 

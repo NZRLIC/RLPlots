@@ -4,11 +4,7 @@
 \alias{MPD.All}
 \title{MPD All}
 \usage{
-MPD.All(stock, source.dir = ".", target.dir = source.dir,
-  PlotOptions = .PlotOptions, CPUEOptions = .CPUEOptions,
-  CROptions = .CROptions, LFOptions = .LFOptions,
-  TagOptions = .TagOptions, BioOptions = .BioOptions,
-  SEXROptions = .SEXROptions)
+MPD.All(stock, source.dir = ".", target.dir = source.dir)
 }
 \description{
 Function which does everything, includes all the individual functions

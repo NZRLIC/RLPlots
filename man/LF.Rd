@@ -4,15 +4,10 @@
 \alias{LF}
 \title{Length-frequency function}
 \usage{
-LF(stock, source.dir, target.dir = source.dir, LFOptions = .LFOptions,
-  PlotOptions = .PlotOptions)
+LF(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{the name of the stock (e.g. CRA1)}
-
-\item{LFOptions}{}
-
-\item{PlotOptions}{}
 
 \item{run}{the directory where the outputs for a run are sitting}
 }

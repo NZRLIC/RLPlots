@@ -3,8 +3,7 @@
 #' @author D'Arcy Webber, Charles Edwards
 #' @export
 #' 
-Mature_posterior <- function(stock, source.dir, target.dir = source.dir,
-                             PlotOptions = .PlotOptions)
+Mature_posterior <- function(stock, source.dir, target.dir = source.dir)
 {
     parameter <- read.table(paste(source.dir, "/parampost.out", sep = ""), header = TRUE, as.is = TRUE, row.names = NULL)
     nam <- as.character(scan(paste(source.dir, "/parampost.out", sep = ""), nlines = 1, what = 'character', quiet = TRUE))
@@ -47,7 +46,7 @@ Mature_posterior <- function(stock, source.dir, target.dir = source.dir,
         xlab("\nSize (mm TW)") + ylab("Proportion maturing\n") + theme_lobview(PlotOptions) +
         geom_line(dat = MatMPD, aes(x = Length, y = value), linetype = "longdash", size = 1.5, colour = PlotOptions$colourPalette[2])
     
-    PlotType(paste(target.dir, "/", stock.label, "Maturity_posterior", sep = ""), PlotOptions,
+    PlotType(paste(target.dir, "/", stock.label, "Maturity_posterior", sep = ""),
              width = PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
     print(p)
     dev.off()

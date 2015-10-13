@@ -4,8 +4,7 @@
 \alias{Erate}
 \title{Exploitation rate plots}
 \usage{
-Erate(stock, source.dir, target.dir = source.dir,
-  PlotOptions = .PlotOptions)
+Erate(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{the name of the stock (e.g. CRA1)}
@@ -13,8 +12,6 @@ Erate(stock, source.dir, target.dir = source.dir,
 \item{source.dir}{the directory containing the ADMB output files}
 
 \item{target.dir}{the directory to save the plots to}
-
-\item{PlotOptions}{plot options}
 }
 \description{
 Exploitation rate by year, season and SL/NSL

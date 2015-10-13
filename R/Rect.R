@@ -2,7 +2,7 @@
 #'
 #' @export
 #' 
-Rect <- function(stock,source.dir,target.dir = source.dir, PlotOptions = .PlotOptions)
+Rect <- function(stock,source.dir,target.dir = source.dir)
 {
   recall <- read.table(paste(source.dir,"/",stock,"Recruitment.out",sep=""),header=T,as.is=T)
   rec <- recall[recall$Period <= PlotOptions$ModelEndPeriod,]
@@ -17,7 +17,7 @@ Rect <- function(stock,source.dir,target.dir = source.dir, PlotOptions = .PlotOp
   attach(rec)
   Recr<-Recruitment/1000000;
   
-  PlotType(paste(target.dir, "/", stock, "Rect", sep = ""), PlotOptions, width = 170, height = 200)
+  PlotType(paste(target.dir, "/", stock, "Rect", sep = ""), width = 170, height = 200)
   par(las=1,oma=c(1,1,1,1),mar=c(4,4,1,1),mgp=c(3,1,0))
   
   #Plot Erate vs Period

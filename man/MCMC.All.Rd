@@ -4,9 +4,7 @@
 \alias{MCMC.All}
 \title{MCMC All}
 \usage{
-MCMC.All(stock, source.dir = ".", target.dir = source.dir,
-  BioOptions = .BioOptions, CROptions = .CROptions,
-  PlotOptions = .PlotOptions, MCMCOptions = .MCMCOptions)
+MCMC.All(stock, source.dir = ".", target.dir = source.dir)
 }
 \description{
 Function which does everything, includes all the individual functions

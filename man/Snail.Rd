@@ -4,8 +4,7 @@
 \alias{Snail}
 \title{Snail trail plots}
 \usage{
-Snail(stock, source.dir = ".", target.dir = source.dir,
-  PlotOptions = .PlotOptions)
+Snail(stock, source.dir = ".", target.dir = source.dir)
 }
 \arguments{
 \item{stock}{a label for the stock (e.g. CRA1)}
@@ -13,8 +12,6 @@ Snail(stock, source.dir = ".", target.dir = source.dir,
 \item{source.dir}{the directory containing the ADMB output files}
 
 \item{target.dir}{the directory to save the plots to}
-
-\item{PlotOptions}{plot options}
 }
 \description{
 Snail trail plots

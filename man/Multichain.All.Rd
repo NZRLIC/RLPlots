@@ -4,8 +4,7 @@
 \alias{Multichain.All}
 \title{MCMC multichain plots}
 \usage{
-Multichain.All(stock, source.dir, target.dir = source.dir,
-  MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+Multichain.All(stock, source.dir, target.dir = source.dir)
 }
 \description{
 Function which does everything, includes all the individual functions

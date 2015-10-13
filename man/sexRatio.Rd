@@ -4,15 +4,10 @@
 \alias{sexRatio}
 \title{Sex ratio fit plots}
 \usage{
-sexRatio(stock, source.dir, target.dir = source.dir,
-  SEXROptions = .SEXROptions, PlotOptions = .PlotOptions)
+sexRatio(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{the name of the stock (e.g. CRA1)}
-
-\item{SEXROptions}{}
-
-\item{PlotOptions}{}
 
 \item{run}{the directory where the outputs for a run are sitting}
 }

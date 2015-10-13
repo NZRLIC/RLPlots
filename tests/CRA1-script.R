@@ -9,12 +9,11 @@ require(RLPlots)
 stock <- "CRA5"
 source.dir <- stock
 target.dir <- source.dir
-MCMCOptions <- .MCMCOptions; PlotOptions <- .PlotOptions; BioOptions <- .BioOptions; LFOptions <- .LFOptions
 
 MPD.All(stock, source.dir)
 MCMC.All(stock, source.dir)
-LF(stock, source.dir, target.dir, LFOptions, PlotOptions)
-CPUE_posterior(stock, source.dir, target.dir, CPUEOptions, MCMCOptions, PlotOptions)
+LF(stock, source.dir, target.dir)
+CPUE_posterior(stock, source.dir, target.dir)
 Rec_posterior(stock, source.dir, target.dir)
 TraceHisto(stock, source.dir, target.dir)
 

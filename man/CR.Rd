@@ -4,8 +4,7 @@
 \alias{CR}
 \title{CR plots}
 \usage{
-CR(stock, source.dir, target.dir = source.dir, CROptions = .CROptions,
-  PlotOptions = .PlotOptions)
+CR(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{character string: label for the stock (e.g. CRA1)}
@@ -13,10 +12,6 @@ CR(stock, source.dir, target.dir = source.dir, CROptions = .CROptions,
 \item{source.dir}{character string: the directory containing the ADMB output files}
 
 \item{target.dir}{character string: the directory to save the plots to}
-
-\item{CROptions}{catch rate options}
-
-\item{PlotOptions}{plot options}
 }
 \description{
 Plots the MPD fit to historic catch rate data and residual diagnostics

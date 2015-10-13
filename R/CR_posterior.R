@@ -6,12 +6,9 @@
 #' @param stock character string: label for the stock (e.g. CRA1)
 #' @param source.dir character string: the directory containing the ADMB output files
 #' @param target.dir character string: the directory to save the plots to
-#' @param MCMCOptions list: MCMC options
-#' @param PlotOptions list: plot options
 #' @export
 #' 
-CR_posterior <- function(stock, source.dir, target.dir = source.dir,
-                         MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+CR_posterior <- function(stock, source.dir, target.dir = source.dir)
 {
     # Load posterior
     dat <- as.matrix(read.table(paste(source.dir, "/", stock, "CRpost.out", sep = ""), header = TRUE, as.is = TRUE))
@@ -66,7 +63,7 @@ CR_posterior <- function(stock, source.dir, target.dir = source.dir,
             theme(plot.title = element_text(size = 9, vjust = 2.7))
     }
     
-    PlotType(paste(target.dir, "/", stock, "CR_posterior", sep = ""), PlotOptions,
+    PlotType(paste(target.dir, "/", stock, "CR_posterior", sep = ""),
              width = 2*PlotOptions$plotsize[1], height = PlotOptions$plotsize[2])
     print(p)
     dev.off()

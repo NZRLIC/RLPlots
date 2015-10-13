@@ -4,7 +4,7 @@
 #' 
 #' @export
 #' 
-QQpost<-function(data,ylab="Sample quantiles",xlab="Theoretical quantiles",useminresid=F,minresid=0)
+QQpost<-function(data, ylab = "Sample quantiles", xlab = "Theoretical quantiles", useminresid = FALSE, minresid = 0)
 {
   temp0<-matrix(NA,nrow(data),ncol(data))
   temp1<-as.matrix(data)

@@ -4,8 +4,7 @@
 \alias{Moult}
 \title{Size Increment per moult}
 \usage{
-Moult(stock, source.dir, target.dir = source.dir,
-  PlotOptions = .PlotOptions)
+Moult(stock, source.dir, target.dir = source.dir)
 }
 \description{
 Punt's Fig 7

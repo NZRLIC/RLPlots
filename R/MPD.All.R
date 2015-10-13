@@ -4,10 +4,7 @@
 #'
 #' @export
 #' 
-MPD.All <- function(stock, source.dir = ".", target.dir = source.dir, PlotOptions = .PlotOptions,
-                    CPUEOptions = .CPUEOptions, CROptions = .CROptions,
-                    LFOptions = .LFOptions, TagOptions = .TagOptions,
-                    BioOptions = .BioOptions, SEXROptions = .SEXROptions)
+MPD.All <- function(stock, source.dir = ".", target.dir = source.dir)
 {
     emsg <- "OOPS - EITHER YOU FUCKED UP OR THE CODE DID, the original error message is:"
     efun <- function(e) { message(emsg); message(e) }
@@ -20,67 +17,67 @@ MPD.All <- function(stock, source.dir = ".", target.dir = source.dir, PlotOption
     
     message("Plotting catches")
     tryCatch(
-        Catches(stock, source.dir, target.dir, PlotOptions),
+        Catches(stock, source.dir, target.dir),
         error = efun, finally = NULL)
     message("Plotting CPUE")
     tryCatch(
-        CPUE(stock, source.dir, target.dir, CPUEOptions, PlotOptions),
+        CPUE(stock, source.dir, target.dir),
         error = efun, finally = NULL)
     message("Plotting catch rates")
     tryCatch(
-        CR(stock, source.dir, target.dir, CROptions, PlotOptions),
+        CR(stock, source.dir, target.dir),
         error = efun, finally = NULL)
     message("Plotting length-frequencies")
     tryCatch(
-        LF(stock, source.dir, target.dir, LFOptions, PlotOptions),
+        LF(stock, source.dir, target.dir),
         error = efun, finally = NULL)
     message("Plotting tag-recaptures")
     tryCatch(
-        Tag(stock, source.dir, target.dir, TagOptions, PlotOptions),
+        Tag(stock, source.dir, target.dir),
         error = efun, finally = NULL)
     message("Plotting Erate")
     tryCatch(
-        Erate(stock, source.dir, target.dir, PlotOptions),
+        Erate(stock, source.dir, target.dir),
         error = efun, finally = NULL)
     message("Plotting recruitment")
     tryCatch(
-        Rect(stock, source.dir, target.dir, PlotOptions),
+        Rect(stock, source.dir, target.dir),
         error = efun, finally = NULL)
     message("Plotting LFzero")
     tryCatch(
-        LFzero(stock, source.dir, target.dir, PlotOptions),
+        LFzero(stock, source.dir, target.dir),
         error = efun, finally = NULL)
     message("Plotting Maturity")
     tryCatch(
-        Mature(stock, source.dir, target.dir, PlotOptions),
+        Mature(stock, source.dir, target.dir),
         error = efun, finally = NULL)
     message("Plotting Selectivity")
     tryCatch(
-        Select(stock, source.dir, target.dir, PlotOptions),
+        Select(stock, source.dir, target.dir),
         error = efun, finally = NULL)
     message("Plotting Moult")
     tryCatch(
-        Moult(stock, source.dir, target.dir, PlotOptions),
+        Moult(stock, source.dir, target.dir),
         error = efun, finally = NULL)
     message("Plotting mean size")
     tryCatch(
-        MeanSize(stock, source.dir, target.dir, LFOptions, PlotOptions),
+        MeanSize(stock, source.dir, target.dir),
         error = efun, finally = NULL)
     message("Plotting biomass")
     tryCatch(
-        Bio(stock, source.dir, target.dir, BioOptions, PlotOptions),
+        Bio(stock, source.dir, target.dir),
         error = efun, finally = NULL)
     message("Plotting SPBrect")
     tryCatch(
-        SPBrect(stock, source.dir, target.dir, PlotOptions),
+        SPBrect(stock, source.dir, target.dir),
         error = efun, finally = NULL)
-    #DDgrowth(stock,source.dir,target.dir, PlotOptions)
+    #DDgrowth(stock,source.dir,target.dir)
     message("Plotting sex ratio")
     tryCatch(
-        sexRatio(stock, source.dir, target.dir, SEXROptions, PlotOptions),
+        sexRatio(stock, source.dir, target.dir),
         error = efun, finally = NULL)
     message("Plotting poo index")
     tryCatch(
-        POO(stock, source.dir, target.dir, CROptions = .CROptions, PlotOptions),
+        POO(stock, source.dir, target.dir),
         error = efun, finally = NULL)
 }

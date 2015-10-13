@@ -4,14 +4,13 @@
 \alias{Density_posterior}
 \title{Density plots}
 \usage{
-Density_posterior(stock, source.dir, target.dir = source.dir[1],
-  MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+Density_posterior(stock, source.dir, target.dir = source.dir[1])
 }
 \description{
 Use reader.exe to view .psv file and create a more complete parampost.out
 file (THK) Traces
 }
 \author{
-Darcy Webber
+D'Arcy Webber
 }
 

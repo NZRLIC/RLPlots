@@ -5,7 +5,7 @@
 \title{QQpost}
 \usage{
 QQpost(data, ylab = "Sample quantiles", xlab = "Theoretical quantiles",
-  useminresid = F, minresid = 0)
+  useminresid = FALSE, minresid = 0)
 }
 \description{
 function to make QQ plot from posterior

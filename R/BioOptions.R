@@ -23,4 +23,4 @@
 #' @param Resid do the residual CPUE plots
 #' @export
 #' 
-.BioOptions <- list(VulnB = TRUE, TotalB = TRUE, RecB = TRUE, TotalRecB = TRUE)
+BioOptions <- list(VulnB = TRUE, TotalB = TRUE, RecB = TRUE, TotalRecB = TRUE)

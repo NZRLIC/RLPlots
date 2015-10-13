@@ -11,7 +11,8 @@
 #'   \item{\code{running.mean = 50}}{the n for calculated running means in trace and running
 #' average/quantile plots}
 #' }
+#' 
 #' @export
 #' 
-.MCMCOptions <- list(n.post = 12, begin.newplot = c(1,39), Rewrite = 1,
-                     running.mean = 50)
+MCMCOptions <- list(n.post = 12, begin.newplot = c(1,39), Rewrite = 1,
+                    running.mean = 50)

@@ -4,7 +4,7 @@
 #' 
 #' @export
 #' 
-Moult <- function(stock, source.dir, target.dir = source.dir, PlotOptions = .PlotOptions)
+Moult <- function(stock, source.dir, target.dir = source.dir)
 {
     nFiles <- 1 #scan(paste(source.dir,"/",stock,"Moult.out",sep=""), nlines = 1, quiet = TRUE)
     # currently the ADMB model will only output nFiles in the first line if there is >1 growth epoch
@@ -36,7 +36,7 @@ Moult <- function(stock, source.dir, target.dir = source.dir, PlotOptions = .Plo
     moult$file[moult$file == 1] <- "File 1"
     moult$file[moult$file == 2] <- "File 2"
     names(moult) <- c("size","low","increment","upp","file","sex")
-    PlotType(paste(target.dir, "/", stock, "PredInc" , sep = ""), PlotOptions,
+    PlotType(paste(target.dir, "/", stock, "PredInc" , sep = ""),
              width = 2*PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
     if(nFiles>1) facet_formula <- as.formula(file~sex) else facet_formula <- as.formula(.~sex)
     p <- ggplot() +

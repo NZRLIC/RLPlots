@@ -5,7 +5,7 @@
 \title{Plot control rules}
 \usage{
 MPE_rules(control.pars, current.cpue = NA, cpue = seq(0, 2, 0.01),
-  target.dir, file.suffix = "plot1", PlotOptions = .PlotOptions)
+  target.dir, file.suffix = "plot1")
 }
 \arguments{
 \item{control.pars}{a matrix of control parameters with columns as parameters
@@ -17,8 +17,6 @@ axis}
 \item{target.dir}{a character string of the target directory to save the plot to}
 
 \item{file.suffix}{a suffix to append to the end of the saved plot name}
-
-\item{PlotOptions}{a list of the plot options}
 
 \item{obs.cpue}{the current CPUE}
 }

@@ -4,13 +4,10 @@
 \alias{SPBrect}
 \title{Plot of surplus production versus biomass}
 \usage{
-SPBrect(stock, source.dir, target.dir = source.dir,
-  PlotOptions = .PlotOptions)
+SPBrect(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{the name of the stock (e.g. CRA1)}
-
-\item{PlotOptions}{}
 
 \item{run}{the directory where the outputs for a run are sitting}
 }

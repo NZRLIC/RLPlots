@@ -4,8 +4,7 @@
 \alias{SP_posterior}
 \title{Posterior surplus production plot}
 \usage{
-SP_posterior(stock, source.dir, target.dir = source.dir,
-  MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+SP_posterior(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{a label for the stock (e.g. CRA1)}
@@ -13,10 +12,6 @@ SP_posterior(stock, source.dir, target.dir = source.dir,
 \item{source.dir}{the directory containing the ADMB output files}
 
 \item{target.dir}{the directory to save the plots to}
-
-\item{MCMCOptions}{mcmc plot options}
-
-\item{PlotOptions}{plot options}
 }
 \description{
 Posterior surplus production plot

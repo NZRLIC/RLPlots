@@ -8,12 +8,11 @@
 #' axis
 #' @param target.dir a character string of the target directory to save the plot to
 #' @param file.suffix a suffix to append to the end of the saved plot name
-#' @param PlotOptions a list of the plot options
 #' @return a plot
 #' @export
 #' 
 MPE_rules <- function(control.pars, current.cpue = NA, cpue = seq(0, 2, 0.01), target.dir,
-                      file.suffix = "plot1", PlotOptions = .PlotOptions)
+                      file.suffix = "plot1")
 {
     # par1  rule type
     # par2  CPUE at TACC = 0
@@ -66,7 +65,7 @@ MPE_rules <- function(control.pars, current.cpue = NA, cpue = seq(0, 2, 0.01), t
     {
         print(p)
     } else {
-        PlotType(paste(target.dir, "/", "Control_rules_", file.suffix, sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", "Control_rules_", file.suffix, sep = ""),
                  width = 1.1*PlotOptions$plotsize[1], height = PlotOptions$plotsize[2])
         print(p)
         dev.off()

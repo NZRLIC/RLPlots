@@ -8,12 +8,9 @@
 #' @param source.dir character string: the source directory. Can be a single directory or a vector
 #' of directories to plot multiple chains.
 #' @param target.dir character string: the directory to save the plots to
-#' @param MCMCOptions list: mcmc plot options
-#' @param PlotOptions list: plot options
 #' @export
 #' 
-CDF_posterior <- function(stock, source.dir, target.dir = source.dir,
-                          MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+CDF_posterior <- function(stock, source.dir, target.dir = source.dir)
 {
     # How many chains are we plotting?
     Nchain <- length(source.dir)
@@ -67,7 +64,7 @@ CDF_posterior <- function(stock, source.dir, target.dir = source.dir,
     Nplots <- ceiling(ncol(data) / MCMCOptions$n.post)
     for ( pp in 1:Nplots )
     {
-        PlotType(paste(target.dir, "/", stock.label, "CDF_posterior", pp, sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", stock.label, "CDF_posterior", pp, sep = ""),
                  width = 1.6*PlotOptions$plotsize[1], height = 1.5*PlotOptions$plotsize[2])
         cvars <- nam[((MCMCOptions$n.post * (pp - 1)) + 1):(MCMCOptions$n.post * pp)]
         dat <- subset(dfm, subset = variable %in% cvars)

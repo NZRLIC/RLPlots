@@ -6,4 +6,4 @@
 #' @param Resid do the residual CPUE plots
 #' @export
 #' 
-.CPUEOptions <- list(ObsPred = TRUE, Resid = TRUE)
+CPUEOptions <- list(ObsPred = TRUE, Resid = TRUE)

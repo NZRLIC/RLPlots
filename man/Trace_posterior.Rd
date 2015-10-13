@@ -4,8 +4,7 @@
 \alias{Trace_posterior}
 \title{Trace plots}
 \usage{
-Trace_posterior(stock, source.dir, target.dir = source.dir[1],
-  MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+Trace_posterior(stock, source.dir, target.dir = source.dir[1])
 }
 \description{
 Use reader.exe to view .psv file and create a more complete parampost.out

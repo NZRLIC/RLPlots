@@ -4,13 +4,10 @@
 \alias{POO_posterior}
 \title{POO posterior plot}
 \usage{
-POO_posterior(stock, source.dir, target.dir = source.dir,
-  CROptions = .CROptions, PlotOptions = .PlotOptions)
+POO_posterior(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{the name of the stock (e.g. CRA1)}
-
-\item{PlotOptions}{}
 
 \item{run}{the directory where the outputs for a run are sitting}
 }

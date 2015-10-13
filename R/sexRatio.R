@@ -2,12 +2,9 @@
 #'
 #' @param run the directory where the outputs for a run are sitting
 #' @param stock the name of the stock (e.g. CRA1)
-#' @param SEXROptions
-#' @param PlotOptions
 #' @export
 #' 
-sexRatio <- function(stock, source.dir, target.dir = source.dir,
-                     SEXROptions = .SEXROptions, PlotOptions = .PlotOptions)
+sexRatio <- function(stock, source.dir, target.dir = source.dir)
 {
     filename <- paste(source.dir, "/", stock, "SexRatio.out", sep = "")
     
@@ -62,7 +59,7 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir,
         #        theme(plot.title = element_text(size = 9, vjust = 2.7))
         #}
         # AW
-        PlotType(paste(target.dir, "/", stock, "SEXRObsPredAW", sep = ""), PlotOptions, width = 170, height = 200)
+        PlotType(paste(target.dir, "/", stock, "SEXRObsPredAW", sep = ""), width = 170, height = 200)
         par(las = 1, oma = c(1,1,0,1), mar = c(5,4,1,1), mfrow = c(3,2))
         for ( sex in 1:3 )
         {
@@ -84,7 +81,7 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir,
         dev.off()
     
         # SS
-        PlotType(paste(target.dir, "/", stock, "SEXRObsPredSS", sep = ""), PlotOptions, width = 170, height = 200)
+        PlotType(paste(target.dir, "/", stock, "SEXRObsPredSS", sep = ""), width = 170, height = 200)
         par(las=1,oma=c(1,1,0,1),mar=c(5,4,1,1),mfrow=c(3,2)) 
         for ( sex in 1:3 )
         {
@@ -113,7 +110,7 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir,
     if ( SEXROptions$Resid )
     {
         # Resids v period
-        PlotType(paste(target.dir, "/", stock, "SEXRResid", sep = ""), PlotOptions, width = 170, height = 200)
+        PlotType(paste(target.dir, "/", stock, "SEXRResid", sep = ""), width = 170, height = 200)
         par(las=1,oma=c(1,1,1,1),mar=c(4,3,1,1),mgp=c(2,1,0)) 
         plot(StdRes~Year,data=sexr,pch=c(1,16)[Season],lwd=PlotOptions$thin,ylab="Standardised residual",
              xlab=xlab)
@@ -129,7 +126,7 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir,
         dfm <- sexr[,c('StdRes','Sex','Year','Season')]
         dfm$Season <- factor(c("AW","SS")[dfm$Season])
         dfm$Sex <- factor(dfm$Sex, levels = c("Male","Immature female","Mature female"))
-        PlotType(paste(target.dir, "/", stock, "SEXRResidSex", sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", stock, "SEXRResidSex", sep = ""),
                  width = 2*PlotOptions$plotsize[1], height = 10+PlotOptions$plotsize[2])
         p <- ggplot(data = dfm, aes(x = Year, y = StdRes)) +
             geom_hline(yintercept = 0) +
@@ -146,7 +143,7 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir,
         dev.off()
         
         #Resids v predicted
-        PlotType(paste(target.dir, "/", stock, "SEXRResidPred", sep = ""), PlotOptions, width = 170, height = 200)
+        PlotType(paste(target.dir, "/", stock, "SEXRResidPred", sep = ""), width = 170, height = 200)
         plot(StdRes~Pred,data=sexr,pch=c(1,16)[Season],lwd=PlotOptions$thin,ylab="Standardised residual",xlab="Predicted")
         abline(h=0,lty=2)
         if(PlotOptions$Captions) 
@@ -157,7 +154,7 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir,
         dev.off()
     
         #qq plot
-        PlotType(paste(target.dir, "/", stock, "SEXRQQ", sep = ""), PlotOptions, width = 170, height = 200)
+        PlotType(paste(target.dir, "/", stock, "SEXRQQ", sep = ""), width = 170, height = 200)
         qqnorm(sexr$StdRes, pch = c(1,16)[sexr$Season], xlab = "Theoretical quantiles", ylab = "Standardised residual", main = "", las = 1)
         qqline(sexr$StdRes)
         abline(h=quantile(sexr$StdRes,p=c(5,25,50,75,95)/100),lty=2)#Plot quntiles of the stdevs

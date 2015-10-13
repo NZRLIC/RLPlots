@@ -4,8 +4,7 @@
 \alias{Bio}
 \title{Biomass plots}
 \usage{
-Bio(stock, source.dir, target.dir = source.dir, BioOption = .BioOptions,
-  PlotOptions = .PlotOptions)
+Bio(stock, source.dir, target.dir = source.dir)
 }
 \arguments{
 \item{stock}{a label for the stock (e.g. CRA1)}
@@ -13,10 +12,6 @@ Bio(stock, source.dir, target.dir = source.dir, BioOption = .BioOptions,
 \item{source.dir}{the directory containing the ADMB output files}
 
 \item{target.dir}{the directory to save the plots to}
-
-\item{BioOption}{biomass plot options}
-
-\item{PlotOptions}{plot options}
 }
 \description{
 Biomass plots

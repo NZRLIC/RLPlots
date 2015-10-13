@@ -4,8 +4,7 @@
 \alias{LFzero}
 \title{LFzero}
 \usage{
-LFzero(stock, source.dir, target.dir = source.dir,
-  PlotOptions = .PlotOptions)
+LFzero(stock, source.dir, target.dir = source.dir)
 }
 \description{
 LFzero

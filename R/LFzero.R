@@ -2,14 +2,14 @@
 #'
 #' @export
 #' 
-LFzero <- function(stock,source.dir,target.dir = source.dir, PlotOptions = .PlotOptions)
+LFzero <- function(stock,source.dir,target.dir = source.dir)
 {
   #Read file
   lfzero<-read.table(paste(source.dir,"/",stock,"LFzero.out",sep=""),header=T,as.is=T)
   
   #Plot obs v pred
   #Set graphics parameters
-  PlotType(paste(target.dir, "/", stock, "LFzero", sep = ""), PlotOptions, width = 170, height = 200)
+  PlotType(paste(target.dir, "/", stock, "LFzero", sep = ""), width = 170, height = 200)
   par(las=1,oma=c(1,1,1,1),mar=c(4,4.5,1,1),mgp=c(3.5,1,0))
   #plot
   plot(Nmale/1000~size,data=lfzero,type="l",lwd = PlotOptions$thin,ylab="Number (thousands)",xlab="",cex=0.8,ylim=c(0,max(lfzero$Nmale,lfzero$Nfemale,lfzero$Nfemmat)/1000))

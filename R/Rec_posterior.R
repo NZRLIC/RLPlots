@@ -3,13 +3,10 @@
 #' @param stock a label for the stock (e.g. CRA1)
 #' @param source.dir the directory containing the ADMB output files
 #' @param target.dir the directory to save the plots to
-#' @param PlotOptions plot options
-#' @param MCMCOptions mcmc plot options
 #' @return a plot
 #' @export
 #' 
-Rec_posterior <- function(stock, source.dir, target.dir = source.dir, MCMCOptions = .MCMCOptions, 
-                          PlotOptions = .PlotOptions)
+Rec_posterior <- function(stock, source.dir, target.dir = source.dir)
 {
     dat <- read.table(paste(source.dir, "/parampost.out", sep = ""), header = TRUE, as.is = TRUE, row.names = NULL)
     dat <- dat[,-ncol(dat)] # This removes the final year as the model spits out something weird
@@ -43,7 +40,7 @@ Rec_posterior <- function(stock, source.dir, target.dir = source.dir, MCMCOption
         }
 
         # Do the plot
-        PlotType(paste(target.dir, "/", stock[i], "Rec_posterior", sep = ""), PlotOptions,
+        PlotType(paste(target.dir, "/", stock[i], "Rec_posterior", sep = ""),
                  width = 2*PlotOptions$plotsize[1], height = PlotOptions$plotsize[2])
         print(p)
         dev.off()

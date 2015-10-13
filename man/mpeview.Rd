@@ -6,7 +6,7 @@
 \usage{
 mpeview(dat, pars, stock, axis.labels, point.col = "rule",
   label.rules = ifelse(point.col == "", TRUE, FALSE), file.suffix = "plot1",
-  target.dir, PlotOptions = .PlotOptions)
+  target.dir)
 }
 \arguments{
 \item{dat}{a data.frame read in using read.sims.sum}
@@ -24,8 +24,6 @@ axis, the remaining pars different panels (choose up to 4 pars)}
 \item{file.suffix}{a suffix to append to the end of the saved plot name}
 
 \item{target.dir}{the directory to save the plot to}
-
-\item{PlotOptions}{plot options}
 }
 \description{
 Options for pars that are commonly plotted include the median of the average
@@ -46,6 +44,6 @@ commercial catch (AvComm_med), the median of the average recreational catch
 }
 }
 \author{
-Charles Edwards, Darcy Webber
+Charles Edwards, D'Arcy Webber
 }
 

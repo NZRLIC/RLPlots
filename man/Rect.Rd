@@ -4,7 +4,7 @@
 \alias{Rect}
 \title{Recruitment plots}
 \usage{
-Rect(stock, source.dir, target.dir = source.dir, PlotOptions = .PlotOptions)
+Rect(stock, source.dir, target.dir = source.dir)
 }
 \description{
 Recruitment plots

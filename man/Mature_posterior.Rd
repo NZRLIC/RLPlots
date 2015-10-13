@@ -4,8 +4,7 @@
 \alias{Mature_posterior}
 \title{Proportion maturing posterior}
 \usage{
-Mature_posterior(stock, source.dir, target.dir = source.dir,
-  PlotOptions = .PlotOptions)
+Mature_posterior(stock, source.dir, target.dir = source.dir)
 }
 \description{
 Proportion maturing posterior

@@ -4,8 +4,7 @@
 #'
 #' @export
 #' 
-Tag <- function(stock, source.dir, target.dir = source.dir,
-                TagOptions = .TagOptions, PlotOptions = .PlotOptions)
+Tag <- function(stock, source.dir, target.dir = source.dir)
 {
     # Read files
     allFiles <- list.files(source.dir)
@@ -33,7 +32,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir,
   # ==============================================================================
   # StdResid vs Pred
   # ==============================================================================
-  PlotType(paste(target.dir, "/", stock, "TagResid", sep = ""), PlotOptions,
+  PlotType(paste(target.dir, "/", stock, "TagResid", sep = ""),
            width = 2 * PlotOptions$plotsize[1],
            height = 10 + nFiles * PlotOptions$plotsize[2])
 
@@ -66,7 +65,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir,
   # ==============================================================================
   # Plot obs vs pred
   # ==============================================================================
-  PlotType(paste(target.dir, "/", stock, "TagPredObs", sep = ""), PlotOptions,
+  PlotType(paste(target.dir, "/", stock, "TagPredObs", sep = ""),
            width = 2 * PlotOptions$plotsize[1],
            height = 10 + nFiles * PlotOptions$plotsize[2])
   par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,2,1,1), mgp=c(4,1,0))
@@ -95,7 +94,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir,
   # ==============================================================================
   # QQ normal plots by sex
   # ==============================================================================
-  PlotType(paste(target.dir, "/", stock, "TagQQ", sep = ""), PlotOptions,
+  PlotType(paste(target.dir, "/", stock, "TagQQ", sep = ""),
            width = 2 * PlotOptions$plotsize[1],
            height = 10 + nFiles * PlotOptions$plotsize[2])
   par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,2,1,1), mgp=c(4,1,0))
@@ -121,7 +120,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir,
   tag$sc <- floor(tag$size2Pred / 4) * 4 + 2
   if ( TagOptions$StdResSize )
   {
-      PlotType(paste(target.dir, "/", stock, "TagResSize", sep = ""), PlotOptions,
+      PlotType(paste(target.dir, "/", stock, "TagResSize", sep = ""),
                width = 2 * PlotOptions$plotsize[1],
                height = 10 + nFiles * PlotOptions$plotsize[2])
       par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,2,1,1), mgp=c(4,1,0))
@@ -151,7 +150,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir,
   # ==============================================================================
   if ( TagOptions$StdResRel )
   {
-      PlotType(paste(target.dir, "/", stock, "TagResRel", sep = ""), PlotOptions,
+      PlotType(paste(target.dir, "/", stock, "TagResRel", sep = ""),
                width = 2 * PlotOptions$plotsize[1],
                height = 10 + nFiles * PlotOptions$plotsize[2])
       par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,2,1,1), mgp=c(4,1,0))
@@ -179,7 +178,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir,
   # ==============================================================================
   if( TagOptions$StdResArea )
   {
-      PlotType(paste(target.dir, "/", stock, "TagResArea", sep = ""), PlotOptions,
+      PlotType(paste(target.dir, "/", stock, "TagResArea", sep = ""),
                width = 2 * PlotOptions$plotsize[1],
                height = 10 + nFiles * PlotOptions$plotsize[2])
       par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,2,1,1), mgp=c(4,1,0))
@@ -244,7 +243,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir,
   # ==============================================================================
   if(TagOptions$Reshist)
   {
-      PlotType(paste(target.dir, "/", stock, "TagBHistSex", sep = ""), PlotOptions,
+      PlotType(paste(target.dir, "/", stock, "TagBHistSex", sep = ""),
                width = 2 * PlotOptions$plotsize[1],
                height = 10 + nFiles * PlotOptions$plotsize[2])
       par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,2,1,1), mgp=c(4,1,0))

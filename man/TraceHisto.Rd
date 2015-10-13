@@ -4,8 +4,7 @@
 \alias{TraceHisto}
 \title{Trace plots and histograms}
 \usage{
-TraceHisto(stock, source.dir, target.dir = source.dir,
-  MCMCOptions = .MCMCOptions, PlotOptions = .PlotOptions)
+TraceHisto(stock, source.dir, target.dir = source.dir)
 }
 \description{
 Use reader.exe to view .psv file and create a more complete parampost.out

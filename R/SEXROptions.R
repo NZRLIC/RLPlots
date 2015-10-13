@@ -2,4 +2,4 @@
 #'
 #' @export
 #' 
-.SEXROptions <- list(ObsPred = TRUE, Resid = TRUE)
+SEXROptions <- list(ObsPred = TRUE, Resid = TRUE)
