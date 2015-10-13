@@ -31,7 +31,7 @@
 #' 
 #' @export
 #' 
-mpeview <- function(dat, pars, stock, axis.labels, point.col = "rule",
+mpeview <- function(dat, pars, stock, axis.labels, point.col = "rule", label.rules = ifelse(point.col == "", TRUE, FALSE), 
                     file.suffix = "plot1", target.dir,
                     PlotOptions = .PlotOptions)
 {
@@ -42,7 +42,7 @@ mpeview <- function(dat, pars, stock, axis.labels, point.col = "rule",
     if (npar == 1) stop("Only one diagnostic parameter\n")
     
     if (nstk > 1 & length(stock) == 1) {
-        dat  <- subset(dat, stock == stock)
+        dat  <- dat[dat$stock == stock,]
         nstk <- 1
     }
 
@@ -72,8 +72,12 @@ mpeview <- function(dat, pars, stock, axis.labels, point.col = "rule",
         p <- p + geom_point(aes(x, y, col = model), alpha = 0.7, size = 2.5) +
             labs(col = "Model") +
             scale_colour_manual(values = PlotOptions$colourPalette)
-    } else if (point.col == "rule") {
+    } else if (point.col == "rule" & !label.rules) {
         p <- p + geom_point(aes(x, y, group = rule, col = rule), alpha = 0.7, size = 2.5) +
+            labs(col = "Rule") +
+            scale_colour_gradient(low = PlotOptions$colourPalette[1], high = PlotOptions$colourPalette[2])
+    } else if (point.col == "rule" & label.rules) {
+        p <- p + geom_text(aes(x, y, label = rule, group = rule, col = rule), alpha = 0.7, size = 4) +
             labs(col = "Rule") +
             scale_colour_gradient(low = PlotOptions$colourPalette[1], high = PlotOptions$colourPalette[2])
     } else {

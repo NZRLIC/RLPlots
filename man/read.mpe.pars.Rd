@@ -4,7 +4,7 @@
 \alias{read.mpe.pars}
 \title{Read harvest control rule pars in MPE control file}
 \usage{
-read.mpe.pars(source.dir = ".", control.file = "MPE.ctl")
+read.mpe.pars(stock, source.dir = "./", control.file = "MPE.ctl")
 }
 \description{
 Read harvest control rule pars in MPE control file

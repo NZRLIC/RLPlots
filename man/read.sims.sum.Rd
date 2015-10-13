@@ -4,7 +4,7 @@
 \alias{read.sims.sum}
 \title{Read Sims.sum output}
 \usage{
-read.sims.sum(stock, source.dir = ".", model.name = "")
+read.sims.sum(stock, source.dir = ".", model.name = "NA")
 }
 \arguments{
 \item{stock}{character vector of stock names}

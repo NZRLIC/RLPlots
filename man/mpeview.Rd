@@ -5,7 +5,8 @@
 \title{MPE output viewer}
 \usage{
 mpeview(dat, pars, stock, axis.labels, point.col = "rule",
-  file.suffix = "plot1", target.dir, PlotOptions = .PlotOptions)
+  label.rules = ifelse(point.col == "", TRUE, FALSE), file.suffix = "plot1",
+  target.dir, PlotOptions = .PlotOptions)
 }
 \arguments{
 \item{dat}{a data.frame read in using read.sims.sum}
@@ -30,7 +31,19 @@ axis, the remaining pars different panels (choose up to 4 pars)}
 Options for pars that are commonly plotted include the median of the average
 commercial catch (AvComm_med), the median of the average recreational catch
 (acRec_med), the AAV_med, the median of the average catch per unit effort
-(AvI_AW_med)
+(avI_AW_med).
+}
+\examples{
+\dontrun{
+ # read in the data
+ dat <- read.sims.sum(stock = c("CRA7", "CRA8"))
+
+ # plot all rules for both CRA7 and CRA8
+ mpeview(dat, pars = c('AvComm_med', 'AAV_med', 'AvPCPUE_med'), stock = c("CRA7", "CRA8"), axis.labels = list(x = "Commercial Catch", y = c("AAV", "CPUE")))
+
+ # plot all rules for CRA7 only
+ mpeview(dat, pars = c('AvComm_med', 'AAV_med', 'AvPCPUE_med'), stock = "CRA7", axis.labels = list(x = "Commercial Catch", y = c("AAV", "CPUE")))
+}
 }
 \author{
 Charles Edwards, Darcy Webber
