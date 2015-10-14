@@ -31,7 +31,7 @@
 #' @export
 #' 
 mpeview <- function(dat, pars, stock, axis.labels, point.col = "rule", label.rules = ifelse(point.col == "", TRUE, FALSE), 
-                    file.suffix = "plot1", target.dir)
+                    file.suffix = "", target.dir = ".")
 {
     npar <- length(pars)
     nmdl <- nlevels(dat$model)
