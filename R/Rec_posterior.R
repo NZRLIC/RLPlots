@@ -15,6 +15,7 @@ Rec_posterior <- function(stock, source.dir, target.dir = source.dir)
     
     for (i in 1:length(stock))
     {
+        # Recruitment
         dat <- as.matrix(read.table(paste(source.dir, "/", stock[i], "Rdev.out", sep = ""), header = TRUE, as.is = TRUE))
         colnames(dat) <- as.character(scan(paste(source.dir, "/", stock[i], "Rdev.out", sep = ""), nlines = 1, quiet = TRUE))
         dat <- dat[,-ncol(dat)]
@@ -40,7 +41,31 @@ Rec_posterior <- function(stock, source.dir, target.dir = source.dir)
         }
 
         # Do the plot
-        PlotType(paste(target.dir, "/", stock[i], "Rec_posterior", sep = ""),
+        PlotType(paste0(target.dir, "/", stock[i], "Rec_posterior"),
+                 width = 2*PlotOptions$plotsize[1], height = PlotOptions$plotsize[2])
+        print(p)
+        dev.off()
+
+        # Recruitment robustness
+        da <- aggregate(dat$Rdev, by = list(dat$year), FUN = median)
+        d2 <- moving_average(da$x, n = 10)
+        min(d2, na.rm = TRUE)
+        
+        da$ma <- as.numeric(moving_average(da$x, n = 10))
+        names(da) <- c("Year","Rdev","Moving average")
+        da$Recruitment <- da$Recruitment
+        da$'Moving average' <- da$'Moving average'
+        d2 <- melt(da, id.vars = "Year")
+        names(d2) <- c("Year","Variable","value")
+
+        p <- ggplot(data = d2, aes(x = Year, y = value, group = Variable, colour = Variable)) +
+            geom_line(size = 1) +
+            geom_vline(xintercept = max(dat$year)-3.5, size = 0.1, linetype = "longdash") +
+            theme_lobview(PlotOptions) +
+            scale_color_manual(values = cbPalette2) +
+            labs(x = "\nYear", y = "Recruitment deviation\n")
+
+        PlotType(paste0(target.dir, "/", stock[i], "Rec_robustness"),
                  width = 2*PlotOptions$plotsize[1], height = PlotOptions$plotsize[2])
         print(p)
         dev.off()
