@@ -5,8 +5,8 @@
 \title{MPE output viewer}
 \usage{
 mpeview(dat, pars, stock, axis.labels, point.col = "rule",
-  label.rules = ifelse(point.col == "", TRUE, FALSE), file.suffix = "plot1",
-  target.dir)
+  label.rules = ifelse(point.col == "", TRUE, FALSE), file.suffix = "",
+  target.dir = ".")
 }
 \arguments{
 \item{dat}{a data.frame read in using read.sims.sum}

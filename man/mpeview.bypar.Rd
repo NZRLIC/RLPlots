@@ -5,8 +5,7 @@
 \title{Plot MPE diagnostic output against a
 single control rule parameter}
 \usage{
-mpeview.bypar(dat, pars, stock, axis.labels, file.suffix = "plot1",
-  target.dir = ".")
+mpeview.bypar(dat, pars, stock, axis.labels, file.suffix = "", target.dir)
 }
 \description{
 Plot MPE diagnostic output against a
