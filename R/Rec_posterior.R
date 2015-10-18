@@ -49,7 +49,7 @@ Rec_posterior <- function(stock, source.dir, target.dir = source.dir)
         # Recruitment robustness
         da <- aggregate(dat$Rdev, by = list(dat$year), FUN = median)
         d2 <- moving_average(da$x, n = 10)
-        min(d2, na.rm = TRUE)
+        message('minimum of 10 year moving average for ',stock[i],':', min(d2, na.rm = TRUE))
         
         da$ma <- as.numeric(moving_average(da$x, n = 10))
         names(da) <- c("Year","Rdev","Moving average")
