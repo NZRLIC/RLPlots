@@ -21,6 +21,10 @@ To install the devtools package requires Rtools, which is available from
 	
 # Using RLPlots
 
+Once RLPlots has been installed it can be loaded in R using
+
+    library(RLPlots)
+
 ## MPDs
 
 Plotting of MPDs can be done using, for example
@@ -75,16 +79,17 @@ For example
     #' @author Who
     #' @param var1 a variable
     #' @param var1 another variable
-    #' @return some stuff
+    #' @return stuff
     #' @export
     #'
     func <- function(var1 = 1, var2 = 2)
     {
         # An example
-        if (var1 == 1) do.something(var1)
+        if (var1 == 1) stuff <- do_something(var1)
         # Or
         if (var2 != 3)
         {
-            do.something(var2)
+            stuff <- do_something(var2)
         }
+        return(stuff)
     }
