@@ -55,7 +55,7 @@ LF <- function(stock, source.dir, target.dir = source.dir)
               yaxt <- "n"
             }
             plot(Pred ~ size, data = sub, type = "l", lwd = PlotOptions$thin, xaxt = xaxt, xlim = xlim, ylab = "", ylim = ylim, yaxt = yaxt, bty = "L", las = 1)
-            legend("topright",legend=as.character(round(unique(data[data$sample==sample & data$sex==sex,"effN"]),2)),bty="n",title="eff. N:")
+            legend("topright",legend=as.character(round(unique(data[data$sample==sample & data$sex==sex,"effN"]),2)),bty="n",title="eff. N:", cex = 0.7)
             if ( !LFOptions$ObsPredYFixed )  axis(2, c(0, round(max(sub$Obs, sub$Pred), 2)), las = 1)
             points(Obs ~ size, data = sub, pch = 1)
           } else {
@@ -63,9 +63,9 @@ LF <- function(stock, source.dir, target.dir = source.dir)
             axis(2, c(0, 0.3), las = 1)
           }
           abline(v = LFOptions$SizeLim[sex], lty = 2)
-          if ( sex == 3 ) mtext(paste("N:", unique(data[data$sample == sample, "N"])), side = 4, line = 2, las = 1, cex = 0.57, at = 0)
-          if ( sex == 3 ) mtext(paste(sub$Year, c("1","2")[sub$Season], c("LB","CS","CN","CM","MS")[sub$type]), side = 4, line = 2, las = 1, cex = 0.57, at = ylim[2]*0.2)
-          if ( xaxt == "s" && sex == 2 ) mtext("Size (mm TW)", side = 1, line = 3, las = 1, cex = 0.7)
+          if ( sex == 3 ) mtext(paste("N:", unique(data[data$sample == sample, "N"])), side = 4, line = 2, las = 1, cex = 1.5, at = 0)
+          if ( sex == 3 ) mtext(paste(sub$Year, c("1","2")[sub$Season], c("LB","CS","CN","CM","MS")[sub$type]), side = 4, line = 2, las = 1, cex = 1.5, at = ylim[2]*0.2)
+          if ( xaxt == "s" && sex == 2 ) mtext("Size (mm TW)", side = 1, line = 3, las = 1, cex = 2.5)
       }
       mtext("Proportion at size", side = 2, line = 1, outer = TRUE, cex = 3)
       if ( PlotOptions$Captions ) mtext(paste(source.dir, " ", stock, ": Observed versus predicted for size frequency fits"), side = 1, line = 4, outer = TRUE, cex = 0.7)
@@ -137,7 +137,7 @@ LF <- function(stock, source.dir, target.dir = source.dir)
       if ( is.na(match(sample, c(0:8)*n.LF+1)) != TRUE )
       {
         PlotType(paste(target.dir, "/", stock, "LFresid" , i, sep = ""), width = 170, height = 200)
-        par(mfrow=c(n.LF,length(sexcode)),oma=c(1,5,1,5),mar=c(1,1,1,1))
+        par(mfrow=c(n.LF,length(sexcode)),oma=c(1,5,1,5),mar=c(1,1,1,1), cex = 3)
         i<-i+1
       }
       for(sex in sexcode)
@@ -156,11 +156,11 @@ LF <- function(stock, source.dir, target.dir = source.dir)
         }
         abline(v = LFOptions$SizeLim[sex], lty = 2)
         if ( sex == 3 ) mtext(paste(sub$Year,c("1","2")[sub$Season], c("LB","CS","CN,CM","MS")[sub$type]),
-                              side = 4, line = LFOptions$line, las = 1, cex = 0.7, at = 0)
-        if ( xaxt == "s" & sex == 2 )  mtext("Size (mm TW)",side=1,line=3,las=1,cex=0.7) 
+                              side = 4, line = LFOptions$line, las = 1, cex = 2, at = 0)
+        if ( xaxt == "s" & sex == 2 )  mtext("Size (mm TW)",side=1,line=3,las=1,cex=2) 
       }
       mtext("Standardised residuals",side=2,line=1,outer=TRUE,cex=0.8)
-      if ( PlotOptions$Captions ) mtext(paste(source.dir," ",stock,": Standardised residual versus size for size frequency fits"),side=1,line=4,outer=TRUE,cex=0.7)
+      if ( PlotOptions$Captions ) mtext(paste(source.dir," ",stock,": Standardised residual versus size for size frequency fits"),side=1,line=4,outer=TRUE,cex=2)
       if ( xaxt == "s" ) dev.off()
     }
   }
@@ -171,17 +171,17 @@ LF <- function(stock, source.dir, target.dir = source.dir)
   if( LFOptions$ResPred )
   {
     PlotType(paste(target.dir, "/", stock, "LFresSex", sep = ""), width = 170, height = 200)
-    par(mfrow=c(3,1),oma=c(4,1,1,1),mar=c(5,5,1,5))
+    par(mfrow=c(3,1),oma=c(4,1,1,1),mar=c(5,5,1,5),cex = 3)
       for( sex in 1:3 )
       {
         plot(StdRes~Pred,data=data[data$sex==sex,],pch=c(1,16)[Season],lwd=PlotOptions$thin,ylab="Standardised residual",xlab="Predicted proportion",las=1) 
         abline(h = 0, lty = 2) 
-        mtext(PlotOptions$SexNames[sex],side=4,line=1,las=1,cex=0.7)
+        mtext(PlotOptions$SexNames[sex],side=4,line=1,las=1,cex=2)
       }
     if( PlotOptions$Captions ) 
     {
-      mtext(paste(source.dir," ",stock,": Standardised residual versus predicted proportion for size frequency fits"),side=1,line=0,outer=TRUE,cex=0.7)
-      mtext("Closed circles: logbook 1; Open circles: observer 2",side=1,line=1,outer=TRUE,cex=0.7) ## AS edit : added "logbook" and "observer"
+      mtext(paste(source.dir," ",stock,": Standardised residual versus predicted proportion for size frequency fits"),side=1,line=0,outer=TRUE,cex=2)
+      mtext("Closed circles: logbook 1; Open circles: observer 2",side=1,line=1,outer=TRUE,cex=2) ## AS edit : added "logbook" and "observer"
     }
     dev.off()
   }

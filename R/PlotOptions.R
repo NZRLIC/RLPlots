@@ -10,4 +10,4 @@ PlotOptions <- list(UsePeriod = FALSE, ModelEndPeriod = 120,
                     theme = "presentation",
                     colourPalette = cbPalette2,
                     thick = 2, thin = 1,
-                    SexNames = c("Males","Mature\nfemales"))
+                    SexNames = c("Males", "Imm.\nfemales", "Mature\nfemales"))

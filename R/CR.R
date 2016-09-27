@@ -71,12 +71,13 @@ CR <- function(stock, source.dir, target.dir = source.dir)
 
         #qq plot
         PlotType(paste(target.dir, "/", stock, "CRQQ", sep = ""), width = 170, height = 200)
-        qqnorm(cr$StdRes,pch=16,xlab="Theoretical quantiles",ylab="Standardised residual",main="",las=1, cex = 3)
+        par(cex = 3, mar=c(6,5,2,2))
+        qqnorm(cr$StdRes,pch=16,xlab="Theoretical quantiles",ylab="Standardised residual",main="",las=1)
         abline(a=0,b=1)
         abline(h=quantile(cr$StdRes,p=c(5,25,50,75,95)/100),lty=2)#Plot quntiles of the stdevs
         if ( PlotOptions$Captions )
         {
-            mtext(paste(source.dir," ",stock,": Standardised residual for CR fits"),side=1,line=-0.7,outer=TRUE,cex=2)
+            mtext(paste(source.dir," ",stock,": Standardised residual for CR fits"),side=1,line=-1.1,outer=TRUE,cex=2)
         }
         dev.off()
     }

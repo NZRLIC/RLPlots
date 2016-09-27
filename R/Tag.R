@@ -68,7 +68,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir)
   PlotType(paste(target.dir, "/", stock, "TagPredObs", sep = ""),
            width = 2 * PlotOptions$plotsize[1],
            height = 10 + nFiles * PlotOptions$plotsize[2])
-  par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,2,1,1), mgp=c(4,1,0), cex = 3)
+  par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,3,1,1), mgp=c(4,1,0), cex = 2)
   for ( ff in 1:nFiles )
   {
       for ( sex in 1:2 )
@@ -82,11 +82,11 @@ Tag <- function(stock, source.dir, target.dir = source.dir)
         plot(size2Pred~size2Obs,data=tag[tag$sex==sex & tag$file==ff,],
              pch = 1, ylab = "", xlab = "", xaxt = "s", xlim = xlim, cex = 2, las = 1)
         abline(a=0,b=1)
-        mtext(c("Male","Female")[sex], side = 3, line = 0.1, las = 1, adj = 0, cex = 2)
+        mtext(c("Male","Female")[sex], side = 3, line = 0.1, las = 1, adj = 0, cex = 3)
       }
   }
-  mtext("Observed", side = 1, line = -1, outer = TRUE, cex = 2)
-  mtext("Predicted", side = 2, line = 1, outer = TRUE, cex = 2)
+  mtext("Observed", side = 1, line = -1, outer = TRUE, cex = 3)
+  mtext("Predicted", side = 2, line = -0.4, outer = TRUE, cex = 3)
   if ( PlotOptions$Captions ) mtext(paste(source.dir," ",stock,": Increment vs size at release plot"),
                                     side = 1, line = 1, outer = TRUE, cex = 2)
   dev.off()
@@ -97,7 +97,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir)
   PlotType(paste(target.dir, "/", stock, "TagQQ", sep = ""),
            width = 2 * PlotOptions$plotsize[1],
            height = 10 + nFiles * PlotOptions$plotsize[2])
-  par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,2,1,1), mgp=c(4,1,0), cex = 3)
+  par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,2,1,1), mgp=c(4,1,0), cex = 2)
   for ( ff in 1:nFiles )
   {
       for ( sex in 1:2 )
@@ -105,7 +105,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir)
           qqnorm(tag$StdRes[tag$sex==sex & tag$file==ff],xlab="",ylab="",main="",las=1, cex = 2)
           abline(a = 0, b = 1)
           abline(h=quantile(tag$StdRes,p=c(5,10,25,50,75,90,95)/100),lty=2)#Plot quntiles of the stdevs
-          mtext(c("Male","Female")[sex],side=3,line=0.1,las=1,adj=0, cex = 2)
+          mtext(c("Male","Female")[sex],side=3,line=0.1,las=1,adj=0, cex = 2.5)
       }
   }
   mtext("Theoretical quantiles", side = 1, line = -1, outer = TRUE, cex = 2)
@@ -123,7 +123,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir)
       PlotType(paste(target.dir, "/", stock, "TagResSize", sep = ""),
                width = 2 * PlotOptions$plotsize[1],
                height = 10 + nFiles * PlotOptions$plotsize[2])
-      par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,2,1,1), mgp=c(4,1,0), cex = 3)
+      par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,3,1,1), mgp=c(4,1,0), cex = 2.5)
       for (ff in 1:nFiles)
       {
           for ( sex in 1:2 )
@@ -133,13 +133,13 @@ Tag <- function(stock, source.dir, target.dir = source.dir)
                       ylab = "", xlab = "", line = 2, medlwd = 1, las = 1,
                       varwidth = TRUE)
               abline(h = 0, lty = 2)
-              legend("top", legend = paste("N: ", nn, sep = ""), bty = "n")
+              legend("topright", legend = paste("N: ", nn, sep = ""), bty = "n", cex = 1)
               mtext(c("Male","Female")[sex], side = 3, line = 0.1,
-                    las = 1, adj = 0, cex = 2)
+                    las = 1, adj = 0, cex = 2.5)
           }
       }
-      mtext("Size class", side = 1, line = -1, outer = TRUE, cex = 2)
-      mtext("Standardised residual", side = 2, line = 1, outer = TRUE, cex = 2)
+      mtext("Size class", side = 1, line = -1, outer = TRUE, cex = 3)
+      mtext("Standardised residual", side = 2, line = -0.4, outer = TRUE, cex = 3)
       if ( PlotOptions$Captions ) mtext(paste(source.dir," ",stock,": Standardised residuals by 4mm size classes for each sex"),
                                         side = 1, line = 1, outer = TRUE, cex = 2)
       dev.off()
@@ -153,7 +153,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir)
       PlotType(paste(target.dir, "/", stock, "TagResRel", sep = ""),
                width = 2 * PlotOptions$plotsize[1],
                height = 10 + nFiles * PlotOptions$plotsize[2])
-      par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,2,1,1), mgp=c(4,1,0), cex = 3)
+      par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,3,1,1), mgp=c(4,1,0), cex = 2.5)
       for (ff in 1:nFiles)
       {
           for(sex in 1:2)
@@ -162,11 +162,11 @@ Tag <- function(stock, source.dir, target.dir = source.dir)
                     boxplot(StdRes~release,data=tag[tag$sex==sex & tag$file==ff,],
                             ylab="",xlab="",line=2, medlwd = 1, varwidth = TRUE, las = 1)
                     abline(h=0,lty=2)
-                    legend("top", legend = paste("N: ", nn, sep = ""), bty = "n", cex = 2)
-                    mtext(c("Male","Female")[sex],side=3,line=0.1,las=1,adj=0, cex = 2)
+                    legend("topright", legend = paste("N: ", nn, sep = ""), bty = "n", cex = 1.5)
+                    mtext(c("Male","Female")[sex],side=3,line=0.1,las=1,adj=0, cex = 2.5)
           }
-          mtext("Release", side = 1, line = -1, outer = TRUE, cex = 2)
-          mtext("Standardised residual", side = 2, line = 1, outer = TRUE, cex = 2)
+          mtext("Release", side = 1, line = -1, outer = TRUE, cex = 3)
+          mtext("Standardised residual", side = 2, line = -0.4, outer = TRUE, cex = 3)
       }
       if(PlotOptions$Captions) mtext(paste(source.dir," ",stock,": Standardised residuals by release number for each sex"),
                                      side = 1, line = 1, outer = TRUE, cex = 2)
@@ -181,7 +181,7 @@ Tag <- function(stock, source.dir, target.dir = source.dir)
       PlotType(paste(target.dir, "/", stock, "TagResArea", sep = ""),
                width = 2 * PlotOptions$plotsize[1],
                height = 10 + nFiles * PlotOptions$plotsize[2])
-      par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,2,1,1), mgp=c(4,1,0), cex = 3)
+      par(mfrow = c(nFiles,2), oma = c(2,2,1,1), mar=c(4,3,1,1), mgp=c(4,1,0), cex = 2)
       for (ff in 1:nFiles)
       {
           for( sex in 1:2 )
@@ -191,13 +191,13 @@ Tag <- function(stock, source.dir, target.dir = source.dir)
                       ylab = "", xlab = "", line = 2,
                       medlwd = 1, las = 1, varwidth = TRUE)
               abline(h = 0, lty = 2)
-              legend("top", legend = paste("N: ", nn, sep = ""), bty = "n", cex = 2)
+              legend("top", legend = paste("N: ", nn, sep = ""), bty = "n", cex = 1)
               mtext(c("Male","Female")[sex], side = 3,
-                    line = 0.1, las = 1, adj = 0, cex = 2)
+                    line = 0.1, las = 1, adj = 0, cex = 3)
           }
       }
-      mtext("Area", side = 1, line = -1, outer = TRUE, cex = 2)
-      mtext("Standardised residual", side = 2, line = 1, outer = TRUE, cex = 2)
+      mtext("Area", side = 1, line = -1, outer = TRUE, cex = 3)
+      mtext("Standardised residual", side = 2, line = -0.4, outer = TRUE, cex = 3)
       if ( PlotOptions$Captions ) mtext(paste(source.dir," ",stock,": Standardised residuals by area for each sex"),
                                         side = 1, line = 1, outer = TRUE, cex = 2)
       dev.off()
@@ -266,13 +266,13 @@ Tag <- function(stock, source.dir, target.dir = source.dir)
               b<-rep(0,length(a))
               b[2:length(a)]<-a[2:length(a)]-a[1:(length(a)-1)]
               lines(br,b,col="blue",lwd=2)
-              mtext(c("Male","Female")[sex], side = 3, line = 0.1, las = 1, adj = 0, cex = 2)
+              mtext(c("Male","Female")[sex], side = 3, line = 0.1, las = 1, adj = 0, cex = 2.5)
           }
       }
-      mtext("Standardised residual", side = 1, line = -1, outer = TRUE, cex = 2)
-      mtext("Frequency", side = 2, line = 1, outer = TRUE, cex = 2)
+      mtext("Standardised residual", side = 1, line = -1, outer = TRUE, cex = 3)
+      mtext("Frequency", side = 2, line = 1, outer = TRUE, cex = 3)
       if ( PlotOptions$Captions ) mtext(paste(source.dir," ",stock,": Histograms of residuals for tag by sex"),
-                                        side = 1, line = 1, outer = TRUE, cex = 2)      
+                                        side = 1, line = 1, outer = TRUE, cex = 3)      
     dev.off()
   }
   

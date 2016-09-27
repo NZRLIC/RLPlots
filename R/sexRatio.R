@@ -60,7 +60,7 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir)
         #}
         # AW
         PlotType(paste(target.dir, "/", stock, "SEXRObsPredAW", sep = ""), width = 170, height = 200)
-        par(las = 1, oma = c(1,1,0,1), mar = c(5,4,1,1), mfrow = c(3,2))
+        par(las = 1, oma = c(1,1,0,1), mar = c(5,4,1,1), mfrow = c(3,2), cex = 2)
         for ( sex in 1:3 )
         {
             for ( type in 1:2 )
@@ -75,14 +75,14 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir)
         }
         if ( PlotOptions$Captions ) 
         {
-            mtext(paste(source.dir," ",stock,": Observed and predicted for AW Sex Ratio fits."),side=1,line=-0.7,outer=TRUE,cex=0.7)
-            mtext(paste(" Points: Observed; Lines: Predicted  "),side=1,line=0,outer=TRUE,cex=0.7)
+            mtext(paste(source.dir," ",stock,": Observed and predicted for AW Sex Ratio fits."),side=1,line=-0.7,outer=TRUE,cex=2)
+            mtext(paste(" Points: Observed; Lines: Predicted  "),side=1,line=0,outer=TRUE,cex=2)
         }
         dev.off()
     
         # SS
         PlotType(paste(target.dir, "/", stock, "SEXRObsPredSS", sep = ""), width = 170, height = 200)
-        par(las=1,oma=c(1,1,0,1),mar=c(5,4,1,1),mfrow=c(3,2)) 
+        par(las=1,oma=c(1,1,0,1),mar=c(5,4,1,1),mfrow=c(3,2), cex = 2) 
         for ( sex in 1:3 )
         {
             for ( type in 1:2 )
@@ -97,8 +97,8 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir)
         }
         if ( PlotOptions$Captions ) 
         {
-            mtext(paste(source.dir," ",stock,": Observed and predicted for SS Sex Ratio fits."),side=1,line=-0.7,outer=TRUE,cex=0.7)
-            mtext(paste(" Points: Observed; Lines: Predicted  "),side=1,line=0,outer=TRUE,cex=0.7)
+            mtext(paste(source.dir," ",stock,": Observed and predicted for SS Sex Ratio fits."),side=1,line=-0.7,outer=TRUE,cex=2)
+            mtext(paste(" Points: Observed; Lines: Predicted  "),side=1,line=0,outer=TRUE,cex=2)
         }
         dev.off()
     }
@@ -111,14 +111,14 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir)
     {
         # Resids v period
         PlotType(paste(target.dir, "/", stock, "SEXRResid", sep = ""), width = 170, height = 200)
-        par(las=1,oma=c(1,1,1,1),mar=c(4,3,1,1),mgp=c(2,1,0)) 
+        par(las=1,oma=c(1,1,1,1),mar=c(4,3,1,1),mgp=c(2,1,0), cex = 3) 
         plot(StdRes~Year,data=sexr,pch=c(1,16)[Season],lwd=PlotOptions$thin,ylab="Standardised residual",
              xlab=xlab)
         abline(h=0,lty=2)
         if(PlotOptions$Captions) 
         {
-            mtext(paste(source.dir," ",stock,": Standardised residual for Sex Ratio fits"),side=1,line=-0.7,outer=TRUE,cex=0.7)
-            mtext(paste("Closed circles: SS; Open circles: AW"),side=1,line=0,outer=TRUE,cex=0.7)
+            mtext(paste(source.dir," ",stock,": Standardised residual for Sex Ratio fits"),side=1,line=-0.7,outer=TRUE,cex=2)
+            mtext(paste("Closed circles: SS; Open circles: AW"),side=1,line=0,outer=TRUE,cex=2)
         }
         dev.off()
 
@@ -144,24 +144,26 @@ sexRatio <- function(stock, source.dir, target.dir = source.dir)
         
         #Resids v predicted
         PlotType(paste(target.dir, "/", stock, "SEXRResidPred", sep = ""), width = 170, height = 200)
+        par(cex = 3)
         plot(StdRes~Pred,data=sexr,pch=c(1,16)[Season],lwd=PlotOptions$thin,ylab="Standardised residual",xlab="Predicted")
         abline(h=0,lty=2)
         if(PlotOptions$Captions) 
         {
-            mtext(paste(source.dir," ",stock,": Standardised residual for Sex Ratio fits"),side=1,line=-0.7,outer=TRUE,cex=0.7)
-            mtext(paste("Closed circles: SS; Open circles: AW"),side=1,line=0,outer=TRUE,cex=0.7)
+            mtext(paste(source.dir," ",stock,": Standardised residual for Sex Ratio fits"),side=1,line=-0.7,outer=TRUE,cex=2)
+            mtext(paste("Closed circles: SS; Open circles: AW"),side=1,line=0,outer=TRUE,cex=2)
         }
         dev.off()
     
         #qq plot
         PlotType(paste(target.dir, "/", stock, "SEXRQQ", sep = ""), width = 170, height = 200)
+        par(cex = 3)
         qqnorm(sexr$StdRes, pch = c(1,16)[sexr$Season], xlab = "Theoretical quantiles", ylab = "Standardised residual", main = "", las = 1)
         qqline(sexr$StdRes)
         abline(h=quantile(sexr$StdRes,p=c(5,25,50,75,95)/100),lty=2)#Plot quntiles of the stdevs
         if(PlotOptions$Captions) 
         {
-            mtext(paste(source.dir," ",stock,": Standardised residual for Sex Ratio fits"),side=1,line=-0.7,outer=TRUE,cex=0.7)
-            mtext(paste("Closed circles: SS; Open circles: AW"),side=1,line=0,outer=TRUE,cex=0.7)
+            mtext(paste(source.dir," ",stock,": Standardised residual for Sex Ratio fits"),side=1,line=-0.7,outer=TRUE,cex=2)
+            mtext(paste("Closed circles: SS; Open circles: AW"),side=1,line=0,outer=TRUE,cex=2)
         }
         dev.off()
     }
