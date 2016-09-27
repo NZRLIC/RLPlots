@@ -32,7 +32,7 @@ LF <- function(stock, source.dir, target.dir = source.dir)
       if ( is.na(match(sample, 0:8*n.LF+1)) != TRUE )
       {
         PlotType(paste(target.dir, "/", stock, "LFfit", i, sep = ""), width = 170, height = 200)
-        par(mfrow = c(n.LF, length(sexcode)), oma = c(2,3,1,4), mar = c(1,3,0.5,2), lab = c(5,4,5))
+        par(mfrow = c(n.LF, length(sexcode)), oma = c(2,3,1,4), mar = c(1,3,0.5,2), lab = c(5,4,5), cex = 2)
         i <- i + 1
       } 
       if ( is.na(match(sample,c(1:8)*n.LF)) != TRUE | sample == max(data$sample) ) xaxt <- "s" else xaxt <- "n"
@@ -56,7 +56,7 @@ LF <- function(stock, source.dir, target.dir = source.dir)
             }
             plot(Pred ~ size, data = sub, type = "l", lwd = PlotOptions$thin, xaxt = xaxt, xlim = xlim, ylab = "", ylim = ylim, yaxt = yaxt, bty = "L", las = 1)
             legend("topright",legend=as.character(round(unique(data[data$sample==sample & data$sex==sex,"effN"]),2)),bty="n",title="eff. N:")
-            if ( !LFOptions$ObsPredYFixed )  axis(2, c(0, round(max(sub$Obs, sub$Pred), 4)), las = 1)
+            if ( !LFOptions$ObsPredYFixed )  axis(2, c(0, round(max(sub$Obs, sub$Pred), 2)), las = 1)
             points(Obs ~ size, data = sub, pch = 1)
           } else {
             plot(-10, -10, xaxt = xaxt, xlim = xlim, ylim = c(0, 0.3), ylab = "", las = 1, yaxt = "n")
@@ -67,7 +67,7 @@ LF <- function(stock, source.dir, target.dir = source.dir)
           if ( sex == 3 ) mtext(paste(sub$Year, c("1","2")[sub$Season], c("LB","CS","CN","CM","MS")[sub$type]), side = 4, line = 2, las = 1, cex = 0.57, at = ylim[2]*0.2)
           if ( xaxt == "s" && sex == 2 ) mtext("Size (mm TW)", side = 1, line = 3, las = 1, cex = 0.7)
       }
-      mtext("Proportion at size", side = 2, line = 1, outer = TRUE, cex = 0.8)
+      mtext("Proportion at size", side = 2, line = 1, outer = TRUE, cex = 3)
       if ( PlotOptions$Captions ) mtext(paste(source.dir, " ", stock, ": Observed versus predicted for size frequency fits"), side = 1, line = 4, outer = TRUE, cex = 0.7)
       if ( xaxt == "s" ) dev.off()
     }
@@ -192,22 +192,22 @@ LF <- function(stock, source.dir, target.dir = source.dir)
   if ( LFOptions$BoxSize )
   {
     PlotType(paste(target.dir, "/", stock, "LFresboxSex", sep = ""), width = 170, height = 200)
-    par(mfrow=c(3,1),oma=c(4,1,1,1),mar=c(5,5,1,5))
-    for( sex in 1:3 )
+    par(mfrow=c(max(LFOptions$sexcode),1),oma=c(4,1,1,1),mar=c(5,5,1,5), cex = 2)
+    for( sex in LFOptions$sexcode )
     {
       boxplot(StdRes~size,data=data[data$sex==sex,],ylab="Stdandardised residual",xlab="Size (mm TW)",las=1,medlwd=PlotOptions$thin) 
       abline(h = 0, lty = 2)
-      mtext(PlotOptions$SexNames[sex],side=4,line=1,las=1,cex=0.7)
+      mtext(PlotOptions$SexNames[sex],side=4,line=1,las=1,cex=3)
     }
-    if ( PlotOptions$Captions ) mtext(paste(source.dir," ",stock,": Box plots of standardised residuals of LF for each sex and size class"),side=1,line=0,outer=TRUE,cex=0.7)
+    if ( PlotOptions$Captions ) mtext(paste(source.dir," ",stock,": Box plots of standardised residuals of LF for each sex and size class"),side=1,line=0,outer=TRUE,cex=2)
     dev.off()
 
   # ==============================================================================
   # Plot Arniplots by sex by season
   # ==============================================================================
     PlotType(paste(target.dir, "/", stock, "LFresboxSexSea", sep = ""), width = 170, height = 200)
-    par(mfrow=c(3,2),oma=c(4,1,1,4),mar=c(4,4,2,1))
-      for(sex in 1:3)
+    par(mfrow=c(max(LFOptions$sexcode),2),oma=c(4,1,1,4),mar=c(4,4,2,1), cex = 2)
+      for(sex in LFOptions$sexcode)
       {
         for(Season in 1:2)
         {
@@ -221,11 +221,11 @@ LF <- function(stock, source.dir, target.dir = source.dir)
             plot(-10,-10,xaxt=xaxt,xlim=c(30,90),yaxt=yaxt,ylim=c(-6,6),las=1)
           }
           abline(h=0,lty=2) 
-          if(sex==1) mtext(c("AW","SS")[Season],side=3,line=1,las=1,cex=0.7)
-          if(Season==2) mtext(PlotOptions$SexNames[sex],side=4,line=1,las=1,cex=0.7)
+          if(sex==1) mtext(c("AW","SS")[Season],side=3,line=1,las=1,cex=2)
+          if(Season==2) mtext(PlotOptions$SexNames[sex],side=4,line=1,las=1,cex=2)
         }
       }
-    if ( PlotOptions$Captions ) mtext(paste(source.dir," ",stock,": Box plots of standardised residuals for each sex and size class"),side=1,line=0,outer=TRUE,cex=0.7)
+    if ( PlotOptions$Captions ) mtext(paste(source.dir," ",stock,": Box plots of standardised residuals for each sex and size class"),side=1,line=0,outer=TRUE,cex=2)
     dev.off()
   }
   

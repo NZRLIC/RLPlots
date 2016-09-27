@@ -26,7 +26,7 @@ Catches <- function(stock,source.dir,target.dir = source.dir)
     # Plot SLC and NSLC
     # ==============================================================================
     PlotType(paste(target.dir, "/", stock, "Catch", sep = ""), width = 300, height = 10+150)
-    par(las=1,oma = c(4,1,1,1), mar = c(3,4,1,1),mfrow=c(1,2))
+    par(las=1,oma = c(4,1,1,1), mar = c(3,4,1,1),mfrow=c(1,2), cex = 3)
     plot(P_SLC~x,data=catches[catches$Season==2,],type="l",
          lwd = PlotOptions$thick,ylim=c(0,max(catches$SLC)),ylab="SL Catch (t)", xlab = "")
     points(SLC~x,data=catches[catches$Season==2,],pch=19)
@@ -40,8 +40,8 @@ Catches <- function(stock,source.dir,target.dir = source.dir)
     lines(P_NSLC~x,data=catches[catches$Season==1,], lwd = PlotOptions$thin)
     points(NSLC~x,data=catches[catches$Season==1,],pch=1)
     if ( PlotOptions$Captions ) {
-        mtext(paste(source.dir," ",stock,": Observed and predicted for Catch fits."),side=1,line=2,outer=TRUE,cex=0.7)
-        mtext(paste(" Points: Observed; Lines: Predicted  "),side=1,line=3,outer=TRUE,cex=0.7)
+        mtext(paste(source.dir," ",stock,": Observed and predicted for Catch fits."),side=1,line=2,outer=TRUE,cex=3)
+        mtext(paste(" Points: Observed; Lines: Predicted  "),side=1,line=3,outer=TRUE,cex=3)
     }
     mtext(xlab, side = 1, line = -0.5, outer = TRUE)
     dev.off()
