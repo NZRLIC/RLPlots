@@ -19,8 +19,8 @@ MeanSize <- function(stock, source.dir, target.dir = source.dir)
     dat$Sex[dat$Sex==3] <- "Mature females"
     dat$Season[dat$Season==1] <- "AW"
     dat$Season[dat$Season==2] <- "SS"
-    dat$Type[dat$Type==1] <- "CS"
-    dat$Type[dat$Type==2] <- "LB"
+    dat$Type[dat$Type==1] <- "LB"
+    dat$Type[dat$Type==2] <- "CS"
     
     # re-order factors
     dat$Sex <- factor(dat$Sex, levels = c("Males","Immature females","Mature females"))

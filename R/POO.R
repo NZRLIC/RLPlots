@@ -41,23 +41,24 @@ POO <- function(stock, source.dir, target.dir = source.dir)
     {
         #Set graphics parameters
         PlotType(paste(target.dir, "/", stock, "POResid", sep = ""), width = 270, height = 200)
-        par(las=1,oma=c(1,1,1,1),mar=c(4,3.5,1,1),mgp=c(2.5,1,0))
+        par(las=1,oma=c(1,1,1,1),mar=c(4,3.5,1,1),mgp=c(2.5,1,0), cex = 3)
         #Resids v period
         plot(StdRes~x,data=po,pch=16,lwd=PlotOptions$thin,ylab="Standardised residual",xlab=xlab)
         abline(h = 0, lty = 2)
         if ( PlotOptions$Captions ) 
         {
-            mtext(paste(source.dir," ",stock,": Standardised residuals for POO fits"),side=1,line=-0.7,outer=TRUE,cex=0.7)
+            mtext(paste(source.dir," ",stock,": Standardised residuals for POO fits"),side=1,line=-0.7,outer=TRUE,cex=2)
         }
         dev.off()
         
         #Resids v predicted
         PlotType(paste(target.dir, "/", stock, "POOResidPred", sep = ""), width = 270, height = 200)
+        par(cex = 3)
         plot(StdRes~Pred,data=po,pch=16,lwd=PlotOptions$thin,ylab="Standardised residual",xlab="Predicted")
         abline(h=0,lty=2)
         if ( PlotOptions$Captions )
         {
-            mtext(paste(source.dir," ",stock,": Standardised residual for POO fits"),side=1,line=-0.7,outer=TRUE,cex=0.7)
+            mtext(paste(source.dir," ",stock,": Standardised residual for POO fits"),side=1,line=-0.7,outer=TRUE,cex=2)
         }
         dev.off()
     }

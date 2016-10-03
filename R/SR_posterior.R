@@ -31,8 +31,8 @@ SR_posterior <- function(stock, source.dir, target.dir = source.dir)
     
     d <- sexr[,c('Year','Obs','Season','sex','type','LB','UB')]
     d <- melt(d, id.vars = list('Year','Season','sex','type'), as.is = list('Obs','LB','UB'))
-    d$type[d$type == 1] <- "CS"
-    d$type[d$type == 2] <- "LB"
+    d$type[d$type == 1] <- "LB"
+    d$type[d$type == 2] <- "CS"
     d$Season[d$Season == 1] <- "AW"
     d$Season[d$Season == 2] <- "SS"
     d$sex[d$sex == 1] <- "Male"
