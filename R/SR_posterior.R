@@ -40,6 +40,7 @@ SR_posterior <- function(stock, source.dir, target.dir = source.dir)
     d$sex[d$sex == 3] <- "Mat. Female"
     d$LB <- d$value - 1.96*SD
     d$UB <- d$value + 1.96*SD
+    d$sex <- factor(d$sex, levels = c('Male','Imm. Female','Mat. Female'))
     
     # Load posterior
     dat <- as.matrix(read.table(paste(source.dir, "/", stock, "SexRatiopost.out", sep = ""), header = TRUE, as.is = TRUE))
@@ -51,8 +52,8 @@ SR_posterior <- function(stock, source.dir, target.dir = source.dir)
     dat$year <- sexr$Year
     dat$Season <- sexr$Season
     dat <- melt(dat, id.vars = c("sex","type","year","Season"))
-    dat$type[dat$type == 1] <- "CS"
-    dat$type[dat$type == 2] <- "LB"
+    dat$type[dat$type == 1] <- "LB"
+    dat$type[dat$type == 2] <- "CS"
     dat$sex[dat$sex == 1] <- "Male"
     dat$sex[dat$sex == 2] <- "Imm. Female"
     dat$sex[dat$sex == 3] <- "Mat. Female"
@@ -72,7 +73,7 @@ SR_posterior <- function(stock, source.dir, target.dir = source.dir)
     
     if ( PlotOptions$Captions )
     {
-        p <- p + ggtitle(paste(source.dir, " ", stock, ": Selectivity curve by Epoch by sex with 0.05 and 0.95 percentiles")) +
+        p <- p + ggtitle(paste0(source.dir, " ", stock, ": proportions per sex category")) +
             theme(plot.title = element_text(size = 9, vjust = 2.7))
     }
     
